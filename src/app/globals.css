@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/* =========================================================
+   SAFETY AT HOME — GLOBAL DESIGN TOKENS (LaunchFlow house system)
+   All colour is OKLCH. Contrast pairs are chosen for WCAG 2.2 AA:
+   - white on brand / brand-deep / alert / alert-deep >= 4.5:1
+   - ink / ink-soft / link on canvas & surface >= 4.5:1
+   Do not add ad-hoc colours in components — extend this block.
+========================================================= */
+@theme {
+  --font-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial,
+    sans-serif;
+
+  /* Neutrals */
+  --color-canvas: oklch(0.98 0.004 95); /* page background, warm near-white */
+  --color-surface: oklch(1 0 0); /* cards, bars */
+  --color-ink: oklch(0.22 0.02 262); /* body text */
+  --color-ink-soft: oklch(0.44 0.02 262); /* secondary text, 6.5:1 on canvas */
+  --color-line: oklch(0.87 0.01 262); /* borders, rules */
+
+  /* Brand — deep council blue */
+  --color-brand: oklch(0.38 0.09 262); /* white text on this passes AA */
+  --color-brand-deep: oklch(0.28 0.07 262);
+  --color-brand-wash: oklch(0.95 0.02 262); /* tinted panels, ink text on top */
+
+  /* Links */
+  --color-link: oklch(0.42 0.15 262); /* 7:1 on canvas */
+
+  /* Emergency red */
+  --color-alert: oklch(0.48 0.185 27); /* white text on this passes AA */
+  --color-alert-deep: oklch(0.38 0.15 27);
+  --color-alert-wash: oklch(0.96 0.02 27);
+
+  /* Focus — high-visibility yellow, black text/outline pairing */
+  --color-focus: oklch(0.86 0.17 95);
+
+  /* Positive / confirmation */
+  --color-positive: oklch(0.42 0.11 155);
+
+  --radius-card: 0.5rem;
+
+  --shadow-card: 0 1px 2px oklch(0.22 0.02 262 / 0.08),
+    0 2px 8px oklch(0.22 0.02 262 / 0.06);
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Visible, high-contrast focus everywhere — WCAG 2.2 AA hard requirement.
+     Yellow fill + black outline works on light, dark and red surfaces. */
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px oklch(0.22 0.02 262 / 0.9);
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-focus);
+    color: oklch(0.22 0.02 262);
+  }
+}
+
+/* =========================================================
+   SHARED COMPONENT CLASSES
+========================================================= */
+@layer components {
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-focus);
+    color: var(--color-ink);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .skip-link:focus-visible {
+    left: 0;
+  }
+}
