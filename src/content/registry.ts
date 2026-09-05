@@ -16,6 +16,12 @@ import { electricalSafety } from "./pages/electrical-safety";
 import { carbonMonoxide } from "./pages/carbon-monoxide";
 import { waterSafety } from "./pages/water-safety";
 import { asbestos } from "./pages/asbestos";
+import { balconiesWindowsAndRoofs } from "./pages/balconies-windows-and-roofs";
+import { eBikesAndEScooters } from "./pages/e-bikes-and-e-scooters";
+import { communalAreas } from "./pages/communal-areas";
+import { securityAtHome } from "./pages/security-at-home";
+import { extraSupport } from "./pages/extra-support";
+import { yourSafetyChecks } from "./pages/your-safety-checks";
 
 /**
  * Registry of every SafetyPage. The dynamic route builds one static page per
@@ -38,6 +44,12 @@ export const SAFETY_PAGES: readonly SafetyPage[] = [
   carbonMonoxide,
   waterSafety,
   asbestos,
+  balconiesWindowsAndRoofs,
+  eBikesAndEScooters,
+  communalAreas,
+  securityAtHome,
+  extraSupport,
+  yourSafetyChecks,
 ];
 
 /** The subset of a page that related cards and breadcrumbs need. */

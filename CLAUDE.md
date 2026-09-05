@@ -114,7 +114,7 @@ component renders all of them.
 - [x] **P2** SafetyPageTemplate + 5 fire pages
 - [x] **P3** Damp/mould cluster + Awaab's Law countdown + report form (client-only)
 - [x] **P4** Gas, electrical, CO, water, asbestos
-- [ ] **P5** Building safety, balconies, e-bikes, communal, security, extra support
+- [x] **P5** Building safety, balconies, e-bikes, communal, security, extra support
 - [ ] **P6** Postgres + Prisma, address lookup, safety profile, ARC asbestos feed
 - [ ] **P7** Self-check PDF generator, PEEP referral, full a11y + Lighthouse pass
 

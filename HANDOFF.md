@@ -1,10 +1,11 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-05 (end of Phase 4 session, plus graphics/links enhancement)._
+_Last updated: 2026-09-06 (end of Phase 5 session)._
 
 ## Where we are
 
-**Phases 1–4 are complete and committed on `main`.** The project type-checks
+**Phases 1–5 are complete and committed on `main`. All 24 sitemap routes
+resolve, every hub tile and every `related` slug resolves.** The project type-checks
 (`npx tsc --noEmit`) and builds with `output: 'standalone'`.
 
 The site is called **"Safety in and around your home"** (display name only —
@@ -94,10 +95,31 @@ links to the local fire service and HSE).
 - Enfield's safety-at-home page (also shared by the client) returns 403 to
   automated fetches and was not used.
 
+### Delivered in P5
+
+Six data pages, registered in `registry.ts`, each with key facts, further
+reading and a `TopicArt` illustration:
+
+- `balconies-windows-and-roofs.ts` — balcony fire rules, window restrictors,
+  roofs off limits.
+- `e-bikes-and-e-scooters.ts` — lithium battery charging and storage; ban on
+  shared-area charging. Links LFB ChargeSafe.
+- `communal-areas.ts` — keep-clear policy; items removed after
+  `THURROCK.communalAreas.removalNotice` ("7 days" — **confirm Thurrock's
+  actual policy: zero tolerance vs managed use, and the notice period**).
+- `security-at-home.ts` — door entry, locks, ID checks. Uses
+  `THURROCK.police` (Essex Police, 101). Essex Police web pages return 403 to
+  automated fetches, so no police link was added.
+- `extra-support.ts` — needs, PEEP, fire service visit, accessible formats.
+  `howToReport.phone` uses `THURROCK.housingPolicy.phone` (**confirm this is
+  the right tenant-facing housing number**); the template shows opening
+  hours only for the repairs line, so none are shown here.
+- `your-safety-checks.ts` — a single table of every check and interval,
+  all from `THURROCK`. Uses new `fireSafety.fireRiskAssessment` ("at least
+  every 12 months in blocks of flats" — **confirm**).
+
 ## Known state / caveats
 
-- Hub tiles still 404 for: balconies, e-bikes, communal, security, extra
-  support, your safety checks (P5).
 - No `downloads` on any page yet — no PDFs exist in the repo.
 - No ESLint config; use `npx tsc --noEmit` and `npm run build`.
 - Awaab's Law clock has no bank-holiday calendar (gov.uk JSON feed is an
@@ -108,30 +130,34 @@ links to the local fire service and HSE).
   days", electrical inspection "every 5 years", CO alarm lifespan "7 to 10
   years", reminder letter "about 8 weeks before". All live in `THURROCK`.
 
-## Next session: Phase 5
+## Next session: Phase 6
 
-Remaining data pages, all via `registry.ts` only:
+Postgres + Prisma, address lookup, safety profile, ARC asbestos feed.
 
-1. `balconies-windows-and-roofs`
-2. `e-bikes-and-e-scooters` (fire risk of charging; storage rules)
-3. `communal-areas` (zero-tolerance / managed-use policy for shared areas —
-   check which Thurrock uses)
-4. `security-at-home` (door entry, locks; consider `THURROCK.housingPolicy`)
-5. `extra-support` (PEEP referral is P7; link to `fire-safety/help-to-evacuate`)
-6. `your-safety-checks` (a table of every check and interval — all intervals
-   already exist in `THURROCK`: gas, electrical, fire doors, alarms, water)
+1. Add Prisma with a Postgres datasource. Env var names are documented in
+   `.env.example`; values are set in Coolify only. Never commit a `.env`.
+2. Model `SafetyPage` as designed in `src/types/safety-page.ts` (plus
+   `keyFacts` and `furtherReading`, which were added after the type was first
+   written). Consider keeping content in TypeScript for now and using the DB
+   for tenant data only — the content files are the editorial source of truth
+   and are reviewed in git.
+3. Wire `FeedbackWidget` to a `PageFeedback` table (slug, helpful, timestamp).
+4. Wire `ReportDampForm` to a `DampReport` table and replace the `mailto:`
+   fallback with a real submission plus confirmation reference. Keep the
+   phone number on the confirmation screen.
+5. Address lookup (postcode → UPRN) and a per-address "safety profile":
+   building height band, stay put / evacuate plan, last gas check, last
+   electrical check, asbestos register summary (ARC feed).
+6. Optional: bank-holiday calendar for `AwaabsLawClock` (gov.uk JSON feed),
+   then drop the caveat sentence in the component.
 
-Notes for P5:
+Notes for P6:
 
-- No new routes. Add each page to `SAFETY_PAGES`. If any page needs a tool or
-  bespoke markup, use `TOOLS` / `BESPOKE_ROUTES` in `[...slug]/page.tsx`.
-- `building-safety` is already built (P3) — skip it.
-- New numbers or timescales go in `THURROCK` first. New external links go in
-  `SOURCES` and must be fetched to confirm they load. Give each new page
-  `keyFacts` (3) and `furtherReading`, and add a `TopicArt` entry if the
-  slug is new (the six P5 slugs already have artwork).
-- After P5, every hub tile resolves and every `related` slug resolves.
+- No auth existed before P6. Anything showing per-address data needs a
+  decision on how a tenant proves who they are.
+- `output: 'standalone'` must keep working in Docker; Prisma needs the
+  engine binaries copied into the standalone image.
 
 ## Phase checklist
 
-See CLAUDE.md "Build phases" — P1–P4 are ticked, P5 is next.
+See CLAUDE.md "Build phases" — P1–P5 are ticked, P6 is next.

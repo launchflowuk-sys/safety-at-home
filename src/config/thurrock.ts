@@ -14,6 +14,7 @@ export const THURROCK = {
   electricity: { provider: "UK Power Networks", phone: "105" },
   emergency: { phone: "999" },
   nhs: { provider: "NHS 111", phone: "111" },
+  police: { provider: "Essex Police", nonEmergency: "101" },
   contractor: "Mears",
   timescales: {
     emergency: "24 hours",
@@ -34,6 +35,7 @@ export const THURROCK = {
     tallBuilding: "over 11 metres tall (about 4 floors or more)",
     alarmLifespan: "10 years",
     fireDoorRating: "30 minutes",
+    fireRiskAssessment: "at least every 12 months in blocks of flats",
   },
   buildingSafety: {
     higherRiskBuilding: "at least 18 metres or 7 floors tall",
@@ -48,6 +50,9 @@ export const THURROCK = {
   waterSafety: {
     flushUnusedOutlets: "at least once a week",
     cleanShowerHead: "every 3 months",
+  },
+  communalAreas: {
+    removalNotice: "7 days",
   },
   rightToRepair: { initial: "£10", perDay: "£2", cap: "£50" },
 } as const;
