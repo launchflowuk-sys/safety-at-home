@@ -26,6 +26,13 @@ export const THURROCK = {
     emergencyHazard: "24 hours",
     writtenReport: "3 working days after works finish",
   },
+  fireSafety: {
+    alarmTest: "once a month",
+    communalFireDoorCheck: "every 3 months",
+    flatFireDoorCheck: "every 12 months",
+    tallBuilding: "over 11 metres tall (about 4 floors or more)",
+    alarmLifespan: "10 years",
+  },
   rightToRepair: { initial: "£10", perDay: "£2", cap: "£50" },
 } as const;
 

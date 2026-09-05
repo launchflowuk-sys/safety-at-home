@@ -102,7 +102,7 @@ component renders all of them.
 ## Build phases
 
 - [x] **P1** Scaffold, tokens, config, emergency bar, hub page, triage tool
-- [ ] **P2** SafetyPageTemplate + 5 fire pages
+- [x] **P2** SafetyPageTemplate + 5 fire pages
 - [ ] **P3** Damp/mould cluster + Awaab's Law countdown + report form (client-only)
 - [ ] **P4** Gas, electrical, CO, water, asbestos
 - [ ] **P5** Building safety, balconies, e-bikes, communal, security, extra support
