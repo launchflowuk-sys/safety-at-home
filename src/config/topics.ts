@@ -53,7 +53,7 @@ export const SAFETY_TOPICS: SafetyTopic[] = [
   },
   {
     slug: "building-safety",
-    title: "Building safety",
+    title: "Building safety information",
     description:
       "How we keep tall buildings safe, and how residents can raise concerns.",
   },

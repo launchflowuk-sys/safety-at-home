@@ -96,6 +96,10 @@ component renders all of them.
 - Sticky emergency bar at top of every page: "In an emergency call 999. Housing
   repairs 0800 074 0169 (24/7)" — numbers imported from config. Collapsible,
   remembers state in **sessionStorage** (NOT localStorage).
+- Site name is `SITE_NAME` in `src/config/navigation.ts` ("Safety in and around
+  your home"). Primary nav tabs come from `NAV_TABS` there: the hub and
+  "Building safety information". A topic with its own tab is left out of the
+  hub grid automatically. URLs never change — only display names.
 - Skip to content link.
 - Footer with accessibility statement, privacy, contact links.
 
@@ -103,7 +107,7 @@ component renders all of them.
 
 - [x] **P1** Scaffold, tokens, config, emergency bar, hub page, triage tool
 - [x] **P2** SafetyPageTemplate + 5 fire pages
-- [ ] **P3** Damp/mould cluster + Awaab's Law countdown + report form (client-only)
+- [x] **P3** Damp/mould cluster + Awaab's Law countdown + report form (client-only)
 - [ ] **P4** Gas, electrical, CO, water, asbestos
 - [ ] **P5** Building safety, balconies, e-bikes, communal, security, extra support
 - [ ] **P6** Postgres + Prisma, address lookup, safety profile, ARC asbestos feed
@@ -140,6 +144,13 @@ component renders all of them.
 
 Use these exact slugs everywhere. Never invent a new href — the sitemap is the
 single source of truth for internal links.
+
+All routes under `/safety-at-home` except `/emergency` are served by the
+catch-all `src/app/safety-at-home/[...slug]/page.tsx`. Data pages come from
+`src/content/registry.ts`; bespoke pages (the damp report form) are registered
+in `BESPOKE_ROUTES` inside that file. **Do not add static folders under
+`src/app/safety-at-home/`** for nested paths — a folder with no `page.tsx`
+shadows its parent slug and 404s it.
 
 ## Deploy
 

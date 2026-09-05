@@ -10,7 +10,13 @@ import { WarningIcon } from "./WarningIcon";
  * Renders every topic page from its SafetyPage data, in the fixed order set
  * out in CLAUDE.md. Optional sections are skipped when the data is absent.
  */
-export function SafetyPageTemplate({ page }: { page: SafetyPage }) {
+type Props = {
+  page: SafetyPage;
+  /** Optional interactive tool, rendered after the emergency callout. */
+  tool?: React.ReactNode;
+};
+
+export function SafetyPageTemplate({ page, tool }: Props) {
   const crumbs = getBreadcrumbs(page);
   const related = resolveRelated(page);
   const { online, phone, email } = page.howToReport;
@@ -74,6 +80,9 @@ export function SafetyPageTemplate({ page }: { page: SafetyPage }) {
           </p>
         </section>
       )}
+
+      {/* 3b. Page-specific tool (for example the Awaab's Law clock) */}
+      {tool && <div className="mt-8">{tool}</div>}
 
       {/* 4 + 5. Responsibilities */}
       <div className="mt-10 border-b border-line">

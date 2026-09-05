@@ -13,6 +13,7 @@ export const THURROCK = {
   blockedSewer: { provider: "Anglian Water", phone: "08457 145 145" },
   electricity: { provider: "UK Power Networks", phone: "105" },
   emergency: { phone: "999" },
+  nhs: { provider: "NHS 111", phone: "111" },
   contractor: "Mears",
   timescales: {
     emergency: "24 hours",
@@ -24,7 +25,7 @@ export const THURROCK = {
     investigate: "10 working days",
     repairStart: "5 working days from inspection",
     emergencyHazard: "24 hours",
-    writtenReport: "3 working days after works finish",
+    writtenReport: "3 working days after the investigation ends",
   },
   fireSafety: {
     alarmTest: "once a month",
@@ -32,6 +33,9 @@ export const THURROCK = {
     flatFireDoorCheck: "every 12 months",
     tallBuilding: "over 11 metres tall (about 4 floors or more)",
     alarmLifespan: "10 years",
+  },
+  buildingSafety: {
+    higherRiskBuilding: "at least 18 metres or 7 floors tall",
   },
   rightToRepair: { initial: "£10", perDay: "£2", cap: "£50" },
 } as const;

@@ -80,6 +80,36 @@ const PATHS: Record<string, React.ReactNode> = {
       <path d="M12 7v5l3 2" />
     </>
   ),
+  mould: (
+    <>
+      <circle cx="8" cy="9" r="2.5" />
+      <circle cx="15" cy="7" r="1.8" />
+      <circle cx="16" cy="14" r="2.8" />
+      <circle cx="9" cy="16" r="1.6" />
+    </>
+  ),
+  drop: (
+    <path d="M12 3c3 4.5 6 8 6 11.5a6 6 0 0 1-12 0C6 11 9 7.5 12 3z" />
+  ),
+  window: (
+    <>
+      <rect x="4" y="3" width="16" height="18" rx="1" />
+      <path d="M12 3v18M4 12h16" />
+    </>
+  ),
+  wind: (
+    <>
+      <path d="M3 8h11a3 3 0 1 0-3-3" />
+      <path d="M3 13h15a3 3 0 1 1-3 3" />
+      <path d="M3 18h8" />
+    </>
+  ),
+  thermometer: (
+    <>
+      <path d="M10 4a2 2 0 0 1 4 0v9.5a4 4 0 1 1-4 0V4z" />
+      <path d="M12 9v6" />
+    </>
+  ),
   warning: (
     <>
       <path d="M12 3l10 18H2L12 3z" />

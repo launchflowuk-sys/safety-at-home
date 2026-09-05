@@ -70,7 +70,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "fire-999": {
     kind: "result",
-    heading: "Get out, stay out, and call 999",
+    heading: `Get out, stay out, and call ${THURROCK.emergency.phone}`,
     phone: {
       label: "Fire and rescue",
       number: THURROCK.emergency.phone,
@@ -80,7 +80,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
       "Get everyone out of the home now.",
       "Close doors behind you as you leave.",
       "Use the stairs. Never use the lift.",
-      "Call 999 once you are outside.",
+      `Call ${THURROCK.emergency.phone} once you are outside.`,
     ],
     doNot: [
       "Do not stop to collect belongings.",
@@ -117,7 +117,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     doNow: [
       "Call our repairs line and describe the problem.",
       "Tell us if it is about a fire door, an alarm, or an escape route.",
-      "If things get worse, call 999.",
+      `If things get worse, call ${THURROCK.emergency.phone}.`,
     ],
     doNot: [
       "Do not prop open fire doors.",
@@ -142,7 +142,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "gas-999": {
     kind: "result",
-    heading: "Get into fresh air and call 999",
+    heading: `Get into fresh air and call ${THURROCK.emergency.phone}`,
     phone: {
       label: "Ambulance",
       number: THURROCK.emergency.phone,
@@ -152,12 +152,12 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
       {
         label: `${THURROCK.gasLeak.provider} gas emergency line`,
         number: THURROCK.gasLeak.phone,
-        note: "Call after 999, from outside",
+        note: `Call after ${THURROCK.emergency.phone}, from outside`,
       },
     ],
     doNow: [
       "Get everyone outside into fresh air.",
-      "Call 999 and ask for an ambulance.",
+      `Call ${THURROCK.emergency.phone} and ask for an ambulance.`,
       `Then call ${THURROCK.gasLeak.provider} to report the gas leak.`,
     ],
     doNot: [
@@ -308,13 +308,13 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     },
     alsoCall: [
       {
-        label: "If you see flames, call 999 first",
+        label: `If you see flames, call ${THURROCK.emergency.phone} first`,
         number: THURROCK.emergency.phone,
       },
     ],
     doNow: [
       "Turn the electricity off at the fuse box, if it is safe to reach.",
-      "If you see flames, get everyone out and call 999.",
+      `If you see flames, get everyone out and call ${THURROCK.emergency.phone}.`,
       "Call our repairs line. Sparks and burning smells are an emergency.",
     ],
     doNot: [
@@ -384,7 +384,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "co-999": {
     kind: "result",
-    heading: "Get into fresh air and call 999",
+    heading: `Get into fresh air and call ${THURROCK.emergency.phone}`,
     phone: {
       label: "Ambulance",
       number: THURROCK.emergency.phone,
@@ -394,12 +394,12 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
       {
         label: `${THURROCK.gasLeak.provider} gas emergency line`,
         number: THURROCK.gasLeak.phone,
-        note: "Call after 999, from outside",
+        note: `Call after ${THURROCK.emergency.phone}, from outside`,
       },
     ],
     doNow: [
       "Get everyone outside into fresh air now.",
-      "Call 999 and ask for an ambulance.",
+      `Call ${THURROCK.emergency.phone} and ask for an ambulance.`,
       `Then call ${THURROCK.gasLeak.provider} on ${THURROCK.gasLeak.phone}.`,
     ],
     doNot: [
@@ -426,7 +426,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
       "Stop using your cooker, boiler and any gas fire.",
       "Open windows and doors.",
       "Go outside, then call the gas emergency line.",
-      "If anyone feels unwell, call 999 too.",
+      `If anyone feels unwell, call ${THURROCK.emergency.phone} too.`,
     ],
     doNot: [
       "Do not ignore the alarm, even if you feel fine.",
@@ -470,7 +470,7 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     doNow: [
       "Call our repairs line and ask about your gas safety check.",
       "Test your carbon monoxide alarm by pressing the test button.",
-      "If you feel very unwell at any point, call 999.",
+      `If you feel very unwell at any point, call ${THURROCK.emergency.phone}.`,
     ],
     doNot: [
       "Do not block air vents in rooms with gas appliances.",

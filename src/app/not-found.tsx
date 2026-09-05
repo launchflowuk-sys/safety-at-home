@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { THURROCK, telHref } from "@/config/thurrock";
+import { SITE_NAME } from "@/config/navigation";
 
 export default function NotFound() {
   return (
@@ -24,7 +25,7 @@ export default function NotFound() {
           href="/safety-at-home"
           className="font-semibold text-link underline underline-offset-2"
         >
-          Go to the Safety at home hub
+          Go to {SITE_NAME}
         </Link>
       </p>
     </div>

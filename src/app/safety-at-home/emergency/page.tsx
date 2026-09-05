@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TriageTool } from "@/components/triage/TriageTool";
 import { THURROCK, telHref } from "@/config/thurrock";
+import { SITE_NAME } from "@/config/navigation";
 
 export const metadata: Metadata = {
   title: "Get help now",
@@ -19,7 +20,7 @@ export default function EmergencyPage() {
               href="/safety-at-home"
               className="text-link underline underline-offset-2"
             >
-              Safety at home
+              {SITE_NAME}
             </Link>
             <span aria-hidden="true" className="ml-2 text-ink-soft">
               /

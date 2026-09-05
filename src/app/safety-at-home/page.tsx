@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SAFETY_TOPICS } from "@/config/topics";
+import { NAV_TABS, SITE_NAME } from "@/config/navigation";
 import { THURROCK, telHref } from "@/config/thurrock";
 
 export const metadata: Metadata = {
-  title: { absolute: "Safety at home — Thurrock Council" },
+  title: { absolute: `${SITE_NAME} — Thurrock Council` },
   description:
     "Keeping your council home safe. Find safety advice by topic, or use our tool to work out who to call about a problem right now.",
 };
@@ -13,7 +14,7 @@ export default function SafetyAtHomeHub() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <h1 className="max-w-3xl text-4xl font-bold tracking-tight">
-        Safety in your home
+        {SITE_NAME}
       </h1>
       <p className="mt-4 max-w-prose text-lg text-ink-soft">
         We look after the safety of your home and building. This site explains
@@ -58,7 +59,12 @@ export default function SafetyAtHomeHub() {
           Safety topics
         </h2>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SAFETY_TOPICS.map((topic) => (
+          {SAFETY_TOPICS.filter(
+            (topic) =>
+              !NAV_TABS.some(
+                (tab) => tab.href === `/safety-at-home/${topic.slug}`,
+              ),
+          ).map((topic) => (
             <li key={topic.slug}>
               <Link
                 href={`/safety-at-home/${topic.slug}`}
