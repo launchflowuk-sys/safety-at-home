@@ -57,6 +57,7 @@ type SafetyPage = {
   slug: string;
   title: string;
   summary: string;
+  keyFacts?: { value: string; label: string }[]; // up to 3 stat tiles; values from THURROCK
   emergency?: { label: string; phone: string; instructions: string[] };
   ourResponsibilities: string[];
   yourResponsibilities: string[];
@@ -68,6 +69,7 @@ type SafetyPage = {
   };
   timescales?: { label: string; target: string }[];
   downloads?: { label: string; href: string; size: string }[];
+  furtherReading?: { label: string; href: string; source: string }[]; // official external sources only
   related: string[]; // slugs of related SafetyPages, auto-resolved
 };
 ```
@@ -80,7 +82,8 @@ component renders all of them.
 `src/components/SafetyPageTemplate.tsx` renders every topic page, in this order:
 
 1. Breadcrumb
-2. H1 + summary
+2. H1 + summary, with the topic illustration (`TopicArt`, keyed by slug)
+2b. Key facts — up to 3 stat tiles (if present)
 3. Emergency callout (if present) — red, high contrast, phone as `tel:` link
 4. "What we do" — accordion, open by default on desktop
 5. "What you must do" — accordion
@@ -88,6 +91,8 @@ component renders all of them.
 7. "How to report it" — 3 CTA cards (online / phone / email)
 8. Timescales table
 9. Downloads
+9b. "Find out more" — external links to official bodies only (fire service,
+    NHS, HSE, GOV.UK, utilities). Verify every URL loads before adding it.
 10. Related pages (auto-resolved from slugs)
 11. "Was this page helpful?" feedback widget (client component, no-op in P1)
 

@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const asbestos: SafetyPage = {
@@ -6,6 +7,11 @@ export const asbestos: SafetyPage = {
   title: "Asbestos",
   summary:
     "Many homes built before 2000 contain some asbestos. It is safe if it is in good condition and left alone. It is only a risk if it is damaged or disturbed, so never drill, sand or scrape without asking us first.",
+  keyFacts: [
+    { value: "Before 2000", label: "homes built before this may contain asbestos" },
+    { value: "Ask first", label: "before you drill, sand or scrape anything" },
+    { value: THURROCK.timescales.emergency, label: "to make damaged asbestos safe" },
+  ],
   ourResponsibilities: [
     "We keep a record of where asbestos is, or may be, in our homes and buildings. You can ask us what we know about your home.",
     "We inspect asbestos we know about and keep it in good condition, seal it, or remove it.",
@@ -63,5 +69,6 @@ export const asbestos: SafetyPage = {
       target: THURROCK.timescales.batch,
     },
   ],
+  furtherReading: [SOURCES.hseAsbestos],
   related: ["your-safety-checks", "damp-and-mould", "building-safety"],
 };

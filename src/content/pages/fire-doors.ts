@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const fireDoors: SafetyPage = {
@@ -6,6 +7,11 @@ export const fireDoors: SafetyPage = {
   title: "Fire doors",
   summary:
     "Fire doors hold back fire and smoke so you have time to get out. Find out how to check yours, what you must not change, and how we look after them.",
+  keyFacts: [
+    { value: THURROCK.fireSafety.fireDoorRating, label: "a fire door holds back fire and smoke for at least this long" },
+    { value: THURROCK.fireSafety.communalFireDoorCheck, label: "we check shared-area fire doors in taller buildings" },
+    { value: THURROCK.fireSafety.flatFireDoorCheck, label: "we check flat entrance doors in taller buildings" },
+  ],
   ourResponsibilities: [
     "We fit fire doors at flat entrances and in the shared areas of our blocks.",
     `In buildings ${THURROCK.fireSafety.tallBuilding}, we check shared-area fire doors ${THURROCK.fireSafety.communalFireDoorCheck} and flat entrance doors ${THURROCK.fireSafety.flatFireDoorCheck}.`,
@@ -70,6 +76,7 @@ export const fireDoors: SafetyPage = {
       target: THURROCK.fireSafety.flatFireDoorCheck,
     },
   ],
+  furtherReading: [SOURCES.ecfrsHighRise, SOURCES.ecfrsHomeSafety],
   related: [
     "fire-safety",
     "fire-safety/stay-put-or-evacuate",

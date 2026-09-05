@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const stayPutOrEvacuate: SafetyPage = {
@@ -16,6 +17,11 @@ export const stayPutOrEvacuate: SafetyPage = {
       `Call ${THURROCK.emergency.phone} once you are safe outside. Tell them your address and which floor the fire is on.`,
     ],
   },
+  keyFacts: [
+    { value: "Stay put", label: "means stay in your flat unless smoke or heat gets in" },
+    { value: "Evacuate", label: "means leave by the stairs as soon as the alarm sounds" },
+    { value: THURROCK.emergency.phone, label: "once you are safe, or if you cannot get out" },
+  ],
   ourResponsibilities: [
     "We decide the safest plan for each block, based on how it was built and its fire risk assessment.",
     "We put a fire action notice in every block. It tells you if your block is 'stay put' or 'evacuate', and where to meet outside.",
@@ -50,6 +56,7 @@ export const stayPutOrEvacuate: SafetyPage = {
     phone: THURROCK.repairs.phone,
     email: THURROCK.repairs.email,
   },
+  furtherReading: [SOURCES.ecfrsHighRise, SOURCES.ecfrsHomeSafety],
   related: [
     "fire-safety",
     "fire-safety/fire-doors",

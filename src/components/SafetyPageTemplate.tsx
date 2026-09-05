@@ -4,6 +4,7 @@ import { getBreadcrumbs, resolveRelated } from "@/content/registry";
 import type { SafetyPage } from "@/types/safety-page";
 import { Accordion } from "./Accordion";
 import { FeedbackWidget } from "./FeedbackWidget";
+import { TopicArt } from "./TopicArt";
 import { WarningIcon } from "./WarningIcon";
 
 /**
@@ -52,9 +53,36 @@ export function SafetyPageTemplate({ page, tool }: Props) {
         </ol>
       </nav>
 
-      {/* 2. H1 + summary */}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight">{page.title}</h1>
-      <p className="mt-3 max-w-prose text-lg text-ink-soft">{page.summary}</p>
+      {/* 2. H1 + summary, with the topic illustration */}
+      <div className="mt-4 flex flex-col-reverse gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight">{page.title}</h1>
+          <p className="mt-3 max-w-prose text-lg text-ink-soft">
+            {page.summary}
+          </p>
+        </div>
+        <TopicArt
+          slug={page.slug}
+          className="h-24 w-24 shrink-0 sm:h-36 sm:w-36"
+        />
+      </div>
+
+      {/* 2b. Key facts */}
+      {page.keyFacts && page.keyFacts.length > 0 && (
+        <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+          {page.keyFacts.map((fact) => (
+            <li
+              key={fact.label}
+              className="rounded-card border-t-4 border-brand bg-surface p-4 shadow-card"
+            >
+              <p className="text-2xl font-bold leading-tight text-brand first-letter:uppercase">
+                {fact.value}
+              </p>
+              <p className="mt-1 text-sm text-ink-soft">{fact.label}</p>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* 3. Emergency callout */}
       {page.emergency && (
@@ -237,6 +265,47 @@ export function SafetyPageTemplate({ page, tool }: Props) {
                   {file.label}
                 </a>{" "}
                 <span className="text-sm text-ink-soft">({file.size})</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* 9b. Find out more (trusted external sources) */}
+      {page.furtherReading && page.furtherReading.length > 0 && (
+        <section aria-labelledby="more-heading" className="mt-10">
+          <h2 id="more-heading" className="text-2xl font-bold">
+            Find out more
+          </h2>
+          <p className="mt-2 max-w-prose text-ink-soft">
+            Advice from other trusted organisations. These links open other
+            websites.
+          </p>
+          <ul className="mt-4 divide-y divide-line rounded-card border border-line bg-surface">
+            {page.furtherReading.map((link) => (
+              <li key={link.href} className="flex items-start gap-3 p-4">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="mt-1 h-5 w-5 shrink-0 text-brand"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+                </svg>
+                <div>
+                  <a
+                    href={link.href}
+                    rel="noopener noreferrer"
+                    className="font-semibold text-link underline underline-offset-2"
+                  >
+                    {link.label}
+                  </a>
+                  <p className="text-sm text-ink-soft">{link.source}</p>
+                </div>
               </li>
             ))}
           </ul>

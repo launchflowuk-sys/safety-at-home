@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const preventCondensation: SafetyPage = {
@@ -6,6 +7,11 @@ export const preventCondensation: SafetyPage = {
   title: "Prevent condensation",
   summary:
     "Condensation is water from the air settling on cold surfaces. It is the most common cause of mould. Small changes at home can reduce it, and we will fix anything in the building that makes it worse.",
+  keyFacts: [
+    { value: "Lids on", label: "pans when you cook. It cuts the steam" },
+    { value: "Wipe", label: "windows and sills every morning" },
+    { value: "Fan on", label: "while you cook or shower, with the door closed" },
+  ],
   ourResponsibilities: [
     "We repair or replace extractor fans in kitchens and bathrooms that do not work.",
     "We fix heating that does not work properly, so you can keep your home warm.",
@@ -69,6 +75,7 @@ export const preventCondensation: SafetyPage = {
       target: THURROCK.timescales.routine,
     },
   ],
+  furtherReading: [SOURCES.govDampHealth],
   related: [
     "damp-and-mould",
     "damp-and-mould/report-damp-or-mould",

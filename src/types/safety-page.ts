@@ -7,6 +7,12 @@ export type SafetyPage = {
   slug: string;
   title: string;
   summary: string;
+  /**
+   * Up to three headline facts shown as stat tiles under the summary, for
+   * example { value: "Once a month", label: "test your smoke alarm" }.
+   * Values that are numbers or timescales must come from THURROCK.
+   */
+  keyFacts?: { value: string; label: string }[];
   emergency?: {
     label: string;
     phone: string;
@@ -22,5 +28,11 @@ export type SafetyPage = {
   };
   timescales?: { label: string; target: string }[];
   downloads?: { label: string; href: string; size: string }[];
+  /**
+   * Trusted external sources for residents who want more, shown as
+   * "Find out more". `source` is the organisation name. Only link to
+   * official bodies (fire service, NHS, HSE, GOV.UK, utilities).
+   */
+  furtherReading?: { label: string; href: string; source: string }[];
   related: string[];
 };

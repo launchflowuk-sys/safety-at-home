@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const annualGasService: SafetyPage = {
@@ -14,6 +15,11 @@ export const annualGasService: SafetyPage = {
       `Go outside and call ${THURROCK.gasLeak.provider} on ${THURROCK.gasLeak.phone}. It is free and open 24 hours.`,
     ],
   },
+  keyFacts: [
+    { value: THURROCK.gasSafety.serviceInterval, label: "we check your gas appliances" },
+    { value: THURROCK.gasSafety.reminderBefore, label: "we write to you with an appointment" },
+    { value: THURROCK.gasSafety.recordCopy, label: "you get a copy of your gas safety record" },
+  ],
   ourResponsibilities: [
     `We write to you ${THURROCK.gasSafety.reminderBefore} with an appointment. If the time does not suit you, you can change it.`,
     "Our engineer checks the boiler, gas fire and pipework we own, plus the flue and air vents. If we own your cooker, we check that too.",
@@ -53,5 +59,6 @@ export const annualGasService: SafetyPage = {
       target: THURROCK.timescales.emergency,
     },
   ],
+  furtherReading: [SOURCES.gasSafeRegister, SOURCES.cadentEmergencies],
   related: ["gas-safety", "carbon-monoxide", "your-safety-checks"],
 };

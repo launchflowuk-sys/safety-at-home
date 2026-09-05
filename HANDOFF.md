@@ -1,6 +1,6 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-05 (end of Phase 4 session)._
+_Last updated: 2026-09-05 (end of Phase 4 session, plus graphics/links enhancement)._
 
 ## Where we are
 
@@ -71,6 +71,29 @@ Related links from fire, damp and building pages to `carbon-monoxide`,
 `communal-areas`, `e-bikes-and-e-scooters`, `extra-support`,
 `balconies-windows-and-roofs` still drop silently until P5.
 
+### Delivered after P4: graphics, key facts and "Find out more"
+
+Requested by the client mid-session, modelled on Hyde Housing and
+Westminster's resident safety pages (illustrated topic cards, stat callouts,
+links to the local fire service and HSE).
+
+- `src/components/TopicArt.tsx` — flat inline-SVG illustration per topic,
+  keyed by the first slug segment, drawn with the design tokens (`fill-brand`
+  etc.). Shown on every hub tile and beside each page H1. Decorative
+  (`aria-hidden`). Unknown slugs get a shield.
+- `SafetyPage.keyFacts?` — up to three stat tiles under the summary (section
+  2b). Values that are numbers or timescales come from `THURROCK`.
+- `SafetyPage.furtherReading?` — "Find out more" section (9b) before Related
+  pages. Entries come from `src/config/sources.ts` (`SOURCES`), official
+  bodies only. **Every URL there was fetched and confirmed to load on
+  2026-09-05.** Dead guesses were rejected (gov.uk/guidance/awaabs-law,
+  LFB e-scooters page, ECFRS e-bike page). Gas Safe Register root blocks
+  bots but is the correct public URL.
+- All 15 existing pages carry `keyFacts` and `furtherReading`.
+- `THURROCK.fireSafety.fireDoorRating` added ("30 minutes").
+- Enfield's safety-at-home page (also shared by the client) returns 403 to
+  automated fetches and was not used.
+
 ## Known state / caveats
 
 - Hub tiles still 404 for: balconies, e-bikes, communal, security, extra
@@ -103,7 +126,10 @@ Notes for P5:
 - No new routes. Add each page to `SAFETY_PAGES`. If any page needs a tool or
   bespoke markup, use `TOOLS` / `BESPOKE_ROUTES` in `[...slug]/page.tsx`.
 - `building-safety` is already built (P3) — skip it.
-- New numbers or timescales go in `THURROCK` first.
+- New numbers or timescales go in `THURROCK` first. New external links go in
+  `SOURCES` and must be fetched to confirm they load. Give each new page
+  `keyFacts` (3) and `furtherReading`, and add a `TopicArt` entry if the
+  slug is new (the six P5 slugs already have artwork).
 - After P5, every hub tile resolves and every `related` slug resolves.
 
 ## Phase checklist

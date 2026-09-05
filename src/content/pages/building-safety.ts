@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const buildingSafety: SafetyPage = {
@@ -16,6 +17,11 @@ export const buildingSafety: SafetyPage = {
       `Call ${THURROCK.emergency.phone} once you are safe.`,
     ],
   },
+  keyFacts: [
+    { value: THURROCK.buildingSafety.higherRiskBuilding, label: "counts as a higher-risk building under the law" },
+    { value: THURROCK.fireSafety.communalFireDoorCheck, label: "we check shared-area fire doors in taller buildings" },
+    { value: "Your say", label: "we ask residents before big safety decisions" },
+  ],
   ourResponsibilities: [
     `We are the 'accountable person' for our higher-risk buildings. These are buildings ${THURROCK.buildingSafety.higherRiskBuilding}. We register each one with the Building Safety Regulator.`,
     "We assess the risks of fire spreading and of the structure failing in each higher-risk building, and we keep a safety case report that shows how we manage those risks.",
@@ -79,6 +85,7 @@ export const buildingSafety: SafetyPage = {
       target: THURROCK.fireSafety.communalFireDoorCheck,
     },
   ],
+  furtherReading: [SOURCES.govBsr, SOURCES.hseBuildingSafety, SOURCES.ecfrsHighRise],
   related: [
     "fire-safety",
     "fire-safety/stay-put-or-evacuate",

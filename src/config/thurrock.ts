@@ -33,6 +33,7 @@ export const THURROCK = {
     flatFireDoorCheck: "every 12 months",
     tallBuilding: "over 11 metres tall (about 4 floors or more)",
     alarmLifespan: "10 years",
+    fireDoorRating: "30 minutes",
   },
   buildingSafety: {
     higherRiskBuilding: "at least 18 metres or 7 floors tall",

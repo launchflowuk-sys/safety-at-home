@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const electricalSafety: SafetyPage = {
@@ -16,6 +17,11 @@ export const electricalSafety: SafetyPage = {
       `If someone has had a shock, call ${THURROCK.emergency.phone} even if they seem fine.`,
     ],
   },
+  keyFacts: [
+    { value: THURROCK.electricalSafety.inspectionInterval, label: "we test the wiring in your home" },
+    { value: THURROCK.electricity.phone, label: "free number to call in a power cut" },
+    { value: "1 plug", label: "per socket is the safest way" },
+  ],
   ourResponsibilities: [
     `We inspect and test the fixed wiring in your home ${THURROCK.electricalSafety.inspectionInterval}. This is called an electrical installation condition report.`,
     "We repair the wiring, sockets, light fittings, switches and fuse box that we own.",
@@ -82,6 +88,7 @@ export const electricalSafety: SafetyPage = {
       target: THURROCK.electricalSafety.inspectionInterval,
     },
   ],
+  furtherReading: [SOURCES.esfHome, SOURCES.ukpnPowerCut],
   related: [
     "fire-safety",
     "fire-safety/smoke-and-heat-alarms",

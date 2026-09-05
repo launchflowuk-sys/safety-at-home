@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const waterSafety: SafetyPage = {
@@ -17,6 +18,11 @@ export const waterSafety: SafetyPage = {
       `If sewage is flooding outside or in the street, call ${THURROCK.blockedSewer.provider} on ${THURROCK.blockedSewer.phone}.`,
     ],
   },
+  keyFacts: [
+    { value: THURROCK.waterSafety.flushUnusedOutlets, label: "run any tap or shower you have not used" },
+    { value: THURROCK.waterSafety.cleanShowerHead, label: "clean and descale your shower head" },
+    { value: THURROCK.blockedSewer.phone, label: "for sewer flooding, call Anglian Water" },
+  ],
   ourResponsibilities: [
     "We assess the risk of Legionella in the shared water systems and tanks we own, and act on what we find.",
     "We keep shared hot water systems hot enough to kill bacteria, and cold water cold enough.",
@@ -87,6 +93,7 @@ export const waterSafety: SafetyPage = {
       target: THURROCK.waterSafety.cleanShowerHead,
     },
   ],
+  furtherReading: [SOURCES.hseLegionella, SOURCES.anglianReport],
   related: [
     "damp-and-mould",
     "electrical-safety",

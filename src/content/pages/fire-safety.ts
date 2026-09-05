@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const fireSafety: SafetyPage = {
@@ -17,6 +18,11 @@ export const fireSafety: SafetyPage = {
       "Do not go back inside for any reason.",
     ],
   },
+  keyFacts: [
+    { value: THURROCK.fireSafety.alarmTest, label: "test your smoke alarm" },
+    { value: THURROCK.timescales.emergency, label: "to fix a broken fire door or alarm" },
+    { value: THURROCK.emergency.phone, label: "if you see fire or smoke" },
+  ],
   ourResponsibilities: [
     "We carry out a fire risk assessment of every block of flats we own, and act on what it finds.",
     "We fit and look after smoke alarms in your home.",
@@ -79,6 +85,7 @@ export const fireSafety: SafetyPage = {
       target: THURROCK.fireSafety.flatFireDoorCheck,
     },
   ],
+  furtherReading: [SOURCES.ecfrsHomeSafety, SOURCES.ecfrsHomeVisit, SOURCES.ecfrsCooking, SOURCES.lfbChargeSafe],
   related: [
     "fire-safety/stay-put-or-evacuate",
     "fire-safety/fire-doors",

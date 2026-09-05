@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const smokeAndHeatAlarms: SafetyPage = {
@@ -16,6 +17,11 @@ export const smokeAndHeatAlarms: SafetyPage = {
       "Never take the alarm down to stop the noise.",
     ],
   },
+  keyFacts: [
+    { value: THURROCK.fireSafety.alarmTest, label: "test every alarm in your home" },
+    { value: THURROCK.fireSafety.alarmLifespan, label: "most alarms need replacing after this long" },
+    { value: THURROCK.timescales.emergency, label: "to replace an alarm that does not work" },
+  ],
   ourResponsibilities: [
     "We fit at least one smoke alarm on every floor of your home, and a heat alarm in the kitchen where one is needed.",
     "We check your alarms during your safety checks, such as your annual gas service and electrical checks.",
@@ -63,6 +69,7 @@ export const smokeAndHeatAlarms: SafetyPage = {
       target: THURROCK.timescales.urgent,
     },
   ],
+  furtherReading: [SOURCES.ecfrsSmokeAlarms, SOURCES.ecfrsHomeVisit],
   related: [
     "fire-safety",
     "carbon-monoxide",

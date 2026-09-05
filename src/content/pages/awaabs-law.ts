@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const awaabsLaw: SafetyPage = {
@@ -6,6 +7,11 @@ export const awaabsLaw: SafetyPage = {
   title: "Awaab's Law",
   summary:
     "Awaab's Law sets strict time limits for social landlords like us to deal with damp, mould and other dangerous hazards. This page explains what we must do and by when, and helps you work out your own dates.",
+  keyFacts: [
+    { value: THURROCK.awaabsLaw.investigate, label: "to investigate a possible hazard" },
+    { value: THURROCK.awaabsLaw.writtenReport, label: "to give you a written summary" },
+    { value: THURROCK.awaabsLaw.repairStart, label: "to start repairs on a significant hazard" },
+  ],
   ourResponsibilities: [
     `We investigate within ${THURROCK.awaabsLaw.investigate} of finding out about a possible hazard. This usually means visiting your home.`,
     `We give you a written summary of what we found within ${THURROCK.awaabsLaw.writtenReport}. It says if there is a hazard, how serious it is, and what we will do.`,
@@ -48,6 +54,7 @@ export const awaabsLaw: SafetyPage = {
       target: `within ${THURROCK.awaabsLaw.emergencyHazard}`,
     },
   ],
+  furtherReading: [SOURCES.govAwaabsLaw, SOURCES.housingOmbudsman, SOURCES.govDampHealth],
   related: [
     "damp-and-mould",
     "damp-and-mould/report-damp-or-mould",

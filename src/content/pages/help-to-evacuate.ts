@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const helpToEvacuate: SafetyPage = {
@@ -16,6 +17,11 @@ export const helpToEvacuate: SafetyPage = {
       "Stay on the phone. The operator will tell you what to do next.",
     ],
   },
+  keyFacts: [
+    { value: "PEEP", label: "a personal emergency evacuation plan, written with you" },
+    { value: "Free", label: "home safety visit from the fire service" },
+    { value: THURROCK.emergency.phone, label: "if you cannot leave. Tell them your floor and flat number" },
+  ],
   ourResponsibilities: [
     "We ask every tenant if they would need help to leave in a fire.",
     "If you tell us you need help, we will visit you to talk about a personal emergency evacuation plan. This is often called a PEEP. It is a written plan of how you will get out, or get help.",
@@ -35,6 +41,7 @@ export const helpToEvacuate: SafetyPage = {
     phone: THURROCK.repairs.phone,
     email: THURROCK.repairs.email,
   },
+  furtherReading: [SOURCES.ecfrsHomeVisit, SOURCES.ecfrsHighRise],
   related: [
     "fire-safety",
     "fire-safety/stay-put-or-evacuate",

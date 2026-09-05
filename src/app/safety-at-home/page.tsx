@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SAFETY_TOPICS } from "@/config/topics";
 import { NAV_TABS, SITE_NAME } from "@/config/navigation";
+import { TopicArt } from "@/components/TopicArt";
 import { THURROCK, telHref } from "@/config/thurrock";
 
 export const metadata: Metadata = {
@@ -70,6 +71,7 @@ export default function SafetyAtHomeHub() {
                 href={`/safety-at-home/${topic.slug}`}
                 className="group block h-full rounded-card border border-line bg-surface p-5 shadow-card hover:border-brand"
               >
+                <TopicArt slug={topic.slug} className="mb-3 h-16 w-16" />
                 <h3 className="text-lg font-bold text-link underline-offset-2 group-hover:underline">
                   {topic.title}
                 </h3>

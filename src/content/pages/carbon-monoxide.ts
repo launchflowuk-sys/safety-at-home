@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const carbonMonoxide: SafetyPage = {
@@ -16,6 +17,11 @@ export const carbonMonoxide: SafetyPage = {
       "Do not go back inside until you are told it is safe.",
     ],
   },
+  keyFacts: [
+    { value: THURROCK.fireSafety.alarmTest, label: "test your carbon monoxide alarm" },
+    { value: THURROCK.gasLeak.phone, label: "if your alarm sounds. Free, 24 hours" },
+    { value: THURROCK.carbonMonoxide.alarmLifespan, label: "most alarms need replacing after this long" },
+  ],
   ourResponsibilities: [
     "We fit a carbon monoxide alarm in every room with a fixed gas or solid fuel appliance, such as a boiler or fire.",
     "We replace an alarm that does not work as an emergency repair.",
@@ -76,6 +82,7 @@ export const carbonMonoxide: SafetyPage = {
       target: THURROCK.gasSafety.serviceInterval,
     },
   ],
+  furtherReading: [SOURCES.nhsCarbonMonoxide, SOURCES.cadentEmergencies],
   related: [
     "gas-safety",
     "gas-safety/annual-gas-service",

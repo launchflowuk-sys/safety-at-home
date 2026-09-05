@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const dampAndMould: SafetyPage = {
@@ -15,6 +16,11 @@ export const dampAndMould: SafetyPage = {
       "Tell us about the damp or mould as soon as everyone is safe. Mention any health problems so we can visit sooner.",
     ],
   },
+  keyFacts: [
+    { value: THURROCK.awaabsLaw.investigate, label: "to inspect your home after you tell us" },
+    { value: THURROCK.awaabsLaw.repairStart, label: "to start repairs on a serious hazard" },
+    { value: THURROCK.awaabsLaw.emergencyHazard, label: "to act on an emergency hazard" },
+  ],
   ourResponsibilities: [
     `We inspect your home within ${THURROCK.awaabsLaw.investigate} of you telling us about damp or mould.`,
     `We give you a written summary of what we found within ${THURROCK.awaabsLaw.writtenReport}.`,
@@ -87,6 +93,7 @@ export const dampAndMould: SafetyPage = {
       target: `within ${THURROCK.awaabsLaw.emergencyHazard}`,
     },
   ],
+  furtherReading: [SOURCES.govDampHealth, SOURCES.housingOmbudsman],
   related: [
     "damp-and-mould/report-damp-or-mould",
     "damp-and-mould/awaabs-law",

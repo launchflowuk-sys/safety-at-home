@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
 export const gasSafety: SafetyPage = {
@@ -17,6 +18,11 @@ export const gasSafety: SafetyPage = {
       `If anyone feels unwell, call ${THURROCK.emergency.phone} as well.`,
     ],
   },
+  keyFacts: [
+    { value: THURROCK.gasSafety.serviceInterval, label: "free gas safety check of your home" },
+    { value: THURROCK.gasLeak.phone, label: "if you smell gas. Free, 24 hours" },
+    { value: "Gas Safe", label: "all our engineers are registered. Ask for their ID card" },
+  ],
   ourResponsibilities: [
     `We service and safety check the gas boiler, fire and pipework we own in your home ${THURROCK.gasSafety.serviceInterval}. This is free.`,
     "All our gas engineers are on the Gas Safe Register. They carry an ID card. Ask to see it.",
@@ -83,6 +89,7 @@ export const gasSafety: SafetyPage = {
       target: THURROCK.gasSafety.recordCopy,
     },
   ],
+  furtherReading: [SOURCES.cadentEmergencies, SOURCES.gasSafeRegister],
   related: [
     "gas-safety/annual-gas-service",
     "carbon-monoxide",
