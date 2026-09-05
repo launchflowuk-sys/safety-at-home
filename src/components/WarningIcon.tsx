@@ -110,6 +110,16 @@ const PATHS: Record<string, React.ReactNode> = {
       <path d="M12 9v6" />
     </>
   ),
+  tap: (
+    <>
+      <path d="M4 10h10a3 3 0 0 1 3 3v2h-3v-2H4z" />
+      <path d="M9 10V7h4V4" />
+      <path d="M15.5 19c0-1.5 1.5-2.5 1.5-3.5 0 1 1.5 2 1.5 3.5a1.5 1.5 0 0 1-3 0z" />
+    </>
+  ),
+  spark: (
+    <path d="M13 2L5 14h6l-1 8 9-13h-6l1-7z" />
+  ),
   warning: (
     <>
       <path d="M12 3l10 18H2L12 3z" />

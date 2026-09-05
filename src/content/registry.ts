@@ -10,6 +10,12 @@ import { dampAndMould } from "./pages/damp-and-mould";
 import { preventCondensation } from "./pages/prevent-condensation";
 import { awaabsLaw } from "./pages/awaabs-law";
 import { buildingSafety } from "./pages/building-safety";
+import { gasSafety } from "./pages/gas-safety";
+import { annualGasService } from "./pages/annual-gas-service";
+import { electricalSafety } from "./pages/electrical-safety";
+import { carbonMonoxide } from "./pages/carbon-monoxide";
+import { waterSafety } from "./pages/water-safety";
+import { asbestos } from "./pages/asbestos";
 
 /**
  * Registry of every SafetyPage. The dynamic route builds one static page per
@@ -26,6 +32,12 @@ export const SAFETY_PAGES: readonly SafetyPage[] = [
   preventCondensation,
   awaabsLaw,
   buildingSafety,
+  gasSafety,
+  annualGasService,
+  electricalSafety,
+  carbonMonoxide,
+  waterSafety,
+  asbestos,
 ];
 
 /** The subset of a page that related cards and breadcrumbs need. */

@@ -37,6 +37,17 @@ export const THURROCK = {
   buildingSafety: {
     higherRiskBuilding: "at least 18 metres or 7 floors tall",
   },
+  gasSafety: {
+    serviceInterval: "every 12 months",
+    recordCopy: "within 28 days of the check",
+    reminderBefore: "about 8 weeks before it is due",
+  },
+  electricalSafety: { inspectionInterval: "every 5 years" },
+  carbonMonoxide: { alarmLifespan: "7 to 10 years" },
+  waterSafety: {
+    flushUnusedOutlets: "at least once a week",
+    cleanShowerHead: "every 3 months",
+  },
   rightToRepair: { initial: "£10", perDay: "£2", cap: "£50" },
 } as const;
 
