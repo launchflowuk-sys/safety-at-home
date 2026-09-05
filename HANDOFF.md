@@ -1,11 +1,11 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-06 (end of Phase 5 session)._
+_Last updated: 2026-09-06 (end of Phase 6 session)._
 
 ## Where we are
 
-**Phases 1–5 are complete and committed on `main`. All 24 sitemap routes
-resolve, every hub tile and every `related` slug resolves.** The project type-checks
+**Phases 1–6 are complete and committed on `main`.** All 24 sitemap routes
+resolve. The site runs with or without a database. The project type-checks
 (`npx tsc --noEmit`) and builds with `output: 'standalone'`.
 
 The site is called **"Safety in and around your home"** (display name only —
@@ -118,46 +118,91 @@ reading and a `TopicArt` illustration:
   all from `THURROCK`. Uses new `fireSafety.fireRiskAssessment` ("at least
   every 12 months in blocks of flats" — **confirm**).
 
+### Delivered in P6
+
+- **Prisma 6 + Postgres.** `prisma/schema.prisma` models `PageFeedback`,
+  `DampReport`, `Building`, `Address`, `SafetyCheck`, `AsbestosRecord`.
+  Initial migration in `prisma/migrations/20260906000000_init`. Binary
+  targets include `linux-musl-openssl-3.0.x` for the alpine image.
+  `npm run build` runs `prisma generate` first.
+- **No-database fallback everywhere.** `src/lib/db.ts` exposes
+  `hasDatabase()` / `getDb()`. Without `DATABASE_URL`: feedback is a no-op,
+  the damp form shows the P3 "we have not received this" screen with the
+  pre-filled `mailto:`, and the address lookup says it is unavailable and
+  gives the phone number.
+- **Server actions** in `src/app/actions/`: `feedback.ts`, `damp-report.ts`
+  (re-validates with the shared `src/lib/damp-report.ts`, links the report to
+  a known `Address` when postcode + first line match exactly one home,
+  generates a `DM-XXXXXX` reference, stores the Awaab's Law `investigateBy`
+  date), `safety-profile.ts` (`findAddresses`, `getSafetyProfile`).
+- **FeedbackWidget** now stores `{ slug, helpful }`. **ReportDampForm** shows
+  the reference and inspect-by date when stored.
+- **SafetyProfileLookup** (client) on `/safety-at-home/your-safety-checks`
+  via `TOOLS`. Postcode → address → profile: block plan (stay put /
+  evacuate), higher-risk flag, last FRA and communal fire door check, per-home
+  check dates, asbestos items with a "do not disturb" line.
+  **Access decision:** no auth, so no personal data and all dates are
+  month/year only. Revisit if Thurrock wants full dates or repair history.
+- **Working-day maths** moved to `src/lib/working-days.ts`, shared by the
+  clock and the report action.
+- **ARC feed**: `scripts/sync-arc.ts` (`npm run arc:sync`) pulls JSON from
+  `ARC_FEED_URL` (optional `ARC_FEED_TOKEN`) and upserts `AsbestosRecord` by
+  `externalId`, linking by UPRN. **The feed shape is an assumption** — see the
+  header comment and adjust `parseRecord` once the vendor format is known.
+- **Seed**: `npm run db:seed` creates FAKE "Example House" at postcode
+  ZZ1 1ZZ (4 flats, checks, 2 asbestos records). Dev only.
+- `public/.gitkeep` added — the Dockerfile copies `public/` and the folder
+  did not exist, which would have failed the Docker build.
+- Verified end to end against a local Postgres (Docker, `postgres:16-alpine`
+  on port 5434): migration, seed, lookup, profile, report (reference issued,
+  row linked to the seeded address), feedback row stored.
+
+### Local database for development
+
+```bash
+docker run -d --name safety-at-home-pg -e POSTGRES_PASSWORD=devpass   -e POSTGRES_USER=safety -e POSTGRES_DB=safety -p 5434:5432 postgres:16-alpine
+export DATABASE_URL=postgresql://safety:devpass@localhost:5434/safety
+npm run db:migrate && npm run db:seed && npm run dev
+```
+
+Port 5433 on the dev machine is already taken by another Postgres.
+
 ## Known state / caveats
 
 - No `downloads` on any page yet — no PDFs exist in the repo.
 - No ESLint config; use `npx tsc --noEmit` and `npm run build`.
-- Awaab's Law clock has no bank-holiday calendar (gov.uk JSON feed is an
-  option for P6/P7).
+- Awaab's Law clock and the report `investigateBy` date have no bank-holiday
+  calendar (gov.uk JSON feed is an option for P7).
 - `motion` remains unused. Never add framer-motion.
 - Git identity is set repo-locally to the P1 author (Shoji).
 - Content facts to confirm with Thurrock: gas safety record copy "within 28
   days", electrical inspection "every 5 years", CO alarm lifespan "7 to 10
   years", reminder letter "about 8 weeks before". All live in `THURROCK`.
 
-## Next session: Phase 6
+## Next session: Phase 7
 
-Postgres + Prisma, address lookup, safety profile, ARC asbestos feed.
+Self-check PDF generator, PEEP referral, full accessibility + Lighthouse pass.
 
-1. Add Prisma with a Postgres datasource. Env var names are documented in
-   `.env.example`; values are set in Coolify only. Never commit a `.env`.
-2. Model `SafetyPage` as designed in `src/types/safety-page.ts` (plus
-   `keyFacts` and `furtherReading`, which were added after the type was first
-   written). Consider keeping content in TypeScript for now and using the DB
-   for tenant data only — the content files are the editorial source of truth
-   and are reviewed in git.
-3. Wire `FeedbackWidget` to a `PageFeedback` table (slug, helpful, timestamp).
-4. Wire `ReportDampForm` to a `DampReport` table and replace the `mailto:`
-   fallback with a real submission plus confirmation reference. Keep the
-   phone number on the confirmation screen.
-5. Address lookup (postcode → UPRN) and a per-address "safety profile":
-   building height band, stay put / evacuate plan, last gas check, last
-   electrical check, asbestos register summary (ARC feed).
-6. Optional: bank-holiday calendar for `AwaabsLawClock` (gov.uk JSON feed),
-   then drop the caveat sentence in the component.
-
-Notes for P6:
-
-- No auth existed before P6. Anything showing per-address data needs a
-  decision on how a tenant proves who they are.
-- `output: 'standalone'` must keep working in Docker; Prisma needs the
-  engine binaries copied into the standalone image.
+1. **Self-check PDF**: a printable checklist of the tenant's own checks
+   (alarm test, fire door, restrictors, unused taps) — consider a print
+   stylesheet + `window.print()` before adding a PDF library; if a real PDF
+   is needed, generate server-side and stream it, do not bundle a PDF lib
+   into the client.
+2. **PEEP referral**: form modelled on `ReportDampForm` + a `PeepReferral`
+   table and server action. This IS personal and health data — needs a
+   privacy notice, retention period and a decision on how referrals reach the
+   housing team (email notification vs dashboard). Link from
+   `fire-safety/help-to-evacuate` and `extra-support`.
+3. **Bank holidays** for working-day maths (`src/lib/working-days.ts`).
+4. **Accessibility pass**: axe on every route, keyboard-only run of the
+   triage tool, both forms and the lookup, screen reader check of the
+   accordions and error summaries, contrast re-check of `TopicArt` fills
+   (decorative, but keep them off-text). Lighthouse ≥ 95 on a11y and best
+   practices.
+5. **Ops**: Coolify pre-deploy `npx prisma migrate deploy`; scheduled
+   `npm run arc:sync`; back up Postgres; replace `.env.example` placeholders
+   in Coolify.
 
 ## Phase checklist
 
-See CLAUDE.md "Build phases" — P1–P5 are ticked, P6 is next.
+See CLAUDE.md "Build phases" — P1–P6 are ticked, P7 is next.

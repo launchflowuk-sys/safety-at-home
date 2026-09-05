@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AwaabsLawClock } from "@/components/AwaabsLawClock";
+import { SafetyProfileLookup } from "@/components/SafetyProfileLookup";
 import { SafetyPageTemplate } from "@/components/SafetyPageTemplate";
 import {
   REPORT_DAMP_SLUG,
@@ -30,6 +31,7 @@ const BESPOKE_ROUTES: Record<string, () => React.ReactNode> = {
  */
 const TOOLS: Record<string, React.ReactNode> = {
   "damp-and-mould/awaabs-law": <AwaabsLawClock />,
+  "your-safety-checks": <SafetyProfileLookup />,
 };
 
 export function generateStaticParams(): Params[] {

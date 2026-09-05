@@ -1,0 +1,135 @@
+// Safety at Home — Phase 6 data model.
+//
+// Editorial content (the SafetyPage files) stays in TypeScript and git. The
+// database holds tenant-generated data (feedback, damp reports) and the
+// per-address safety profile fed from council systems and the ARC asbestos
+// register. All dates shown to tenants are coarsened to month/year.
+
+generator client {
+  provider      = "prisma-client-js"
+  // "native" for local dev; the musl target matches the node:22-alpine image.
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// "Was this page helpful?" answers. No personal data.
+model PageFeedback {
+  id        String   @id @default(cuid())
+  slug      String
+  helpful   Boolean
+  createdAt DateTime @default(now())
+
+  @@index([slug])
+}
+
+enum DampReportStatus {
+  RECEIVED
+  INSPECTION_BOOKED
+  INSPECTED
+  REPAIRS_STARTED
+  CLOSED
+}
+
+/// A damp or mould report from the online form. `investigateBy` is the
+/// Awaab's Law deadline: 10 working days from receipt.
+model DampReport {
+  id            String           @id @default(cuid())
+  reference     String           @unique
+  name          String
+  phone         String
+  email         String?
+  addressLine   String
+  postcode      String
+  rooms         String[]
+  severity      String
+  duration      String
+  household     String[]
+  details       String?
+  status        DampReportStatus @default(RECEIVED)
+  investigateBy DateTime
+  createdAt     DateTime         @default(now())
+  address       Address?         @relation(fields: [addressId], references: [id])
+  addressId     String?
+
+  @@index([postcode])
+  @@index([status])
+}
+
+enum EvacuationPlan {
+  STAY_PUT
+  SIMULTANEOUS_EVACUATION
+}
+
+/// A block of flats (or a house, for a single address).
+model Building {
+  id                        String          @id @default(cuid())
+  name                      String
+  storeys                   Int?
+  heightMetres              Float?
+  /// Higher-risk building under the Building Safety Act (18 m / 7 storeys).
+  higherRisk                Boolean         @default(false)
+  evacuationPlan            EvacuationPlan  @default(STAY_PUT)
+  lastFireRiskAssessment    DateTime?
+  lastCommunalFireDoorCheck DateTime?
+  addresses                 Address[]
+  asbestosRecords           AsbestosRecord[]
+}
+
+/// A council-owned home. `postcodeKey` is the postcode with spaces removed and
+/// upper-cased, for lookup.
+model Address {
+  id              String           @id @default(cuid())
+  uprn            String           @unique
+  line1           String
+  postcode        String
+  postcodeKey     String
+  building        Building?        @relation(fields: [buildingId], references: [id])
+  buildingId      String?
+  checks          SafetyCheck[]
+  asbestosRecords AsbestosRecord[]
+  dampReports     DampReport[]
+
+  @@index([postcodeKey])
+}
+
+enum CheckType {
+  GAS_SERVICE
+  ELECTRICAL_INSPECTION
+  FLAT_FIRE_DOOR
+  SMOKE_ALARM
+  CO_ALARM
+}
+
+/// Last and next date for each safety check at an address.
+model SafetyCheck {
+  id        String    @id @default(cuid())
+  address   Address   @relation(fields: [addressId], references: [id])
+  addressId String
+  type      CheckType
+  lastDone  DateTime?
+  nextDue   DateTime?
+
+  @@unique([addressId, type])
+}
+
+/// One item from the ARC asbestos register. Synced, never edited here.
+model AsbestosRecord {
+  id            String    @id @default(cuid())
+  externalId    String    @unique
+  address       Address?  @relation(fields: [addressId], references: [id])
+  addressId     String?
+  building      Building? @relation(fields: [buildingId], references: [id])
+  buildingId    String?
+  location      String
+  material      String
+  condition     String
+  lastInspected DateTime?
+  syncedAt      DateTime  @default(now())
+
+  @@index([addressId])
+  @@index([buildingId])
+}

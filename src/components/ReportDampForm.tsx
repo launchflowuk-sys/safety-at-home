@@ -1,132 +1,44 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { submitDampReport } from "@/app/actions/damp-report";
 import { SITE_NAME } from "@/config/navigation";
 import { THURROCK, telHref } from "@/config/thurrock";
+import {
+  DURATION,
+  EMPTY_DAMP_REPORT,
+  FIELD_ORDER,
+  HOUSEHOLD,
+  ROOMS,
+  SEVERITY,
+  formatPostcode,
+  validateDampReport,
+  type DampReportErrors,
+  type DampReportValues,
+} from "@/lib/damp-report";
 
 /**
- * Client-only damp and mould report form (Phase 3).
+ * Damp and mould report form (Phase 6).
  *
- * Nothing is posted or stored. On a valid submit we show the answers back,
- * make clear we have NOT received them, and offer a pre-filled email plus the
- * repairs number so the tenant can still report today. Phase 6 replaces the
- * mailto with a real submission.
+ * Validates on the client for instant feedback, then submits through a server
+ * action which re-validates and stores the report when a database is
+ * configured. If there is no database (or storing fails) the tenant sees
+ * their answers, is told clearly that we have NOT received them, and gets a
+ * pre-filled email plus the repairs number — never a dead end.
  *
  * Follows the GOV.UK form pattern: error summary at the top that receives
  * focus, inline errors linked with aria-describedby, one question per group.
  */
 
-const ROOMS = [
-  "Bedroom",
-  "Living room",
-  "Kitchen",
-  "Bathroom",
-  "Hallway or stairs",
-  "Somewhere else",
-] as const;
-
-const SEVERITY = [
-  "A few small spots",
-  "Patches on one wall or ceiling",
-  "Large areas, or in more than one room",
-  "Water is coming in or dripping",
-] as const;
-
-const DURATION = [
-  "Less than a week",
-  "A few weeks",
-  "A few months",
-  "More than a year",
-] as const;
-
-const HOUSEHOLD = [
-  "Someone with asthma or another breathing or lung condition",
-  "A child under 5",
-  "Someone aged 65 or over",
-  "Someone who is pregnant",
-  "Someone with a disability or long-term illness",
-  "None of these",
-] as const;
-
-type FormValues = {
-  name: string;
-  phone: string;
-  email: string;
-  address: string;
-  postcode: string;
-  rooms: string[];
-  severity: string;
-  duration: string;
-  household: string[];
-  details: string;
-};
-
-type Errors = Partial<Record<keyof FormValues, string>>;
-
-const EMPTY: FormValues = {
-  name: "",
-  phone: "",
-  email: "",
-  address: "",
-  postcode: "",
-  rooms: [],
-  severity: "",
-  duration: "",
-  household: [],
-  details: "",
-};
-
-const POSTCODE = /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/i;
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function validate(values: FormValues): Errors {
-  const errors: Errors = {};
-  if (!values.name.trim()) errors.name = "Enter your name";
-  const digits = values.phone.replace(/\D/g, "");
-  if (!values.phone.trim()) {
-    errors.phone = "Enter a phone number we can call you on";
-  } else if (digits.length < 10 || digits.length > 13) {
-    errors.phone = "Enter a phone number using only numbers and spaces";
-  }
-  if (values.email.trim() && !EMAIL.test(values.email.trim())) {
-    errors.email =
-      "Enter an email address in the correct format, like name@example.com";
-  }
-  if (!values.address.trim()) {
-    errors.address = "Enter your flat or house number and street";
-  }
-  if (!values.postcode.trim()) {
-    errors.postcode = "Enter your postcode";
-  } else if (!POSTCODE.test(values.postcode.trim())) {
-    errors.postcode = "Enter a real postcode";
-  }
-  if (values.rooms.length === 0) errors.rooms = "Select at least one room";
-  if (!values.severity) {
-    errors.severity = "Select how bad the damp or mould is";
-  }
-  if (!values.duration) errors.duration = "Select how long it has been there";
-  if (values.household.length === 0) {
-    errors.household = "Select who lives in your home, or 'None of these'";
-  }
-  return errors;
-}
-
-const FIELD_ORDER: (keyof FormValues)[] = [
-  "name",
-  "phone",
-  "email",
-  "address",
-  "postcode",
-  "rooms",
-  "severity",
-  "duration",
-  "household",
-];
+type Outcome =
+  | { kind: "stored"; reference: string; investigateBy: Date }
+  | { kind: "fallback" };
 
 export function ReportDampForm() {
-  const [values, setValues] = useState<FormValues>(EMPTY);
-  const [errors, setErrors] = useState<Errors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [values, setValues] = useState<DampReportValues>(EMPTY_DAMP_REPORT);
+  const [errors, setErrors] = useState<DampReportErrors>({});
+  const [pending, setPending] = useState(false);
+  const [outcome, setOutcome] = useState<Outcome | null>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
   const confirmationRef = useRef<HTMLHeadingElement>(null);
   const prefix = useId();
@@ -139,10 +51,10 @@ export function ReportDampForm() {
   }, [errorKeys.length]);
 
   useEffect(() => {
-    if (submitted) confirmationRef.current?.focus();
-  }, [submitted]);
+    if (outcome) confirmationRef.current?.focus();
+  }, [outcome]);
 
-  function set<K extends keyof FormValues>(key: K, value: FormValues[K]) {
+  function set<K extends keyof DampReportValues>(key: K, value: DampReportValues[K]) {
     setValues((current) => ({ ...current, [key]: value }));
   }
 
@@ -160,24 +72,45 @@ export function ReportDampForm() {
     });
   }
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const next = validate(values);
-    setErrors(next);
-    if (Object.keys(next).length === 0) setSubmitted(true);
+    const clientErrors = validateDampReport(values);
+    setErrors(clientErrors);
+    if (Object.keys(clientErrors).length > 0) return;
+
+    setPending(true);
+    try {
+      const result = await submitDampReport(values);
+      if (!result.ok) {
+        setErrors(result.errors);
+      } else if (result.stored) {
+        setOutcome({
+          kind: "stored",
+          reference: result.reference,
+          investigateBy: new Date(result.investigateBy),
+        });
+      } else {
+        setOutcome({ kind: "fallback" });
+      }
+    } catch {
+      setOutcome({ kind: "fallback" });
+    } finally {
+      setPending(false);
+    }
   }
 
-  if (submitted) {
+  if (outcome) {
     return (
       <Confirmation
         values={values}
+        outcome={outcome}
         headingRef={confirmationRef}
-        onChange={() => setSubmitted(false)}
+        onChange={() => setOutcome(null)}
       />
     );
   }
 
-  const inputClass = (key: keyof FormValues) =>
+  const inputClass = (key: keyof DampReportValues) =>
     `mt-1 w-full max-w-md rounded-card border-2 bg-surface px-3 py-2 text-lg ${
       errors[key] ? "border-alert" : "border-ink-soft"
     }`;
@@ -309,11 +242,18 @@ export function ReportDampForm() {
         <p className="mt-1 text-sm text-ink-soft">
           For example, when it is worst, or if you have already reported it.
         </p>
+        {errors.details && (
+          <p className="mt-1 font-semibold text-alert-deep">
+            <span className="sr-only">Error: </span>
+            {errors.details}
+          </p>
+        )}
         <textarea
           id={id("details")}
           value={values.details}
           onChange={(event) => set("details", event.target.value)}
           rows={5}
+          maxLength={2000}
           className="mt-2 w-full max-w-xl rounded-card border-2 border-ink-soft bg-surface px-3 py-2 text-lg"
         />
       </div>
@@ -321,12 +261,13 @@ export function ReportDampForm() {
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
-          className="rounded-card bg-positive px-6 py-3 text-lg font-bold text-white hover:brightness-90"
+          disabled={pending}
+          className="rounded-card bg-positive px-6 py-3 text-lg font-bold text-white hover:brightness-90 disabled:opacity-60"
         >
-          Check your answers
+          {pending ? "Sending…" : "Send your report"}
         </button>
         <p className="text-sm text-ink-soft">
-          Nothing is sent until you choose how to send it on the next screen.
+          We will show you a reference number once we have it.
         </p>
       </div>
     </form>
@@ -483,22 +424,26 @@ function RadioGroup(props: {
 /* ------------------------------------------------------------------------ */
 
 function Confirmation(props: {
-  values: FormValues;
+  values: DampReportValues;
+  outcome: Outcome;
   headingRef: React.RefObject<HTMLHeadingElement | null>;
   onChange: () => void;
 }) {
-  const { values } = props;
+  const { values, outcome } = props;
+  const postcode = formatPostcode(values.postcode);
   const rows: [string, string][] = [
     ["Name", values.name],
     ["Phone", values.phone],
     ["Email", values.email || "Not given"],
-    ["Address", `${values.address}, ${values.postcode.toUpperCase()}`],
+    ["Address", `${values.address}, ${postcode}`],
     ["Rooms affected", values.rooms.join(", ")],
     ["How bad", values.severity],
     ["How long", values.duration],
     ["In your home", values.household.join(", ")],
     ["Anything else", values.details || "Nothing added"],
   ];
+
+  const urgent = values.severity === SEVERITY[3];
 
   const body = [
     "Damp and mould report",
@@ -507,34 +452,54 @@ function Confirmation(props: {
     "",
     `Sent from the ${SITE_NAME} website. Under Awaab's Law you must inspect within ${THURROCK.awaabsLaw.investigate}.`,
   ].join("\n");
-
   const mailto = `mailto:${THURROCK.repairs.email}?subject=${encodeURIComponent(
-    `Damp and mould report – ${values.postcode.toUpperCase()}`,
+    `Damp and mould report – ${postcode}`,
   )}&body=${encodeURIComponent(body)}`;
 
-  const urgent = values.severity === SEVERITY[3];
+  const stored = outcome.kind === "stored";
 
   return (
     <div className="mt-8">
-      <h2
-        ref={props.headingRef}
-        tabIndex={-1}
-        className="text-2xl font-bold"
-      >
-        Check your answers, then send them to us
+      <h2 ref={props.headingRef} tabIndex={-1} className="text-2xl font-bold">
+        {stored ? "We have received your report" : "Check your answers, then send them to us"}
       </h2>
 
-      <div
-        role="status"
-        className="mt-4 rounded-card border-l-8 border-alert bg-alert-wash p-5"
-      >
-        <p className="font-bold">We have not received your report yet.</p>
-        <p className="mt-1">
-          This online form is still being tested. Send your answers by email
-          below, or call us. Either way, the Awaab&apos;s Law clock starts as
-          soon as we get them.
-        </p>
-      </div>
+      {stored ? (
+        <div
+          role="status"
+          className="mt-4 rounded-card border-l-8 border-positive bg-surface p-5 shadow-card"
+        >
+          <p className="text-sm font-bold uppercase tracking-wide text-ink-soft">
+            Your reference
+          </p>
+          <p className="mt-1 text-3xl font-bold tracking-wide">{outcome.reference}</p>
+          <p className="mt-3 max-w-prose">
+            Write this down or take a screenshot. Under Awaab&apos;s Law we
+            must inspect your home by{" "}
+            <strong>
+              {outcome.investigateBy.toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </strong>
+            . We will call you on {values.phone} to arrange it.
+          </p>
+        </div>
+      ) : (
+        <div
+          role="status"
+          className="mt-4 rounded-card border-l-8 border-alert bg-alert-wash p-5"
+        >
+          <p className="font-bold">We have not received your report yet.</p>
+          <p className="mt-1">
+            Our online reporting is not available right now. Send your answers
+            by email below, or call us. Either way, the Awaab&apos;s Law clock
+            starts as soon as we get them.
+          </p>
+        </div>
+      )}
 
       {urgent && (
         <p className="mt-4 max-w-prose font-semibold">
@@ -544,8 +509,8 @@ function Confirmation(props: {
             className="text-link underline underline-offset-2"
           >
             {THURROCK.repairs.phone}
-          </a>{" "}
-          rather than emailing. We treat leaks as an emergency.
+          </a>
+          . We treat leaks as an emergency.
         </p>
       )}
 
@@ -559,29 +524,34 @@ function Confirmation(props: {
       </dl>
 
       <div className="mt-6 flex flex-wrap items-center gap-4">
-        <a
-          href={mailto}
-          className="rounded-card bg-positive px-6 py-3 text-lg font-bold text-white hover:brightness-90"
-        >
-          Email this report to us
-        </a>
+        {!stored && (
+          <a
+            href={mailto}
+            className="rounded-card bg-positive px-6 py-3 text-lg font-bold text-white hover:brightness-90"
+          >
+            Email this report to us
+          </a>
+        )}
         <a
           href={telHref(THURROCK.repairs.phone)}
           className="rounded-card border-2 border-brand px-6 py-3 text-lg font-bold text-brand hover:bg-brand-wash"
         >
           Call {THURROCK.repairs.phone}
         </a>
-        <button
-          type="button"
-          onClick={props.onChange}
-          className="font-semibold text-link underline underline-offset-2"
-        >
-          Change my answers
-        </button>
+        {!stored && (
+          <button
+            type="button"
+            onClick={props.onChange}
+            className="font-semibold text-link underline underline-offset-2"
+          >
+            Change my answers
+          </button>
+        )}
       </div>
       <p className="mt-3 text-sm text-ink-soft">
-        The email button opens your own email app with your answers filled
-        in. {THURROCK.repairs.hours}.
+        {stored
+          ? `If anything changes, call us and quote your reference. ${THURROCK.repairs.hours}.`
+          : `The email button opens your own email app with your answers filled in. ${THURROCK.repairs.hours}.`}
       </p>
     </div>
   );

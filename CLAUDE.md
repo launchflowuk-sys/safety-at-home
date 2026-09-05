@@ -9,8 +9,16 @@ Council housing. Content style follows GOV.UK conventions: plain, calm, task-fir
 - Tailwind CSS v4 with OKLCH design tokens (LaunchFlow house system) — tokens live
   in `src/app/globals.css` under `@theme`
 - `next.config.ts`: `output: 'standalone'` (required for Coolify Docker deploy)
-- No database in Phase 1. Postgres + Prisma added in Phase 6 — data shapes are
-  designed now (`src/types/safety-page.ts`) so it retrofits cleanly.
+- Postgres + Prisma 6 (`prisma/schema.prisma`) for tenant data only: page
+  feedback, damp reports, addresses, buildings, safety checks and the ARC
+  asbestos register. **Editorial content stays in TypeScript** (`src/content`).
+  The site must run with no `DATABASE_URL`: every DB path checks
+  `hasDatabase()` in `src/lib/db.ts` and falls back (feedback no-op, damp form
+  offers a pre-filled email, address lookup says it is unavailable).
+- Server actions live in `src/app/actions/*.ts` and re-validate everything
+  the client sends. Shared validation is in `src/lib/damp-report.ts`.
+- The per-address safety profile is shown without auth, so it must never
+  include personal data and every date is coarsened to month and year.
 - Motion.dev (`motion` package) for any animation. **No framer-motion.**
 - No auth in Phase 1.
 - Node 22 alpine base image (see `Dockerfile`).
@@ -115,7 +123,7 @@ component renders all of them.
 - [x] **P3** Damp/mould cluster + Awaab's Law countdown + report form (client-only)
 - [x] **P4** Gas, electrical, CO, water, asbestos
 - [x] **P5** Building safety, balconies, e-bikes, communal, security, extra support
-- [ ] **P6** Postgres + Prisma, address lookup, safety profile, ARC asbestos feed
+- [x] **P6** Postgres + Prisma, address lookup, safety profile, ARC asbestos feed
 - [ ] **P7** Self-check PDF generator, PEEP referral, full a11y + Lighthouse pass
 
 ## Sitemap (24 routes)
@@ -162,3 +170,8 @@ shadows its parent slug and 404s it.
 Coolify on Hetzner, Docker build from the repo `Dockerfile` (multi-stage,
 `node:22-alpine`, standalone output, non-root user, port 3000). `.dockerignore`
 keeps the context small. Env vars are configured in Coolify only.
+
+`npm run build` runs `prisma generate` first. Apply migrations as a Coolify
+pre-deploy command: `npx prisma migrate deploy`. Run `npm run arc:sync` on a
+schedule to refresh the asbestos register. `npm run db:seed` loads FAKE dev
+data at postcode ZZ1 1ZZ — never run it against production.

@@ -2,58 +2,22 @@
 
 import { useId, useState } from "react";
 import { THURROCK } from "@/config/thurrock";
+import {
+  addWorkingDays,
+  leadingNumber,
+  startOfDay,
+  workingDaysBetween,
+} from "@/lib/working-days";
 
 /**
  * Awaab's Law clock. The tenant enters the date they told us, and optionally
  * the date we inspected, and we show the statutory deadlines and how many
  * working days are left. All maths is on the client; nothing is stored.
- *
- * Working days here are Monday to Friday. Bank holidays are not counted by
- * the law either, but we do not have a holiday calendar yet, so we say so.
  */
-
-/** Read the leading number out of a config string like "10 working days". */
-function leadingNumber(text: string): number {
-  const match = /^\d+/.exec(text);
-  if (!match) {
-    throw new Error(`THURROCK.awaabsLaw value has no leading number: "${text}"`);
-  }
-  return Number(match[0]);
-}
 
 const INVESTIGATE_DAYS = leadingNumber(THURROCK.awaabsLaw.investigate);
 const REPAIR_START_DAYS = leadingNumber(THURROCK.awaabsLaw.repairStart);
 const WRITTEN_REPORT_DAYS = leadingNumber(THURROCK.awaabsLaw.writtenReport);
-
-function isWorkingDay(date: Date): boolean {
-  const day = date.getDay();
-  return day !== 0 && day !== 6;
-}
-
-function addWorkingDays(start: Date, days: number): Date {
-  const result = new Date(start);
-  let added = 0;
-  while (added < days) {
-    result.setDate(result.getDate() + 1);
-    if (isWorkingDay(result)) added++;
-  }
-  return result;
-}
-
-/** Signed count of working days from `from` to `to` (0 if the same day). */
-function workingDaysBetween(from: Date, to: Date): number {
-  const a = new Date(from.getFullYear(), from.getMonth(), from.getDate());
-  const b = new Date(to.getFullYear(), to.getMonth(), to.getDate());
-  const sign = b >= a ? 1 : -1;
-  const [start, end] = sign === 1 ? [a, b] : [b, a];
-  let count = 0;
-  const cursor = new Date(start);
-  while (cursor < end) {
-    cursor.setDate(cursor.getDate() + 1);
-    if (isWorkingDay(cursor)) count++;
-  }
-  return count * sign;
-}
 
 function parseDateInput(value: string): Date | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
@@ -69,10 +33,6 @@ function formatDate(date: Date): string {
     month: "long",
     year: "numeric",
   });
-}
-
-function startOfDay(date: Date): Date {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 function describeRemaining(deadline: Date, today: Date): string {

@@ -1,18 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { submitFeedback } from "@/app/actions/feedback";
 
 /**
- * "Was this page helpful?" — a no-op until Phase 6. It logs nothing and posts
- * nothing; it only shows a thank-you message so the interaction feels complete.
+ * "Was this page helpful?" — stores { slug, helpful } through a server action
+ * when a database is configured. Nothing personal is sent. Without a database
+ * the action is a silent no-op and the tenant still sees the thank-you.
  */
 export function FeedbackWidget({ slug }: { slug: string }) {
   const [answered, setAnswered] = useState(false);
 
-  function answer() {
-    // P6: send { slug, helpful } to the database. Deliberately a no-op now.
-    void slug;
+  function answer(helpful: boolean) {
     setAnswered(true);
+    void submitFeedback(slug, helpful).catch(() => {
+      // Thank the tenant regardless; feedback is best-effort.
+    });
   }
 
   return (
@@ -32,14 +35,14 @@ export function FeedbackWidget({ slug }: { slug: string }) {
           <div className="flex gap-3">
             <button
               type="button"
-              onClick={answer}
+              onClick={() => answer(true)}
               className="rounded-card border-2 border-brand px-5 py-2 font-semibold text-brand hover:bg-brand-wash"
             >
               Yes
             </button>
             <button
               type="button"
-              onClick={answer}
+              onClick={() => answer(false)}
               className="rounded-card border-2 border-brand px-5 py-2 font-semibold text-brand hover:bg-brand-wash"
             >
               No
