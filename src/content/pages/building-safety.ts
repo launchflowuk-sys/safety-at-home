@@ -74,7 +74,6 @@ export const buildingSafety: SafetyPage = {
         "You can ask us for safety information about your building, and we must give it to you in a form you can use.",
         "You can raise a building safety concern directly with us, and we must have a proper process for handling it.",
         "If you feel your concern is being ignored, you can take it to the Building Safety Regulator.",
-        "Homeowners have longer to claim compensation for poor building work. The window was extended from 6 years to 15 years.",
       ],
     },
     {
@@ -104,12 +103,11 @@ export const buildingSafety: SafetyPage = {
     {
       heading: "If you are a leaseholder",
       intro:
-        "The Act protects qualifying leaseholders from paying for safety problems they did not cause. A qualifying leaseholder generally means someone living in their own home, who owns no more than three homes in the UK in total.",
+        "The Building Safety Act changed what leaseholders can be asked to pay towards fixing historical safety problems. What applies to you depends on your lease, your building and your circumstances.",
       items: [
-        "You cannot be charged for removing or fixing unsafe cladding.",
-        "You have strong protection from the costs of other historical safety defects, including interim measures such as a waking watch.",
-        "Building owners can no longer treat leaseholders as the first place to go for the cost of historical safety defects.",
-        "If you are unsure whether you qualify, contact the Building Safety Team and we will explain how it applies to your lease.",
+        "Read the government's guidance for leaseholders. It is linked under 'Find out more' at the bottom of this page.",
+        "Contact the Building Safety Team and we will explain how the rules apply to your lease.",
+        "Get independent legal advice before you agree to pay towards any building safety work.",
       ],
     },
     {
@@ -212,6 +210,7 @@ export const buildingSafety: SafetyPage = {
   furtherReading: [
     SOURCES.govYourHomeYourSafety,
     SOURCES.govFindHighRise,
+    SOURCES.govLeaseholderProtections,
     SOURCES.govComplainBuildingSafety,
     SOURCES.govContactBsr,
     SOURCES.govBsr,

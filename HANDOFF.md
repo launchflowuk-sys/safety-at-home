@@ -327,8 +327,8 @@ The building safety page now has:
   production** — it only has seeded fake data at ZZ1 1ZZ today.
 - Six explainers: is my block higher-risk, your rights under the Act, your
   legal duties as a resident, when we need to come into your home (written
-  request, reason, 48 hours notice, court order route), leaseholder
-  protections, how we involve residents.
+  request, reason, 48 hours notice, court order route), leaseholders, how we
+  involve residents.
 - A five-step escalation ladder: tell us → our building safety complaints
   process → challenge our final response → Building Safety Regulator →
   Housing Ombudsman.
@@ -366,8 +366,14 @@ their count from that array, so adding or removing a block updates the page.
   and add it to `downloads` when it is.
 - Confirm the 15-block list is complete and current, and that publishing the
   flat number ranges is acceptable.
-- Leaseholder protections are summarised in plain English. Have a housing
-  lawyer check the wording before launch.
+- **Leaseholder cost protections were deliberately removed** at the client's
+  request on 2026-09-06, because they are legal claims about money that the
+  council should not make on a web page. The explainer now signposts the
+  GOV.UK leaseholder guidance (`SOURCES.govLeaseholderProtections`), offers a
+  conversation with the Building Safety Team, and advises independent legal
+  advice. The "compensation window extended from 6 to 15 years" line was
+  dropped from the rights explainer for the same reason. Do not reinstate
+  either without legal sign-off.
 
 ## Known state / caveats
 

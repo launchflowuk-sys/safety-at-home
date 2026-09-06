@@ -93,6 +93,11 @@ export const SOURCES = {
     href: "https://www.gov.uk/guidance/complain-about-a-building-safety-risk-in-a-high-rise-building",
     source: "GOV.UK",
   },
+  govLeaseholderProtections: {
+    label: "Building safety leaseholder protections: guidance for leaseholders",
+    href: "https://www.gov.uk/guidance/building-safety-leaseholder-protections-guidance-for-leaseholders",
+    source: "GOV.UK",
+  },
   govContactBsr: {
     label: "Contact the Building Safety Regulator",
     href: "https://www.gov.uk/guidance/contact-the-building-safety-regulator",
