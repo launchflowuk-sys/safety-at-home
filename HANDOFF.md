@@ -1,15 +1,14 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-06 (Phase 6 complete, plus posters and the building safety rebuild). Next up: Phase 7._
+_Last updated: 2026-09-06 (Phase 6 complete, plus posters, the building safety rebuild and the real block list). Next up: Phase 7._
 
 ## Start here (new session checklist)
 
 1. Read `CLAUDE.md` in full — it is the contract (stack, hard rules, content
    model, sitemap, phases). Then read this file.
 2. Repo: `C:\Users\Chaudhry Naeem\safety-at-home`, branch `main`, clean tree.
-   Remote: https://github.com/launchflowuk-sys/safety-at-home. `main` is
-   **6 commits ahead of `origin/main`** — nothing since P1 has been pushed.
-   Push when ready.
+   Remote: https://github.com/launchflowuk-sys/safety-at-home. **Everything is
+   pushed** — `main` and `origin/main` match at `4156d25`.
 3. Git identity is set repo-locally (Shoji <shujaat@nexusedu.co.uk>).
 4. `npm install` is done. Node 24 locally; Docker image pins node:22-alpine.
 5. Start the local database (Docker Desktop must be running):
@@ -50,6 +49,26 @@ _Last updated: 2026-09-06 (Phase 6 complete, plus posters and the building safet
 | `27830a5` | Illustrations, key facts, "Find out more" links (client request) |
 | `371facc` | P5 balconies, e-bikes, communal, security, extra support, safety checks |
 | `c90b8a1` | P6 Prisma + Postgres, stored feedback/reports, address lookup, ARC sync |
+| `058301c` | HANDOFF refresh |
+| `0e3d671` | Thurrock + ECFRS safety posters, with text transcripts |
+| `fe021b0` | Building safety page rebuilt: explainers, escalation ladder |
+| `4156d25` | The 15 registered high-rise blocks published |
+
+## Deploy status
+
+- **Pushed to GitHub `main`** on 2026-09-06. If Coolify's webhook is
+  connected it will have built from `4156d25`.
+- **Coolify itself was never reachable from the dev machine** — no CLI, no API
+  token, no Coolify config in the repo. Nobody has confirmed the deployed site
+  is live. Check the Coolify dashboard, or get the deploy hook URL.
+- **The production Docker image was built and run locally and it works**:
+  347MB, runs as the non-root `nextjs` user, ready in 184ms, serves every
+  route and `/posters/*`, and reached Postgres over `host.docker.internal`.
+  `prisma generate` succeeds on alpine with the `linux-musl-openssl-3.0.x`
+  binary target, which was the main deploy risk. Rebuild with
+  `docker build -t safety-at-home:check .`.
+- Coolify still needs `DATABASE_URL` set and `npx prisma migrate deploy` as a
+  pre-deploy command. Without them the site loads but stores nothing.
 
 ## Facts to confirm with Thurrock (all live in `src/config/thurrock.ts`)
 
@@ -161,7 +180,9 @@ links to the local fire service and HSE).
   2026-09-05.** Dead guesses were rejected (gov.uk/guidance/awaabs-law,
   LFB e-scooters page, ECFRS e-bike page). Gas Safe Register root blocks
   bots but is the correct public URL.
-- All 15 existing pages carry `keyFacts` and `furtherReading`.
+- All 15 pages that existed at that point carry `keyFacts` and
+  `furtherReading`. The six P5 pages were written with them too, so all 21
+  pages have them.
 - `THURROCK.fireSafety.fireDoorRating` added ("30 minutes").
 - Enfield's safety-at-home page (also shared by the client) returns 403 to
   automated fetches and was not used.
@@ -208,8 +229,8 @@ reading and a `TopicArt` illustration:
   date), `safety-profile.ts` (`findAddresses`, `getSafetyProfile`).
 - **FeedbackWidget** now stores `{ slug, helpful }`. **ReportDampForm** shows
   the reference and inspect-by date when stored.
-- **SafetyProfileLookup** (client) on `/safety-at-home/your-safety-checks`
-  via `TOOLS`. Postcode → address → profile: block plan (stay put /
+- **SafetyProfileLookup** (client) via `TOOLS`, now on both
+  `/safety-at-home/your-safety-checks` and `/safety-at-home/building-safety`. Postcode → address → profile: block plan (stay put /
   evacuate), higher-risk flag, last FRA and communal fire door check, per-home
   check dates, asbestos items with a "do not disturb" line.
   **Access decision:** no auth, so no personal data and all dates are
