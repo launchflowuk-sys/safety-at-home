@@ -1,6 +1,77 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-06 (end of Phase 6 session)._
+_Last updated: 2026-09-06 (end of Phase 6 session). Next up: Phase 7._
+
+## Start here (new session checklist)
+
+1. Read `CLAUDE.md` in full — it is the contract (stack, hard rules, content
+   model, sitemap, phases). Then read this file.
+2. Repo: `C:\Users\Chaudhry Naeem\safety-at-home`, branch `main`, clean tree.
+   Remote: https://github.com/launchflowuk-sys/safety-at-home. `main` is
+   **6 commits ahead of `origin/main`** — nothing since P1 has been pushed.
+   Push when ready.
+3. Git identity is set repo-locally (Shoji <shujaat@nexusedu.co.uk>).
+4. `npm install` is done. Node 24 locally; Docker image pins node:22-alpine.
+5. Start the local database (Docker Desktop must be running):
+
+   ```bash
+   docker start safety-at-home-pg || docker run -d --name safety-at-home-pg \
+     -e POSTGRES_PASSWORD=devpass -e POSTGRES_USER=safety -e POSTGRES_DB=safety \
+     -p 5434:5432 postgres:16-alpine
+   ```
+
+   The container from this session still exists with the migration applied
+   and the fake seed loaded. If you recreate it: `npm run db:migrate` then
+   `npm run db:seed`.
+6. Run the site with the database:
+
+   ```bash
+   DATABASE_URL=postgresql://safety:devpass@localhost:5434/safety npm run dev
+   ```
+
+   Or without it (`npm run dev`) to exercise the no-database fallbacks.
+   The dev server from this session is NOT running any more — background
+   processes die with the session.
+7. Gates before every commit: `npx tsc --noEmit` and `npm run build` (stop
+   the dev server first — build and dev share `.next`). There is no ESLint
+   config and no test runner yet.
+8. Test data: postcode `ZZ1 1ZZ` → "Example House", 4 flats. Flat 2 has an
+   asbestos record. A report and a feedback row from this session are in the
+   local DB.
+
+## Commit history
+
+| Commit | What |
+| --- | --- |
+| `16b1f4f` | P1 scaffold: tokens, config, chrome, hub, triage tool |
+| `b49090f` | P2 template, registry, catch-all route, 5 fire pages |
+| `9f0a4ea` | P3 damp cluster, Awaab's Law clock, report form, site rename, nav tabs |
+| `787a38d` | P4 gas, annual gas service, electrical, CO, water, asbestos |
+| `27830a5` | Illustrations, key facts, "Find out more" links (client request) |
+| `371facc` | P5 balconies, e-bikes, communal, security, extra support, safety checks |
+| `c90b8a1` | P6 Prisma + Postgres, stored feedback/reports, address lookup, ARC sync |
+
+## Facts to confirm with Thurrock (all live in `src/config/thurrock.ts`)
+
+Change the config value and every page updates.
+
+- `awaabsLaw.writtenReport` — corrected to "3 working days after the
+  investigation ends" (was "after works finish").
+- `gasSafety.recordCopy` "within 28 days of the check";
+  `gasSafety.reminderBefore` "about 8 weeks before it is due".
+- `electricalSafety.inspectionInterval` "every 5 years".
+- `carbonMonoxide.alarmLifespan` "7 to 10 years";
+  `fireSafety.alarmLifespan` "10 years"; `fireSafety.fireDoorRating`
+  "30 minutes"; `fireSafety.fireRiskAssessment` "at least every 12 months in
+  blocks of flats".
+- `communalAreas.removalNotice` "7 days" — and whether Thurrock runs zero
+  tolerance or managed use in shared areas.
+- `housingPolicy.phone` is used as the contact on `extra-support` — confirm
+  it is the right tenant-facing number.
+- `police` (Essex Police, 101) and `nhs` (NHS 111) were added.
+- ARC asbestos feed URL, auth and JSON shape (see `scripts/sync-arc.ts`).
+- Whether the address lookup may show full dates (currently month/year only,
+  because there is no login).
 
 ## Where we are
 
