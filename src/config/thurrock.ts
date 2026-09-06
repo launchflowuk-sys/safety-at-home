@@ -40,6 +40,14 @@ export const THURROCK = {
   buildingSafety: {
     higherRiskBuilding: "at least 18 metres or 7 floors tall",
     email: "buildingsafetyteam@thurrock.gov.uk",
+    /** Written notice we must give before asking to enter a home. */
+    accessNotice: "48 hours",
+  },
+  buildingSafetyRegulator: {
+    provider: "Building Safety Regulator",
+    phone: "0300 790 6787",
+    hours:
+      "Monday, Tuesday, Thursday and Friday 8:30am to 5pm. Wednesday 10am to 5pm. Closed weekends and bank holidays",
   },
   gasSafety: {
     serviceInterval: "every 12 months",

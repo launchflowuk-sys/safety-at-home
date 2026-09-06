@@ -78,6 +78,26 @@ export const SOURCES = {
     href: "https://www.gov.uk/government/organisations/building-safety-regulator",
     source: "GOV.UK",
   },
+  govFindHighRise: {
+    label: "Check whether your building is on the high-rise register",
+    href: "https://www.gov.uk/guidance/find-a-high-rise-residential-building",
+    source: "GOV.UK",
+  },
+  govYourHomeYourSafety: {
+    label: "Your home, your safety: your rights as a high-rise resident",
+    href: "https://buildingsafety.campaign.gov.uk/building-safety-regulator-making-buildings-safer/your-home-your-safety/",
+    source: "Building Safety Regulator",
+  },
+  govComplainBuildingSafety: {
+    label: "Complain about a building safety risk in a high-rise building",
+    href: "https://www.gov.uk/guidance/complain-about-a-building-safety-risk-in-a-high-rise-building",
+    source: "GOV.UK",
+  },
+  govContactBsr: {
+    label: "Contact the Building Safety Regulator",
+    href: "https://www.gov.uk/guidance/contact-the-building-safety-regulator",
+    source: "GOV.UK",
+  },
   hseBuildingSafety: {
     label: "Building safety: how the law protects residents",
     href: "https://www.hse.gov.uk/building-safety/",

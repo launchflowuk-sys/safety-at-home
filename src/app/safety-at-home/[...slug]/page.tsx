@@ -31,6 +31,7 @@ const BESPOKE_ROUTES: Record<string, () => React.ReactNode> = {
  */
 const TOOLS: Record<string, React.ReactNode> = {
   "damp-and-mould/awaabs-law": <AwaabsLawClock />,
+  "building-safety": <SafetyProfileLookup />,
   "your-safety-checks": <SafetyProfileLookup />,
 };
 

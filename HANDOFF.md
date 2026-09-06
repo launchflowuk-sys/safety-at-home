@@ -1,6 +1,6 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-06 (Phase 6 complete, plus resident safety posters). Next up: Phase 7._
+_Last updated: 2026-09-06 (Phase 6 complete, plus posters and the building safety rebuild). Next up: Phase 7._
 
 ## Start here (new session checklist)
 
@@ -279,6 +279,55 @@ building safety area.
   quarterly building safety audits) are **not** in `THURROCK` yet and are not
   in any timescales table, because of the AOV conflict above. Add them to
   config once settled.
+
+### Delivered after P6: building safety page rebuilt
+
+The client was unhappy with the building safety page and pointed at Enfield
+(`enfield.gov.uk/.../safety-at-home#building-safety`) and Westminster
+(`westminster.gov.uk/housing/building-safety`). Enfield leads on legal
+detail and lists its registered blocks; Westminster leads on resident
+engagement. Both were read in full — Enfield only loads in the browser pane,
+it returns 403 to WebFetch.
+
+Two new optional `SafetyPage` fields, both data-driven so any page can use
+them:
+
+- `explainers` — extra accordions rendered as section **5b**, after "What you
+  must do".
+- `escalation` — a numbered "if we do not put it right" ladder rendered as
+  section **6c**, after the posters.
+
+The building safety page now has:
+
+- The **address lookup** (`SafetyProfileLookup`, built in P6) added to the
+  `TOOLS` map, so it answers "is my block higher-risk?" per address. This is
+  Enfield's list-of-registered-blocks idea, personalised. **Needs the real
+  Thurrock address and building data loading before it is useful in
+  production** — it only has seeded fake data at ZZ1 1ZZ today.
+- Six explainers: is my block higher-risk, your rights under the Act, your
+  legal duties as a resident, when we need to come into your home (written
+  request, reason, 48 hours notice, court order route), leaseholder
+  protections, how we involve residents.
+- A five-step escalation ladder: tell us → our building safety complaints
+  process → challenge our final response → Building Safety Regulator →
+  Housing Ombudsman.
+- Four new verified GOV.UK / BSR sources in `SOURCES`.
+
+New config: `buildingSafety.accessNotice` ("48 hours") and
+`buildingSafetyRegulator` (0300 790 6787 and its opening hours, both read
+from the live GOV.UK page rather than a summary).
+
+**Content to confirm with Thurrock before go-live:**
+
+- We state we run a building safety complaints system and have a resident
+  engagement strategy, and invite residents to ask the team for a copy. Both
+  come from Thurrock's own poster, but confirm the strategy is publishable
+  and add it to `downloads` when it is.
+- Enfield publishes its list of registered high-rise blocks. We deliberately
+  did **not** invent one. Either load real address data so the lookup answers
+  it, or ask Thurrock for the block list.
+- Leaseholder protections are summarised in plain English. Have a housing
+  lawyer check the wording before launch.
 
 ## Known state / caveats
 

@@ -129,6 +129,24 @@ export function SafetyPageTemplate({ page, tool }: Props) {
             ))}
           </ul>
         </Accordion>
+
+        {/* 5b. Extra topic sections */}
+        {page.explainers?.map((explainer) => (
+          <Accordion key={explainer.heading} title={explainer.heading}>
+            {explainer.intro && (
+              <p className="max-w-prose">{explainer.intro}</p>
+            )}
+            {explainer.items && (
+              <ul
+                className={`list-disc space-y-2 pl-6 ${explainer.intro ? "mt-3" : ""}`}
+              >
+                {explainer.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </Accordion>
+        ))}
       </div>
 
       {/* 6. Warning signs */}
@@ -157,6 +175,42 @@ export function SafetyPageTemplate({ page, tool }: Props) {
       {/* 6b. Safety posters */}
       {page.posters && page.posters.length > 0 && (
         <PosterGallery posters={page.posters} />
+      )}
+
+      {/* 6c. Escalation ladder */}
+      {page.escalation && (
+        <section aria-labelledby="escalation-heading" className="mt-10">
+          <h2 id="escalation-heading" className="text-2xl font-bold">
+            {page.escalation.heading}
+          </h2>
+          {page.escalation.intro && (
+            <p className="mt-2 max-w-prose text-ink-soft">
+              {page.escalation.intro}
+            </p>
+          )}
+          <ol className="mt-6 space-y-4">
+            {page.escalation.steps.map((step, index) => (
+              <li
+                key={step.title}
+                className="flex gap-4 rounded-card border border-line bg-surface p-4 shadow-card"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-lg font-bold text-white"
+                >
+                  {index + 1}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold">
+                    <span className="sr-only">Step {index + 1}: </span>
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 max-w-prose">{step.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
       )}
 
       {/* 7. How to report it */}

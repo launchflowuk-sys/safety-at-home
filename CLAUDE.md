@@ -75,6 +75,8 @@ type SafetyPage = {
     phone?: string;
     email?: string;
   };
+  explainers?: { heading; intro?; items? }[]; // extra accordions
+  escalation?: { heading; intro?; steps: { title; detail }[] }; // numbered ladder
   timescales?: { label: string; target: string }[];
   posters?: readonly Poster[]; // from POSTERS in src/config/posters.ts
   downloads?: { label: string; href: string; size: string }[];
@@ -110,8 +112,10 @@ Never add a poster image with bare markup.
 3. Emergency callout (if present) — red, high contrast, phone as `tel:` link
 4. "What we do" — accordion, open by default on desktop
 5. "What you must do" — accordion
+5b. Explainers — further accordions (if present)
 6. Warning signs — icon grid
 6b. Safety posters — `PosterGallery` (if present)
+6c. Escalation ladder — numbered steps (if present)
 7. "How to report it" — 3 CTA cards (online / phone / email)
 8. Timescales table
 9. Downloads

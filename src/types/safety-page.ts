@@ -28,6 +28,21 @@ export type SafetyPage = {
     phone?: string;
     email?: string;
   };
+  /**
+   * Extra topic sections rendered as accordions after "What you must do".
+   * Use for background a resident may want but does not need up front, such
+   * as what a law means for them.
+   */
+  explainers?: { heading: string; intro?: string; items?: string[] }[];
+  /**
+   * A numbered "what to do if you are not satisfied" ladder, shown after the
+   * posters. Each step names who to go to and what they will do.
+   */
+  escalation?: {
+    heading: string;
+    intro?: string;
+    steps: { title: string; detail: string }[];
+  };
   timescales?: { label: string; target: string }[];
   /**
    * Printed safety posters shown as a gallery, from `POSTERS` in
