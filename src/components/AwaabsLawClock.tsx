@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import {
   addWorkingDays,
   leadingNumber,
@@ -15,9 +15,9 @@ import {
  * working days are left. All maths is on the client; nothing is stored.
  */
 
-const INVESTIGATE_DAYS = leadingNumber(THURROCK.awaabsLaw.investigate);
-const REPAIR_START_DAYS = leadingNumber(THURROCK.awaabsLaw.repairStart);
-const WRITTEN_REPORT_DAYS = leadingNumber(THURROCK.awaabsLaw.writtenReport);
+const INVESTIGATE_DAYS = leadingNumber(ORG.awaabsLaw.investigate);
+const REPAIR_START_DAYS = leadingNumber(ORG.awaabsLaw.repairStart);
+const WRITTEN_REPORT_DAYS = leadingNumber(ORG.awaabsLaw.writtenReport);
 
 function parseDateInput(value: string): Date | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
@@ -72,19 +72,19 @@ export function AwaabsLawClock() {
   if (reportedDate) {
     deadlines.push({
       label: "We must investigate by",
-      detail: `${THURROCK.awaabsLaw.investigate} after you told us.`,
+      detail: `${ORG.awaabsLaw.investigate} after you told us.`,
       date: addWorkingDays(reportedDate, INVESTIGATE_DAYS),
     });
   }
   if (inspectedDate) {
     deadlines.push({
       label: "You should have our written summary by",
-      detail: `${THURROCK.awaabsLaw.writtenReport}.`,
+      detail: `${ORG.awaabsLaw.writtenReport}.`,
       date: addWorkingDays(inspectedDate, WRITTEN_REPORT_DAYS),
     });
     deadlines.push({
       label: "If there is a significant hazard, repairs must start by",
-      detail: `${THURROCK.awaabsLaw.repairStart}.`,
+      detail: `${ORG.awaabsLaw.repairStart}.`,
       date: addWorkingDays(inspectedDate, REPAIR_START_DAYS),
     });
   }
@@ -171,7 +171,7 @@ export function AwaabsLawClock() {
 
       <p className="mt-5 max-w-prose text-sm">
         <strong>Emergency hazards</strong> are different. We must investigate
-        and act within {THURROCK.awaabsLaw.emergencyHazard}, whatever day it
+        and act within {ORG.awaabsLaw.emergencyHazard}, whatever day it
         is.
       </p>
     </section>

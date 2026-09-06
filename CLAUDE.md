@@ -25,8 +25,12 @@ Council housing. Content style follows GOV.UK conventions: plain, calm, task-fir
 
 ## Hard rules
 
-1. **Single source of truth**: every phone number, email and timescale MUST be
-   imported from `src/config/thurrock.ts`. Never hardcode a number in a page or
+1. **Single source of truth**: the landlord name, every phone number, email
+   and timescale MUST be imported from `src/config/organisation.ts` (`ORG`).
+   The landlord name and its own contacts are **placeholders** while this is a
+   demonstration: "Housing Organisation", Ofcom drama numbers and example.org
+   addresses. Numbers marked "real" in that file are genuine national services
+   and must not be changed. Never hardcode a number in a page or
    component. This includes triage results, emergency bars, footers and content
    files.
 2. **WCAG 2.2 AA is a hard requirement, not a polish step.** Every commit must
@@ -39,7 +43,7 @@ Council housing. Content style follows GOV.UK conventions: plain, calm, task-fir
 
 ## Content config contract
 
-`src/config/thurrock.ts` exports a single `THURROCK as const` object holding all
+`src/config/organisation.ts` exports a single `ORG as const` object holding all
 contact details and timescales:
 
 - `repairs` — phone, email, hours (24/7 free line)
@@ -67,6 +71,7 @@ type SafetyPage = {
   summary: string;
   keyFacts?: { value: string; label: string }[]; // up to 3 stat tiles; values from THURROCK
   emergency?: { label: string; phone: string; instructions: string[] };
+  diagram?: { id: DiagramId; caption: string }; // explanatory drawing
   ourResponsibilities: string[];
   yourResponsibilities: string[];
   warningSigns?: { icon: string; text: string }[];
@@ -97,6 +102,20 @@ in a page: the count, the key fact and the published list are all derived
 from that array. `reference` is the council's asset reference, not a dwelling
 UPRN, and is deliberately not rendered.
 
+## Diagram contract
+
+Explanatory drawings live in `src/components/Diagrams.tsx` and are attached
+through `diagram`. They differ from `TopicArt`, which is decorative:
+
+- A diagram must show a mechanism the reader would otherwise have to imagine.
+- The drawing is `role="presentation"`; the **visible caption carries the
+  meaning**, so write the caption so the page still works without the picture.
+  That is how these meet WCAG 2.2 AA 1.1.1.
+- Colour comes from the design tokens, and never carries meaning alone —
+  pair red and green with a cross and a tick.
+- Keep labels inside the drawing short; explanation goes in the caption.
+- After adding one, check nothing spills outside the `viewBox`.
+
 ## Poster contract
 
 Printed posters live in `src/config/posters.ts` (`POSTERS`) and are attached
@@ -119,6 +138,7 @@ Never add a poster image with bare markup.
 2. H1 + summary, with the topic illustration (`TopicArt`, keyed by slug)
 2b. Key facts — up to 3 stat tiles (if present)
 3. Emergency callout (if present) — red, high contrast, phone as `tel:` link
+3c. Explanatory diagram — `Diagram` (if present)
 4. "What we do" — accordion, open by default on desktop
 5. "What you must do" — accordion
 5b. Explainers — further accordions (if present)

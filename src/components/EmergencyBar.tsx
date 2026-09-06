@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 
 const STORAGE_KEY = "safety-emergency-bar-collapsed";
 
@@ -36,17 +36,17 @@ export function EmergencyBar() {
           <p className="text-sm font-semibold sm:text-base">
             In an emergency call{" "}
             <a
-              href={telHref(THURROCK.emergency.phone)}
+              href={telHref(ORG.emergency.phone)}
               className="underline underline-offset-2 hover:decoration-2"
             >
-              {THURROCK.emergency.phone}
+              {ORG.emergency.phone}
             </a>
             . Housing repairs{" "}
             <a
-              href={telHref(THURROCK.repairs.phone)}
+              href={telHref(ORG.repairs.phone)}
               className="whitespace-nowrap underline underline-offset-2 hover:decoration-2"
             >
-              {THURROCK.repairs.phone}
+              {ORG.repairs.phone}
             </a>{" "}
             <span className="whitespace-nowrap">(24/7)</span>.
           </p>

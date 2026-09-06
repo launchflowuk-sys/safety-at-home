@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -29,10 +29,10 @@ export const extraSupport: SafetyPage = {
     "Let us in for safety checks. Tell us if you need a longer appointment or a specific time.",
   ],
   howToReport: {
-    phone: THURROCK.housingPolicy.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.housingPolicy.phone,
+    email: ORG.repairs.email,
   },
-  furtherReading: [SOURCES.ecfrsHomeVisit, SOURCES.thurrockHousing],
+  furtherReading: [SOURCES.ecfrsHomeVisit, SOURCES.ecfrsHomeSafety],
   related: [
     "fire-safety/help-to-evacuate",
     "damp-and-mould",

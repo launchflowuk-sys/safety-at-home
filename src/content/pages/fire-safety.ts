@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,19 +9,19 @@ export const fireSafety: SafetyPage = {
     "How we keep your home and building safe from fire, what you can do to help, and what to do if there is a fire.",
   emergency: {
     label: "If there is a fire",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Get everyone out of the room and close the door behind you.",
       "Leave your home if it is safe to do so. Do not stop to collect things.",
       "Do not use the lift.",
-      `Call ${THURROCK.emergency.phone} once you are outside and safe.`,
+      `Call ${ORG.emergency.phone} once you are outside and safe.`,
       "Do not go back inside for any reason.",
     ],
   },
   keyFacts: [
-    { value: THURROCK.fireSafety.alarmTest, label: "test your smoke alarm" },
-    { value: THURROCK.timescales.emergency, label: "to fix a broken fire door or alarm" },
-    { value: THURROCK.emergency.phone, label: "if you see fire or smoke" },
+    { value: ORG.fireSafety.alarmTest, label: "test your smoke alarm" },
+    { value: ORG.timescales.emergency, label: "to fix a broken fire door or alarm" },
+    { value: ORG.emergency.phone, label: "if you see fire or smoke" },
   ],
   ourResponsibilities: [
     "We carry out a fire risk assessment of every block of flats we own, and act on what it finds.",
@@ -32,7 +32,7 @@ export const fireSafety: SafetyPage = {
     "We check the gas and electrical systems we own, to lower the risk of fire.",
   ],
   yourResponsibilities: [
-    `Test your smoke alarm ${THURROCK.fireSafety.alarmTest}. Press the test button until it sounds.`,
+    `Test your smoke alarm ${ORG.fireSafety.alarmTest}. Press the test button until it sounds.`,
     "Never take down or cover a smoke alarm, even if it goes off when you cook.",
     "Keep your flat entrance door closed. Never wedge a fire door open.",
     "Keep hallways, stairs and landings clear. Do not leave prams, bikes or furniture in shared areas.",
@@ -65,24 +65,24 @@ export const fireSafety: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label:
         "Emergency repair, such as a fire door that will not close or a smoke alarm that does not work",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
-    { label: "Urgent repair", target: THURROCK.timescales.urgent },
-    { label: "Routine repair", target: THURROCK.timescales.routine },
+    { label: "Urgent repair", target: ORG.timescales.urgent },
+    { label: "Routine repair", target: ORG.timescales.routine },
     {
-      label: `Fire door checks in shared areas, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.communalFireDoorCheck,
+      label: `Fire door checks in shared areas, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.communalFireDoorCheck,
     },
     {
-      label: `Flat entrance fire door checks, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.flatFireDoorCheck,
+      label: `Flat entrance fire door checks, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.flatFireDoorCheck,
     },
   ],
   furtherReading: [SOURCES.ecfrsHomeSafety, SOURCES.ecfrsHomeVisit, SOURCES.ecfrsCooking, SOURCES.lfbChargeSafe],

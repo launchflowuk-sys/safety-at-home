@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,23 +9,23 @@ export const annualGasService: SafetyPage = {
     "Every home with gas gets a free safety check once a year. Find out what happens, how to get ready, and why you must let us in.",
   emergency: {
     label: "If you smell gas",
-    phone: THURROCK.gasLeak.phone,
+    phone: ORG.gasLeak.phone,
     instructions: [
       "Open doors and windows. Do not use switches, flames or your phone indoors.",
-      `Go outside and call ${THURROCK.gasLeak.provider} on ${THURROCK.gasLeak.phone}. It is free and open 24 hours.`,
+      `Go outside and call ${ORG.gasLeak.provider} on ${ORG.gasLeak.phone}. It is free and open 24 hours.`,
     ],
   },
   keyFacts: [
-    { value: THURROCK.gasSafety.serviceInterval, label: "we check your gas appliances" },
-    { value: THURROCK.gasSafety.reminderBefore, label: "we write to you with an appointment" },
-    { value: THURROCK.gasSafety.recordCopy, label: "you get a copy of your gas safety record" },
+    { value: ORG.gasSafety.serviceInterval, label: "we check your gas appliances" },
+    { value: ORG.gasSafety.reminderBefore, label: "we write to you with an appointment" },
+    { value: ORG.gasSafety.recordCopy, label: "you get a copy of your gas safety record" },
   ],
   ourResponsibilities: [
-    `We write to you ${THURROCK.gasSafety.reminderBefore} with an appointment. If the time does not suit you, you can change it.`,
+    `We write to you ${ORG.gasSafety.reminderBefore} with an appointment. If the time does not suit you, you can change it.`,
     "Our engineer checks the boiler, gas fire and pipework we own, plus the flue and air vents. If we own your cooker, we check that too.",
     "We test your carbon monoxide alarm and your smoke alarms while we are there.",
     "We fix small faults on the day where we can, and book a follow-up for anything bigger.",
-    `We give you a copy of the gas safety record ${THURROCK.gasSafety.recordCopy}. Keep it safe.`,
+    `We give you a copy of the gas safety record ${ORG.gasSafety.recordCopy}. Keep it safe.`,
     "If we cannot get in, we try again and write to you. We must complete the check by law, so we may take legal action to gain access as a last resort.",
   ],
   yourResponsibilities: [
@@ -38,25 +38,25 @@ export const annualGasService: SafetyPage = {
     "Tell the engineer about anything you have noticed, such as a smell, noise or a pilot light going out.",
   ],
   howToReport: {
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "How often we check",
-      target: THURROCK.gasSafety.serviceInterval,
+      target: ORG.gasSafety.serviceInterval,
     },
     {
       label: "When we write to you about your appointment",
-      target: THURROCK.gasSafety.reminderBefore,
+      target: ORG.gasSafety.reminderBefore,
     },
     {
       label: "Copy of your gas safety record",
-      target: THURROCK.gasSafety.recordCopy,
+      target: ORG.gasSafety.recordCopy,
     },
     {
       label: "Fault found that makes an appliance unsafe",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
   ],
   furtherReading: [SOURCES.gasSafeRegister, SOURCES.cadentEmergencies],

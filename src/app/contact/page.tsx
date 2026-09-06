@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 
 export const metadata: Metadata = {
   title: "Contact us",
@@ -14,20 +14,20 @@ export default function Contact() {
       <p className="mt-2 max-w-prose">
         Call{" "}
         <a
-          href={telHref(THURROCK.repairs.phone)}
+          href={telHref(ORG.repairs.phone)}
           className="font-bold text-link underline underline-offset-2"
         >
-          {THURROCK.repairs.phone}
+          {ORG.repairs.phone}
         </a>
-        . {THURROCK.repairs.hours}.
+        . {ORG.repairs.hours}.
       </p>
       <p className="mt-2 max-w-prose">
         Email{" "}
         <a
-          href={`mailto:${THURROCK.repairs.email}`}
+          href={`mailto:${ORG.repairs.email}`}
           className="font-semibold text-link underline underline-offset-2"
         >
-          {THURROCK.repairs.email}
+          {ORG.repairs.email}
         </a>
       </p>
 
@@ -35,10 +35,10 @@ export default function Contact() {
       <p className="mt-2 max-w-prose">
         Call{" "}
         <a
-          href={telHref(THURROCK.housingPolicy.phone)}
+          href={telHref(ORG.housingPolicy.phone)}
           className="font-bold text-link underline underline-offset-2"
         >
-          {THURROCK.housingPolicy.phone}
+          {ORG.housingPolicy.phone}
         </a>
       </p>
 
@@ -46,17 +46,17 @@ export default function Contact() {
       <p className="mt-2 max-w-prose">
         If life is in danger, call{" "}
         <a
-          href={telHref(THURROCK.emergency.phone)}
+          href={telHref(ORG.emergency.phone)}
           className="font-bold text-link underline underline-offset-2"
         >
-          {THURROCK.emergency.phone}
+          {ORG.emergency.phone}
         </a>
-        . If you smell gas, call {THURROCK.gasLeak.provider} on{" "}
+        . If you smell gas, call {ORG.gasLeak.provider} on{" "}
         <a
-          href={telHref(THURROCK.gasLeak.phone)}
+          href={telHref(ORG.gasLeak.phone)}
           className="font-bold text-link underline underline-offset-2"
         >
-          {THURROCK.gasLeak.phone}
+          {ORG.gasLeak.phone}
         </a>
         .
       </p>

@@ -1,5 +1,5 @@
 import { HIGH_RISE_BLOCKS, blocksByArea } from "@/config/buildings";
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { Accordion } from "./Accordion";
 
 /**
@@ -15,7 +15,7 @@ export function HighRiseBlockList() {
       <Accordion title={`See all ${HIGH_RISE_BLOCKS.length} high-rise blocks we manage`}>
         <p className="max-w-prose">
           These are the blocks we have registered with the Building Safety
-          Regulator because they are {THURROCK.buildingSafety.higherRiskBuilding}.
+          Regulator because they are {ORG.buildingSafety.higherRiskBuilding}.
           If your block is on this list, the extra duties in the Building Safety
           Act apply to it.
         </p>

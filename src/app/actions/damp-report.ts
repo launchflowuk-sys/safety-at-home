@@ -1,7 +1,7 @@
 "use server";
 
 import { randomBytes } from "node:crypto";
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { getDb } from "@/lib/db";
 import {
   formatPostcode,
@@ -17,7 +17,7 @@ export type DampReportResult =
   | { ok: true; stored: false }
   | { ok: false; errors: DampReportErrors };
 
-const INVESTIGATE_DAYS = leadingNumber(THURROCK.awaabsLaw.investigate);
+const INVESTIGATE_DAYS = leadingNumber(ORG.awaabsLaw.investigate);
 
 /** Human-friendly reference like DM-7K3F9Q (no ambiguous 0/O, 1/I). */
 function makeReference(): string {

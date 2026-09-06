@@ -128,9 +128,4 @@ export const SOURCES = {
     href: "https://www.london-fire.gov.uk/chargesafe/",
     source: "London Fire Brigade",
   },
-  thurrockHousing: {
-    label: "Council housing on the Thurrock Council website",
-    href: "https://www.thurrock.gov.uk/housing",
-    source: "Thurrock Council",
-  },
 } as const satisfies Record<string, Source>;

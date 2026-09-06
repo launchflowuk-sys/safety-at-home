@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -14,11 +14,11 @@ export const balconiesWindowsAndRoofs: SafetyPage = {
   ],
   emergency: {
     label: "If there is a fire on a balcony",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Get everyone inside, close the balcony door and leave your home.",
       "Close doors behind you and use the stairs.",
-      `Call ${THURROCK.emergency.phone} from outside. Fire spreads quickly from balcony to balcony.`,
+      `Call ${ORG.emergency.phone} from outside. Fire spreads quickly from balcony to balcony.`,
     ],
   },
   ourResponsibilities: [
@@ -63,21 +63,21 @@ export const balconiesWindowsAndRoofs: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Unsafe balcony railing, window that will not lock, or roof damage letting water in",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "Broken window restrictor",
-      target: THURROCK.timescales.urgent,
+      target: ORG.timescales.urgent,
     },
     {
       label: "Gutters, downpipes and other outside repairs",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
   ],
   furtherReading: [SOURCES.ecfrsHomeSafety, SOURCES.ecfrsHighRise],

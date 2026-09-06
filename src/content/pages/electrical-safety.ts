@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,28 +9,28 @@ export const electricalSafety: SafetyPage = {
     "How we check the wiring in your home, how to use sockets and appliances safely, and what to do about a fault or a power cut.",
   emergency: {
     label: "If there is an electrical fire or someone gets a shock",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Do not touch someone who is still in contact with electricity. Switch off the power at the fuse box first, if you can do it safely.",
       "Never put water on an electrical fire.",
-      `If there is a fire, get everyone out, close the door and call ${THURROCK.emergency.phone} from outside.`,
-      `If someone has had a shock, call ${THURROCK.emergency.phone} even if they seem fine.`,
+      `If there is a fire, get everyone out, close the door and call ${ORG.emergency.phone} from outside.`,
+      `If someone has had a shock, call ${ORG.emergency.phone} even if they seem fine.`,
     ],
   },
   keyFacts: [
-    { value: THURROCK.electricalSafety.inspectionInterval, label: "we test the wiring in your home" },
-    { value: THURROCK.electricity.phone, label: "free number to call in a power cut" },
+    { value: ORG.electricalSafety.inspectionInterval, label: "we test the wiring in your home" },
+    { value: ORG.electricity.phone, label: "free number to call in a power cut" },
     { value: "1 plug", label: "per socket is the safest way" },
   ],
   ourResponsibilities: [
-    `We inspect and test the fixed wiring in your home ${THURROCK.electricalSafety.inspectionInterval}. This is called an electrical installation condition report.`,
+    `We inspect and test the fixed wiring in your home ${ORG.electricalSafety.inspectionInterval}. This is called an electrical installation condition report.`,
     "We repair the wiring, sockets, light fittings, switches and fuse box that we own.",
     "We fit and look after smoke alarms, and the lighting and emergency lighting in shared areas.",
     "We fix any dangerous fault we find during a check straight away.",
-    `Power cuts are dealt with by ${THURROCK.electricity.provider}, not us. Call them on ${THURROCK.electricity.phone}. It is free.`,
+    `Power cuts are dealt with by ${ORG.electricity.provider}, not us. Call them on ${ORG.electricity.phone}. It is free.`,
   ],
   yourResponsibilities: [
-    `Let us in for your electrical check ${THURROCK.electricalSafety.inspectionInterval}.`,
+    `Let us in for your electrical check ${ORG.electricalSafety.inspectionInterval}.`,
     "Do not overload sockets. One plug per socket is safest. Never plug one extension lead into another.",
     "Do not run cables under carpets or rugs, or through doorways where they get squashed.",
     "Never do your own wiring or fit new sockets or lights. Ask us first, and only use a registered electrician.",
@@ -67,25 +67,25 @@ export const electricalSafety: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Dangerous fault, or no power in your home when your neighbours have power",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "Faulty socket, switch or light fitting",
-      target: THURROCK.timescales.urgent,
+      target: ORG.timescales.urgent,
     },
     {
       label: "Other electrical repairs",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
     {
       label: "Electrical inspection of your home",
-      target: THURROCK.electricalSafety.inspectionInterval,
+      target: ORG.electricalSafety.inspectionInterval,
     },
   ],
   furtherReading: [SOURCES.esfHome, SOURCES.ukpnPowerCut],

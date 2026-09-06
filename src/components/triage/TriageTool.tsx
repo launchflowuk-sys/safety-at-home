@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { telHref } from "@/config/thurrock";
+import { telHref } from "@/config/organisation";
 import {
   TRIAGE_CATEGORIES,
   TRIAGE_NODES,

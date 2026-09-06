@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TriageTool } from "@/components/triage/TriageTool";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 import { SITE_NAME } from "@/config/navigation";
 
 export const metadata: Metadata = {
@@ -36,10 +36,10 @@ export default function EmergencyPage() {
       <p className="mt-3 max-w-prose text-lg text-ink-soft">
         If life is in danger, call{" "}
         <a
-          href={telHref(THURROCK.emergency.phone)}
+          href={telHref(ORG.emergency.phone)}
           className="font-bold text-ink underline underline-offset-2"
         >
-          {THURROCK.emergency.phone}
+          {ORG.emergency.phone}
         </a>{" "}
         now. Otherwise, answer the questions below.
       </p>

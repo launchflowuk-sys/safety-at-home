@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -10,16 +10,21 @@ export const eBikesAndEScooters: SafetyPage = {
   keyFacts: [
     { value: "Never", label: "charge in a hallway, stairwell or on your escape route" },
     { value: "Unplug", label: "when fully charged. Do not charge overnight or while you are out" },
-    { value: THURROCK.emergency.phone, label: "if a battery smokes, hisses or swells. Get out first" },
+    { value: ORG.emergency.phone, label: "if a battery smokes, hisses or swells. Get out first" },
   ],
   emergency: {
     label: "If a battery starts to smoke, hiss, swell or catch fire",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Do not try to put it out or move it. Battery fires give off toxic gas and can explode.",
       "Get everyone out and close the door behind you.",
-      `Call ${THURROCK.emergency.phone} from outside and tell them it is a lithium battery fire.`,
+      `Call ${ORG.emergency.phone} from outside and tell them it is a lithium battery fire.`,
     ],
+  },
+  diagram: {
+    id: "ebike-charging",
+    caption:
+      "Never charge a battery in a hallway or stairwell. If it catches fire there, it blocks the way out for everyone. Charge it in a room with a working alarm, clear of the route you would use to leave.",
   },
   ourResponsibilities: [
     "We ban charging and storing e-bikes and e-scooters in shared areas, because a fire there would block everyone's way out.",
@@ -62,17 +67,17 @@ export const eBikesAndEScooters: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Items blocking a shared hallway or stairwell",
-      target: `Removed after ${THURROCK.communalAreas.removalNotice} notice. Straight away if they block a way out`,
+      target: `Removed after ${ORG.communalAreas.removalNotice} notice. Straight away if they block a way out`,
     },
     {
       label: "Faulty smoke alarm or fire door reported to us",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
   ],
   furtherReading: [SOURCES.lfbChargeSafe, SOURCES.ecfrsHomeSafety, SOURCES.esfHome],

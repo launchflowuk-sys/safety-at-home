@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ReportDampForm } from "@/components/ReportDampForm";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 import { getBreadcrumbsForSlug } from "@/content/registry";
 
 export const REPORT_DAMP_SLUG = "damp-and-mould/report-damp-or-mould";
@@ -21,7 +21,7 @@ export function ReportDampOrMouldPage() {
       <p className="mt-3 max-w-prose text-lg text-ink-soft">
         Use this form to tell us about damp or mould in your home. Under
         Awaab&apos;s Law we must inspect within{" "}
-        {THURROCK.awaabsLaw.investigate} of hearing from you.
+        {ORG.awaabsLaw.investigate} of hearing from you.
       </p>
 
       <div
@@ -34,12 +34,12 @@ export function ReportDampOrMouldPage() {
           we show you your answers and help you email them to us. Or you can
           call{" "}
           <a
-            href={telHref(THURROCK.repairs.phone)}
+            href={telHref(ORG.repairs.phone)}
             className="font-bold text-link underline underline-offset-2"
           >
-            {THURROCK.repairs.phone}
+            {ORG.repairs.phone}
           </a>{" "}
-          at any time. {THURROCK.repairs.hours}.
+          at any time. {ORG.repairs.hours}.
         </p>
       </div>
 

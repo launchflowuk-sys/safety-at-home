@@ -1,6 +1,6 @@
 /**
  * Development seed — FAKE data only. Uses the impossible postcode ZZ1 1ZZ so
- * it can never be mistaken for a real Thurrock home. Run with:
+ * it can never be mistaken for a real home. Run with:
  *
  *   DATABASE_URL=... npm run db:seed
  *

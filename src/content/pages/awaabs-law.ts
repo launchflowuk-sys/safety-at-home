@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -8,16 +8,16 @@ export const awaabsLaw: SafetyPage = {
   summary:
     "Awaab's Law sets strict time limits for social landlords like us to deal with damp, mould and other dangerous hazards. This page explains what we must do and by when, and helps you work out your own dates.",
   keyFacts: [
-    { value: THURROCK.awaabsLaw.investigate, label: "to investigate a possible hazard" },
-    { value: THURROCK.awaabsLaw.writtenReport, label: "to give you a written summary" },
-    { value: THURROCK.awaabsLaw.repairStart, label: "to start repairs on a significant hazard" },
+    { value: ORG.awaabsLaw.investigate, label: "to investigate a possible hazard" },
+    { value: ORG.awaabsLaw.writtenReport, label: "to give you a written summary" },
+    { value: ORG.awaabsLaw.repairStart, label: "to start repairs on a significant hazard" },
   ],
   ourResponsibilities: [
-    `We investigate within ${THURROCK.awaabsLaw.investigate} of finding out about a possible hazard. This usually means visiting your home.`,
-    `We give you a written summary of what we found within ${THURROCK.awaabsLaw.writtenReport}. It says if there is a hazard, how serious it is, and what we will do.`,
-    `If there is a significant hazard, we make your home safe or start repairs within ${THURROCK.awaabsLaw.repairStart}.`,
+    `We investigate within ${ORG.awaabsLaw.investigate} of finding out about a possible hazard. This usually means visiting your home.`,
+    `We give you a written summary of what we found within ${ORG.awaabsLaw.writtenReport}. It says if there is a hazard, how serious it is, and what we will do.`,
+    `If there is a significant hazard, we make your home safe or start repairs within ${ORG.awaabsLaw.repairStart}.`,
     "We finish the repairs within a reasonable time, and tell you how long we expect them to take.",
-    `If a hazard is an emergency, we investigate and take action within ${THURROCK.awaabsLaw.emergencyHazard}.`,
+    `If a hazard is an emergency, we investigate and take action within ${ORG.awaabsLaw.emergencyHazard}.`,
     "If we cannot make your home safe in these time limits, we offer you somewhere suitable to stay, at no cost to you, until it is safe.",
     "We keep a record of every report, visit and repair, and we tell you who is dealing with your case.",
   ],
@@ -33,25 +33,25 @@ export const awaabsLaw: SafetyPage = {
       label: "Report damp or mould online",
       href: "/safety-at-home/damp-and-mould/report-damp-or-mould",
     },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Investigate a possible hazard",
-      target: `within ${THURROCK.awaabsLaw.investigate}`,
+      target: `within ${ORG.awaabsLaw.investigate}`,
     },
     {
       label: "Written summary of what we found",
-      target: `within ${THURROCK.awaabsLaw.writtenReport}`,
+      target: `within ${ORG.awaabsLaw.writtenReport}`,
     },
     {
       label: "Make safe or start repairs for a significant hazard",
-      target: `within ${THURROCK.awaabsLaw.repairStart}`,
+      target: `within ${ORG.awaabsLaw.repairStart}`,
     },
     {
       label: "Investigate and act on an emergency hazard",
-      target: `within ${THURROCK.awaabsLaw.emergencyHazard}`,
+      target: `within ${ORG.awaabsLaw.emergencyHazard}`,
     },
   ],
   furtherReading: [SOURCES.govAwaabsLaw, SOURCES.housingOmbudsman, SOURCES.govDampHealth],

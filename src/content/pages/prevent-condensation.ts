@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -12,6 +12,11 @@ export const preventCondensation: SafetyPage = {
     { value: "Wipe", label: "windows and sills every morning" },
     { value: "Fan on", label: "while you cook or shower, with the door closed" },
   ],
+  diagram: {
+    id: "condensation",
+    caption:
+      "Cooking and washing put warm, damp air into your home. That air travels until it meets a cold surface such as an outside wall or window, where it turns back into water, and mould grows on the wet surface. Letting the damp air straight out, through an open window or the extractor fan, stops it reaching the cold wall.",
+  },
   ourResponsibilities: [
     "We repair or replace extractor fans in kitchens and bathrooms that do not work.",
     "We fix heating that does not work properly, so you can keep your home warm.",
@@ -58,21 +63,21 @@ export const preventCondensation: SafetyPage = {
       label: "Report damp or mould online",
       href: "/safety-at-home/damp-and-mould/report-damp-or-mould",
     },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Extractor fan or heating that does not work",
-      target: THURROCK.timescales.urgent,
+      target: ORG.timescales.urgent,
     },
     {
       label: "Mould caused by condensation, if it is a risk to your health",
-      target: `Inspected within ${THURROCK.awaabsLaw.investigate}`,
+      target: `Inspected within ${ORG.awaabsLaw.investigate}`,
     },
     {
       label: "Other ventilation or insulation work",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
   ],
   furtherReading: [SOURCES.govDampHealth],

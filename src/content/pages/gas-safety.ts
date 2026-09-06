@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,24 +9,24 @@ export const gasSafety: SafetyPage = {
     "Your free annual gas service, how to spot a faulty appliance, and exactly what to do if you smell gas.",
   emergency: {
     label: "If you smell gas",
-    phone: THURROCK.gasLeak.phone,
+    phone: ORG.gasLeak.phone,
     instructions: [
       "Open doors and windows to let air in.",
       "Turn off the gas at the meter if you know how and can reach it safely.",
       "Do not switch lights or anything electrical on or off. Do not smoke or light a flame.",
-      `Go outside, then call the National Gas Emergency Service (${THURROCK.gasLeak.provider}) on ${THURROCK.gasLeak.phone}. It is free and open 24 hours.`,
-      `If anyone feels unwell, call ${THURROCK.emergency.phone} as well.`,
+      `Go outside, then call the National Gas Emergency Service (${ORG.gasLeak.provider}) on ${ORG.gasLeak.phone}. It is free and open 24 hours.`,
+      `If anyone feels unwell, call ${ORG.emergency.phone} as well.`,
     ],
   },
   keyFacts: [
-    { value: THURROCK.gasSafety.serviceInterval, label: "free gas safety check of your home" },
-    { value: THURROCK.gasLeak.phone, label: "if you smell gas. Free, 24 hours" },
+    { value: ORG.gasSafety.serviceInterval, label: "free gas safety check of your home" },
+    { value: ORG.gasLeak.phone, label: "if you smell gas. Free, 24 hours" },
     { value: "Gas Safe", label: "all our engineers are registered. Ask for their ID card" },
   ],
   ourResponsibilities: [
-    `We service and safety check the gas boiler, fire and pipework we own in your home ${THURROCK.gasSafety.serviceInterval}. This is free.`,
+    `We service and safety check the gas boiler, fire and pipework we own in your home ${ORG.gasSafety.serviceInterval}. This is free.`,
     "All our gas engineers are on the Gas Safe Register. They carry an ID card. Ask to see it.",
-    `We give you a copy of your gas safety record ${THURROCK.gasSafety.recordCopy}.`,
+    `We give you a copy of your gas safety record ${ORG.gasSafety.recordCopy}.`,
     "We repair or replace gas appliances and pipework that we own.",
     "If an appliance is unsafe, we disconnect it straight away and tell you why.",
     "We fit a carbon monoxide alarm in every room with a fixed gas appliance.",
@@ -68,25 +68,25 @@ export const gasSafety: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Gas leak, or an appliance we have made safe and need to fix",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "No heating or hot water",
-      target: THURROCK.timescales.urgent,
+      target: ORG.timescales.urgent,
     },
     {
       label: "Annual gas service",
-      target: THURROCK.gasSafety.serviceInterval,
+      target: ORG.gasSafety.serviceInterval,
     },
     {
       label: "Copy of your gas safety record",
-      target: THURROCK.gasSafety.recordCopy,
+      target: ORG.gasSafety.recordCopy,
     },
   ],
   furtherReading: [SOURCES.cadentEmergencies, SOURCES.gasSafeRegister],

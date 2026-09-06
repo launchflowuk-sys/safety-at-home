@@ -1,8 +1,8 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 
 /**
  * The triage decision tree. Pure data — the TriageTool component walks it.
- * Every phone number comes from THURROCK. Never write a number here directly.
+ * Every phone number comes from ORG. Never write a number here directly.
  */
 
 export type TriagePhone = {
@@ -70,17 +70,17 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "fire-999": {
     kind: "result",
-    heading: `Get out, stay out, and call ${THURROCK.emergency.phone}`,
+    heading: `Get out, stay out, and call ${ORG.emergency.phone}`,
     phone: {
       label: "Fire and rescue",
-      number: THURROCK.emergency.phone,
+      number: ORG.emergency.phone,
       note: "Free from any phone",
     },
     doNow: [
       "Get everyone out of the home now.",
       "Close doors behind you as you leave.",
       "Use the stairs. Never use the lift.",
-      `Call ${THURROCK.emergency.phone} once you are outside.`,
+      `Call ${ORG.emergency.phone} once you are outside.`,
     ],
     doNot: [
       "Do not stop to collect belongings.",
@@ -93,8 +93,8 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Your alarm may be faulty — report it today",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Open windows to clear any cooking smoke or steam.",
@@ -111,13 +111,13 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Report your fire safety concern to us",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Call our repairs line and describe the problem.",
       "Tell us if it is about a fire door, an alarm, or an escape route.",
-      `If things get worse, call ${THURROCK.emergency.phone}.`,
+      `If things get worse, call ${ORG.emergency.phone}.`,
     ],
     doNot: [
       "Do not prop open fire doors.",
@@ -142,23 +142,23 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "gas-999": {
     kind: "result",
-    heading: `Get into fresh air and call ${THURROCK.emergency.phone}`,
+    heading: `Get into fresh air and call ${ORG.emergency.phone}`,
     phone: {
       label: "Ambulance",
-      number: THURROCK.emergency.phone,
+      number: ORG.emergency.phone,
       note: "Free from any phone",
     },
     alsoCall: [
       {
-        label: `${THURROCK.gasLeak.provider} gas emergency line`,
-        number: THURROCK.gasLeak.phone,
-        note: `Call after ${THURROCK.emergency.phone}, from outside`,
+        label: `${ORG.gasLeak.provider} gas emergency line`,
+        number: ORG.gasLeak.phone,
+        note: `Call after ${ORG.emergency.phone}, from outside`,
       },
     ],
     doNow: [
       "Get everyone outside into fresh air.",
-      `Call ${THURROCK.emergency.phone} and ask for an ambulance.`,
-      `Then call ${THURROCK.gasLeak.provider} to report the gas leak.`,
+      `Call ${ORG.emergency.phone} and ask for an ambulance.`,
+      `Then call ${ORG.gasLeak.provider} to report the gas leak.`,
     ],
     doNot: [
       "Do not go back inside.",
@@ -167,10 +167,10 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "gas-leak": {
     kind: "result",
-    heading: `Call the ${THURROCK.gasLeak.provider} gas emergency line now`,
+    heading: `Call the ${ORG.gasLeak.provider} gas emergency line now`,
     phone: {
-      label: `${THURROCK.gasLeak.provider} gas emergency line`,
-      number: THURROCK.gasLeak.phone,
+      label: `${ORG.gasLeak.provider} gas emergency line`,
+      number: ORG.gasLeak.phone,
       note: "Free, 24 hours a day",
     },
     doNow: [
@@ -189,13 +189,13 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Worried about a gas appliance? Tell us",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Stop using the appliance you are worried about.",
       "Call our repairs line to book a gas engineer.",
-      `If you smell gas later, call ${THURROCK.gasLeak.provider} on ${THURROCK.gasLeak.phone}.`,
+      `If you smell gas later, call ${ORG.gasLeak.provider} on ${ORG.gasLeak.phone}.`,
     ],
     doNot: [
       "Do not try to fix a gas appliance yourself.",
@@ -224,8 +224,8 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Turn off the power and call us now",
     phone: {
       label: "Housing repairs (emergency)",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Turn off the electricity at the fuse box, if it is safe to reach.",
@@ -240,20 +240,20 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "water-sewer": {
     kind: "result",
-    heading: `Call ${THURROCK.blockedSewer.provider} about the blocked sewer`,
+    heading: `Call ${ORG.blockedSewer.provider} about the blocked sewer`,
     phone: {
-      label: THURROCK.blockedSewer.provider,
-      number: THURROCK.blockedSewer.phone,
+      label: ORG.blockedSewer.provider,
+      number: ORG.blockedSewer.phone,
     },
     alsoCall: [
       {
         label: "Housing repairs — if sewage is inside your home",
-        number: THURROCK.repairs.phone,
-        note: THURROCK.repairs.hours,
+        number: ORG.repairs.phone,
+        note: ORG.repairs.hours,
       },
     ],
     doNow: [
-      `Call ${THURROCK.blockedSewer.provider} about blocked drains and sewers outside.`,
+      `Call ${ORG.blockedSewer.provider} about blocked drains and sewers outside.`,
       "If sewage is coming up inside your home, call our repairs line too.",
       "Keep children and pets away from the area.",
     ],
@@ -267,8 +267,8 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Stop the water if you can, then call us",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Turn off the water at the stop tap. It is usually under the kitchen sink.",
@@ -303,18 +303,18 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Turn off the power and call us now",
     phone: {
       label: "Housing repairs (emergency)",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     alsoCall: [
       {
-        label: `If you see flames, call ${THURROCK.emergency.phone} first`,
-        number: THURROCK.emergency.phone,
+        label: `If you see flames, call ${ORG.emergency.phone} first`,
+        number: ORG.emergency.phone,
       },
     ],
     doNow: [
       "Turn the electricity off at the fuse box, if it is safe to reach.",
-      `If you see flames, get everyone out and call ${THURROCK.emergency.phone}.`,
+      `If you see flames, get everyone out and call ${ORG.emergency.phone}.`,
       "Call our repairs line. Sparks and burning smells are an emergency.",
     ],
     doNot: [
@@ -324,14 +324,14 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "elec-powercut": {
     kind: "result",
-    heading: `It is a power cut — call ${THURROCK.electricity.provider}`,
+    heading: `It is a power cut — call ${ORG.electricity.provider}`,
     phone: {
-      label: THURROCK.electricity.provider,
-      number: THURROCK.electricity.phone,
+      label: ORG.electricity.provider,
+      number: ORG.electricity.phone,
       note: "Free to call. Reports power cuts in your area",
     },
     doNow: [
-      `Call ${THURROCK.electricity.phone} to report the power cut and get updates.`,
+      `Call ${ORG.electricity.phone} to report the power cut and get updates.`,
       "Turn off ovens, hobs and heaters so they do not come back on unattended.",
       "Keep the fridge and freezer doors closed.",
     ],
@@ -345,8 +345,8 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Report the electrical fault to us",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Stop using the socket, switch or appliance with the fault.",
@@ -384,23 +384,23 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "co-999": {
     kind: "result",
-    heading: `Get into fresh air and call ${THURROCK.emergency.phone}`,
+    heading: `Get into fresh air and call ${ORG.emergency.phone}`,
     phone: {
       label: "Ambulance",
-      number: THURROCK.emergency.phone,
+      number: ORG.emergency.phone,
       note: "Free from any phone",
     },
     alsoCall: [
       {
-        label: `${THURROCK.gasLeak.provider} gas emergency line`,
-        number: THURROCK.gasLeak.phone,
-        note: `Call after ${THURROCK.emergency.phone}, from outside`,
+        label: `${ORG.gasLeak.provider} gas emergency line`,
+        number: ORG.gasLeak.phone,
+        note: `Call after ${ORG.emergency.phone}, from outside`,
       },
     ],
     doNow: [
       "Get everyone outside into fresh air now.",
-      `Call ${THURROCK.emergency.phone} and ask for an ambulance.`,
-      `Then call ${THURROCK.gasLeak.provider} on ${THURROCK.gasLeak.phone}.`,
+      `Call ${ORG.emergency.phone} and ask for an ambulance.`,
+      `Then call ${ORG.gasLeak.provider} on ${ORG.gasLeak.phone}.`,
     ],
     doNot: [
       "Do not go back inside.",
@@ -409,24 +409,24 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
   },
   "co-alarm": {
     kind: "result",
-    heading: `Get out and call the ${THURROCK.gasLeak.provider} gas emergency line`,
+    heading: `Get out and call the ${ORG.gasLeak.provider} gas emergency line`,
     phone: {
-      label: `${THURROCK.gasLeak.provider} gas emergency line`,
-      number: THURROCK.gasLeak.phone,
+      label: `${ORG.gasLeak.provider} gas emergency line`,
+      number: ORG.gasLeak.phone,
       note: "Free, 24 hours a day",
     },
     alsoCall: [
       {
         label: "Housing repairs — to arrange a safety check",
-        number: THURROCK.repairs.phone,
-        note: THURROCK.repairs.hours,
+        number: ORG.repairs.phone,
+        note: ORG.repairs.hours,
       },
     ],
     doNow: [
       "Stop using your cooker, boiler and any gas fire.",
       "Open windows and doors.",
       "Go outside, then call the gas emergency line.",
-      `If anyone feels unwell, call ${THURROCK.emergency.phone} too.`,
+      `If anyone feels unwell, call ${ORG.emergency.phone} too.`,
     ],
     doNot: [
       "Do not ignore the alarm, even if you feel fine.",
@@ -437,15 +437,15 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     kind: "result",
     heading: "This could be carbon monoxide — get it checked now",
     phone: {
-      label: `${THURROCK.gasLeak.provider} gas emergency line`,
-      number: THURROCK.gasLeak.phone,
+      label: `${ORG.gasLeak.provider} gas emergency line`,
+      number: ORG.gasLeak.phone,
       note: "Free, 24 hours a day",
     },
     alsoCall: [
       {
         label: "Housing repairs — to book a gas safety check",
-        number: THURROCK.repairs.phone,
-        note: THURROCK.repairs.hours,
+        number: ORG.repairs.phone,
+        note: ORG.repairs.hours,
       },
     ],
     doNow: [
@@ -464,13 +464,13 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Book a safety check to put your mind at rest",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Call our repairs line and ask about your gas safety check.",
       "Test your carbon monoxide alarm by pressing the test button.",
-      `If you feel very unwell at any point, call ${THURROCK.emergency.phone}.`,
+      `If you feel very unwell at any point, call ${ORG.emergency.phone}.`,
     ],
     doNot: [
       "Do not block air vents in rooms with gas appliances.",
@@ -499,14 +499,14 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Report it today — we must investigate quickly",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Call our repairs line today and tell us about the health concerns.",
       "Take photos of the damp or mould.",
-      `By law, we must investigate within ${THURROCK.awaabsLaw.investigate}.`,
-      `Emergency hazards must be made safe within ${THURROCK.awaabsLaw.emergencyHazard}.`,
+      `By law, we must investigate within ${ORG.awaabsLaw.investigate}.`,
+      `Emergency hazards must be made safe within ${ORG.awaabsLaw.emergencyHazard}.`,
     ],
     doNot: [
       "Do not scrub large areas of mould. It can spread spores into the air.",
@@ -518,8 +518,8 @@ export const TRIAGE_NODES: Record<string, TriageNode> = {
     heading: "Report the damp or mould to us",
     phone: {
       label: "Housing repairs",
-      number: THURROCK.repairs.phone,
-      note: THURROCK.repairs.hours,
+      number: ORG.repairs.phone,
+      note: ORG.repairs.hours,
     },
     doNow: [
       "Call our repairs line, or email us with photos.",

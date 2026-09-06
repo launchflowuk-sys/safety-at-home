@@ -1,21 +1,38 @@
 /**
- * Single source of truth for every phone number, email and timescale on the
- * site. Never hardcode any of these in a page or component — import from here.
+ * Single source of truth for the landlord's identity, every phone number,
+ * email and timescale on the site. Never hardcode any of these in a page or
+ * component — import from here.
+ *
+ * ⚠️ PLACEHOLDER CONTACT DETAILS ⚠️
+ * The landlord's own name, phone numbers and email addresses below are
+ * deliberately fictional while the site is a demonstration. They use ranges
+ * reserved for examples so they can never reach a real person or inbox:
+ *   - 0808 157 0xxx and 01632 960xxx are Ofcom's reserved drama numbers
+ *   - example.org is reserved by RFC 2606
+ * Swap them for the real ones in this file before the site goes live, and
+ * nothing else needs to change.
+ *
+ * Numbers marked "real" below are genuine national services and must stay as
+ * they are — replacing them would make the safety advice wrong.
  */
-export const THURROCK = {
+export const ORG = {
+  /** The landlord. Shown in the header, footer and page titles. */
+  name: "Housing Organisation",
   repairs: {
-    phone: "0800 074 0169",
-    email: "repairs@thurrock.gov.uk",
+    phone: "0808 157 0100", // placeholder
+    email: "repairs@example.org", // placeholder
     hours: "Free to call, 24 hours a day, 7 days a week",
   },
-  housingPolicy: { phone: "01375 366 145" },
-  gasLeak: { provider: "Cadent", phone: "0800 111 999" },
-  blockedSewer: { provider: "Anglian Water", phone: "08457 145 145" },
-  electricity: { provider: "UK Power Networks", phone: "105" },
-  emergency: { phone: "999" },
-  nhs: { provider: "NHS 111", phone: "111" },
-  police: { provider: "Essex Police", nonEmergency: "101" },
-  contractor: "Mears",
+  housingPolicy: { phone: "01632 960 100" }, // placeholder
+  /** real — National Gas Emergency Service, free, 24 hours, all of GB. */
+  gasLeak: { provider: "National Gas Emergency Service", phone: "0800 111 999" },
+  blockedSewer: { provider: "your water company", phone: "01632 960 200" }, // placeholder
+  /** real — 105 reaches every electricity network operator in England. */
+  electricity: { provider: "your electricity network operator", phone: "105" },
+  emergency: { phone: "999" }, // real
+  nhs: { provider: "NHS 111", phone: "111" }, // real
+  police: { provider: "the police", nonEmergency: "101" }, // real
+  contractor: "our repairs contractor",
   timescales: {
     emergency: "24 hours",
     urgent: "5 working days",
@@ -39,10 +56,11 @@ export const THURROCK = {
   },
   buildingSafety: {
     higherRiskBuilding: "at least 18 metres or 7 floors tall",
-    email: "buildingsafetyteam@thurrock.gov.uk",
+    email: "buildingsafety@example.org", // placeholder
     /** Written notice we must give before asking to enter a home. */
     accessNotice: "48 hours",
   },
+  /** real — the national regulator, read from GOV.UK. */
   buildingSafetyRegulator: {
     provider: "Building Safety Regulator",
     phone: "0300 790 6787",

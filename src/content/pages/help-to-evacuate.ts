@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,9 +9,9 @@ export const helpToEvacuate: SafetyPage = {
     "If you would find it hard to leave your home in a fire, tell us. We will work with you on a plan so that you can get out, or get help.",
   emergency: {
     label: "If there is a fire and you cannot leave",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
-      `Call ${THURROCK.emergency.phone}. Tell them your address, your floor, your flat number, and that you cannot get out.`,
+      `Call ${ORG.emergency.phone}. Tell them your address, your floor, your flat number, and that you cannot get out.`,
       "Close the door of the room you are in. Block any gaps with towels or bedding.",
       "Stay near a window if it is safe to do so, so firefighters can see you.",
       "Stay on the phone. The operator will tell you what to do next.",
@@ -20,7 +20,7 @@ export const helpToEvacuate: SafetyPage = {
   keyFacts: [
     { value: "PEEP", label: "a personal emergency evacuation plan, written with you" },
     { value: "Free", label: "home safety visit from the fire service" },
-    { value: THURROCK.emergency.phone, label: "if you cannot leave. Tell them your floor and flat number" },
+    { value: ORG.emergency.phone, label: "if you cannot leave. Tell them your floor and flat number" },
   ],
   ourResponsibilities: [
     "We ask every tenant if they would need help to leave in a fire.",
@@ -33,13 +33,13 @@ export const helpToEvacuate: SafetyPage = {
     "Tell us if you, or anyone in your home, would need help to leave in a fire. This might be because of mobility, sight, hearing, health or age.",
     "Tell us if things change. For example, a new health condition, a new person living with you, or if you no longer need help.",
     "Keep your way out clear, and keep any mobility aids where you can reach them.",
-    `Keep a phone by your bed so you can call ${THURROCK.emergency.phone} if you cannot leave.`,
+    `Keep a phone by your bed so you can call ${ORG.emergency.phone} if you cannot leave.`,
     "Know which plan your block has: 'stay put' or 'evacuate'. It is on the fire action notice.",
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   furtherReading: [SOURCES.ecfrsHomeVisit, SOURCES.ecfrsHighRise],
   related: [

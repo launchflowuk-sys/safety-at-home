@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 
 /**
  * Printed safety posters, shown on topic pages by `PosterGallery`.
@@ -10,7 +10,7 @@ import { THURROCK } from "@/config/thurrock";
  * so do not tidy the wording or merge two posters that disagree.
  *
  * Phone numbers and email addresses inside a transcript still come from
- * `THURROCK`, so a change of number can never leave stale text behind.
+ * `ORG`, so a change of number can never leave stale text behind.
  *
  * Images live in `public/posters/` as a WebP (shown) and a JPEG (fallback and
  * "open full size"). Re-export both if a poster is replaced, and update
@@ -39,7 +39,7 @@ export type Poster = {
   transcript: PosterTranscriptSection[];
 };
 
-const THURROCK_BST = "Thurrock Council Building Safety Team";
+const BST = "Building Safety Team";
 const ECFRS = "Essex County Fire & Rescue Service";
 
 export const POSTERS = {
@@ -49,7 +49,7 @@ export const POSTERS = {
     summary:
       "Who the Building Safety Team are, what they do for higher-risk buildings, and how to contact your Building Safety Manager.",
     alt: "Poster titled Building Safety Team, working together for safer homes. It lists what the team does, the safety checks they carry out, how they work with residents, and the team's email address.",
-    source: THURROCK_BST,
+    source: BST,
     width: 1024,
     height: 1536,
     fileSize: "328KB",
@@ -90,7 +90,7 @@ export const POSTERS = {
       },
       {
         heading: "Contact your Building Safety Team",
-        intro: `Email ${THURROCK.buildingSafety.email}. If you have any concerns about your building or would like to speak to your Building Safety Manager, please get in touch.`,
+        intro: `Email ${ORG.buildingSafety.email}. If you have any concerns about your building or would like to speak to your Building Safety Manager, please get in touch.`,
       },
     ],
   },
@@ -101,7 +101,7 @@ export const POSTERS = {
     summary:
       "Examples of the routine checks the Building Safety Team carries out in high-rise blocks, and how often.",
     alt: "Poster titled Building Safety Checks. It groups routine checks into weekly, monthly and quarterly, with photographs of a fire alarm panel, a call point, an automatic opening vent, a lift, a dry riser, emergency lighting, a fire door, a flat entrance door and a safety audit.",
-    source: THURROCK_BST,
+    source: BST,
     width: 1055,
     height: 1491,
     fileSize: "344KB",
@@ -133,7 +133,7 @@ export const POSTERS = {
       },
       {
         heading: "For more information",
-        intro: `Contact the Building Safety Team at ${THURROCK.buildingSafety.email}.`,
+        intro: `Contact the Building Safety Team at ${ORG.buildingSafety.email}.`,
       },
     ],
   },
@@ -144,7 +144,7 @@ export const POSTERS = {
     summary:
       "Why fire doors matter, what you must never change or damage, and how to tell whether your flat has one.",
     alt: "Poster titled The Importance of Fire Doors: use them, keep them shut, keep everyone safe. It shows photographs of a communal fire door and a flat entrance fire door, lists what residents must not do to a fire door, and explains when a flat is unlikely to have one.",
-    source: THURROCK_BST,
+    source: BST,
     width: 1055,
     height: 1491,
     fileSize: "316KB",
@@ -175,7 +175,7 @@ export const POSTERS = {
       },
       {
         heading: "Fire doors only work when kept closed",
-        intro: `Thank you for helping to keep our building safe. If you have any concerns about your fire door, please contact the Thurrock Council Building Safety Team at ${THURROCK.buildingSafety.email}.`,
+        intro: `Thank you for helping to keep our building safe. If you have any concerns about your fire door, please contact the Building Safety Team at ${ORG.buildingSafety.email}.`,
       },
     ],
   },
@@ -199,7 +199,7 @@ export const POSTERS = {
       {
         heading: "1. If there is a fire in your flat",
         items: [
-          `Follow your escape plan: get everyone out, stay out, call ${THURROCK.emergency.phone}`,
+          `Follow your escape plan: get everyone out, stay out, call ${ORG.emergency.phone}`,
           "Close all doors behind you as you leave",
           "Use the stairs or nearest fire exit",
           "Do not use the lift",
@@ -210,7 +210,7 @@ export const POSTERS = {
         items: [
           "If your flat is unaffected by heat or smoke, stay put",
           "Close your doors and windows",
-          `Call ${THURROCK.emergency.phone}. Never assume someone else has already called`,
+          `Call ${ORG.emergency.phone}. Never assume someone else has already called`,
           "Leave only if the fire service tells you to",
         ],
       },
@@ -218,7 +218,7 @@ export const POSTERS = {
         heading: "3. If you are trapped in your flat",
         items: [
           "Get everyone into the safest room, away from smoke and heat",
-          `Call ${THURROCK.emergency.phone} immediately`,
+          `Call ${ORG.emergency.phone} immediately`,
           "Tell the fire service your flat number and floor number",
           "If a full evacuation is needed, firefighters will go door to door",
         ],
@@ -242,8 +242,8 @@ export const POSTERS = {
         ],
       },
       {
-        heading: `In an emergency call ${THURROCK.emergency.phone}`,
-        intro: `For building specific fire safety information please contact the Thurrock Council Building Safety Team at ${THURROCK.buildingSafety.email}.`,
+        heading: `In an emergency call ${ORG.emergency.phone}`,
+        intro: `For building specific fire safety information please contact the Building Safety Team at ${ORG.buildingSafety.email}.`,
       },
     ],
   },

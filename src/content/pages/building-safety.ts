@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { HIGH_RISE_BLOCKS } from "@/config/buildings";
 import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
@@ -11,11 +11,11 @@ export const buildingSafety: SafetyPage = {
     "How we keep our blocks of flats safe, what the Building Safety Act means for you, and how to raise a concern about your building and take it further if we do not put it right.",
   keyFacts: [
     {
-      value: THURROCK.buildingSafety.higherRiskBuilding,
+      value: ORG.buildingSafety.higherRiskBuilding,
       label: "makes a block a higher-risk building under the law",
     },
     {
-      value: THURROCK.buildingSafety.accessNotice,
+      value: ORG.buildingSafety.accessNotice,
       label: "written notice before we ask to come into your home",
     },
     {
@@ -25,20 +25,20 @@ export const buildingSafety: SafetyPage = {
   ],
   emergency: {
     label: "If there is a fire in your building",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Follow the fire action notice in your block. It tells you whether to stay put or leave.",
       "If the fire is in your own home, always leave. Close doors behind you.",
       "Do not use the lift.",
-      `Call ${THURROCK.emergency.phone} once you are safe.`,
+      `Call ${ORG.emergency.phone} once you are safe.`,
     ],
   },
   ourResponsibilities: [
-    `We are the 'accountable person' for our higher-risk buildings. These are blocks ${THURROCK.buildingSafety.higherRiskBuilding}. We register each one with the Building Safety Regulator.`,
+    `We are the 'accountable person' for our higher-risk buildings. These are blocks ${ORG.buildingSafety.higherRiskBuilding}. We register each one with the Building Safety Regulator.`,
     "We assess the risks of fire spreading and of the structure failing in each higher-risk building, and we keep a safety case report that shows how we manage those risks.",
     "We keep up-to-date information about each building: plans, materials, fire safety systems and past works. This is called the 'golden thread'.",
     "We check outside walls and cladding, and fix or remove materials that are not safe.",
-    `We carry out a fire risk assessment for every block, and check fire doors in shared areas ${THURROCK.fireSafety.communalFireDoorCheck} in buildings ${THURROCK.fireSafety.tallBuilding}.`,
+    `We carry out a fire risk assessment for every block, and check fire doors in shared areas ${ORG.fireSafety.communalFireDoorCheck} in buildings ${ORG.fireSafety.tallBuilding}.`,
     "We run a complaints system just for building safety, so a safety concern is never treated as an ordinary repair.",
     "We report serious safety incidents to the Building Safety Regulator through Mandatory Occurrence Reporting, and tell you what we are doing about them.",
     "We ask residents for their views on building safety decisions, and we tell you how we used them.",
@@ -57,7 +57,7 @@ export const buildingSafety: SafetyPage = {
   explainers: [
     {
       heading: "Is my block a higher-risk building?",
-      intro: `A block is a 'higher-risk building' if it is ${THURROCK.buildingSafety.higherRiskBuilding} and has at least two homes in it. These blocks must be registered with the Building Safety Regulator, and we must keep a safety case report for each one.`,
+      intro: `A block is a 'higher-risk building' if it is ${ORG.buildingSafety.higherRiskBuilding} and has at least two homes in it. These blocks must be registered with the Building Safety Regulator, and we must keep a safety case report for each one.`,
       items: [
         `We manage ${HIGH_RISE_BLOCKS.length} high-rise blocks. The full list is near the top of this page, grouped by area, so you can check whether yours is one of them.`,
         "The address lookup above it also tells you whether your block uses a stay put or evacuate plan.",
@@ -94,7 +94,7 @@ export const buildingSafety: SafetyPage = {
       items: [
         "Our request must be in writing.",
         "It must explain why we need to come in.",
-        `It must be made at least ${THURROCK.buildingSafety.accessNotice} before the time we want to visit.`,
+        `It must be made at least ${ORG.buildingSafety.accessNotice} before the time we want to visit.`,
         "If the time does not suit you, tell us and we will arrange another.",
         "If access is refused, we can apply to a court for an order. The court must agree that access is necessary and that we asked correctly.",
         "If a court makes an order, it can allow us to enter at a set time and to take measurements, photographs, recordings or samples.",
@@ -161,7 +161,7 @@ export const buildingSafety: SafetyPage = {
     steps: [
       {
         title: "Tell us",
-        detail: `Email the Building Safety Team at ${THURROCK.buildingSafety.email}, or call ${THURROCK.repairs.phone} if it needs attention now. Tell us your block, your flat number and what you have seen. Photographs help.`,
+        detail: `Email the Building Safety Team at ${ORG.buildingSafety.email}, or call ${ORG.repairs.phone} if it needs attention now. Tell us your block, your flat number and what you have seen. Photographs help.`,
       },
       {
         title: "Ask for our building safety complaints process",
@@ -174,8 +174,8 @@ export const buildingSafety: SafetyPage = {
           "Our final response explains how to challenge it. Use that first, so we have a chance to put things right.",
       },
       {
-        title: `Contact the ${THURROCK.buildingSafetyRegulator.provider}`,
-        detail: `If we have not dealt with your concern, or you are still not satisfied, take it to the regulator. Call ${THURROCK.buildingSafetyRegulator.phone} or complain on GOV.UK, and send them our final response. They deal with fire spread and structural risks in high-rise buildings. ${THURROCK.buildingSafetyRegulator.hours}.`,
+        title: `Contact the ${ORG.buildingSafetyRegulator.provider}`,
+        detail: `If we have not dealt with your concern, or you are still not satisfied, take it to the regulator. Call ${ORG.buildingSafetyRegulator.phone} or complain on GOV.UK, and send them our final response. They deal with fire spread and structural risks in high-rise buildings. ${ORG.buildingSafetyRegulator.hours}.`,
       },
       {
         title: "Contact the Housing Ombudsman",
@@ -186,25 +186,25 @@ export const buildingSafety: SafetyPage = {
   },
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
+    phone: ORG.repairs.phone,
     // Building concerns go to the Building Safety Team, as the posters say.
-    email: THURROCK.buildingSafety.email,
+    email: ORG.buildingSafety.email,
   },
   timescales: [
     {
       label:
         "Emergency, such as a fire door that will not close or a serious structural fault",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
-    { label: "Urgent building repair", target: THURROCK.timescales.urgent },
-    { label: "Routine building repair", target: THURROCK.timescales.routine },
+    { label: "Urgent building repair", target: ORG.timescales.urgent },
+    { label: "Routine building repair", target: ORG.timescales.routine },
     {
-      label: `Fire door checks in shared areas, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.communalFireDoorCheck,
+      label: `Fire door checks in shared areas, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.communalFireDoorCheck,
     },
     {
       label: "Written notice before we ask to come into your home",
-      target: THURROCK.buildingSafety.accessNotice,
+      target: ORG.buildingSafety.accessNotice,
     },
   ],
   furtherReading: [

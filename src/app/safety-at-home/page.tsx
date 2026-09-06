@@ -3,10 +3,10 @@ import Link from "next/link";
 import { SAFETY_TOPICS } from "@/config/topics";
 import { NAV_TABS, SITE_NAME } from "@/config/navigation";
 import { TopicArt } from "@/components/TopicArt";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 
 export const metadata: Metadata = {
-  title: { absolute: `${SITE_NAME} — Thurrock Council` },
+  title: { absolute: `${SITE_NAME} — ${ORG.name}` },
   description:
     "Keeping your council home safe. Find safety advice by topic, or use our tool to work out who to call about a problem right now.",
 };
@@ -45,10 +45,10 @@ export default function SafetyAtHomeHub() {
         <p className="mt-4 text-sm text-ink-soft">
           If life is in danger, call{" "}
           <a
-            href={telHref(THURROCK.emergency.phone)}
+            href={telHref(ORG.emergency.phone)}
             className="font-bold text-ink underline underline-offset-2"
           >
-            {THURROCK.emergency.phone}
+            {ORG.emergency.phone}
           </a>{" "}
           straight away.
         </p>
@@ -95,24 +95,24 @@ export default function SafetyAtHomeHub() {
         <p className="mt-2 max-w-prose">
           Call{" "}
           <a
-            href={telHref(THURROCK.repairs.phone)}
+            href={telHref(ORG.repairs.phone)}
             className="font-bold text-link underline underline-offset-2"
           >
-            {THURROCK.repairs.phone}
+            {ORG.repairs.phone}
           </a>
-          . {THURROCK.repairs.hours}. You can also email{" "}
+          . {ORG.repairs.hours}. You can also email{" "}
           <a
-            href={`mailto:${THURROCK.repairs.email}`}
+            href={`mailto:${ORG.repairs.email}`}
             className="font-semibold text-link underline underline-offset-2"
           >
-            {THURROCK.repairs.email}
+            {ORG.repairs.email}
           </a>
           .
         </p>
         <p className="mt-2 max-w-prose text-sm text-ink-soft">
-          Emergency repairs are done within {THURROCK.timescales.emergency}.
-          Urgent repairs within {THURROCK.timescales.urgent}. Routine repairs
-          within {THURROCK.timescales.routine}.
+          Emergency repairs are done within {ORG.timescales.emergency}.
+          Urgent repairs within {ORG.timescales.urgent}. Routine repairs
+          within {ORG.timescales.routine}.
         </p>
       </section>
     </div>

@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -8,17 +8,17 @@ export const securityAtHome: SafetyPage = {
   summary:
     "Door entry systems, locks and keys, and simple habits that keep your home and your block secure.",
   keyFacts: [
-    { value: THURROCK.emergency.phone, label: "if a crime is happening now or someone is in danger" },
-    { value: THURROCK.police.nonEmergency, label: `to report a crime that has already happened to ${THURROCK.police.provider}` },
+    { value: ORG.emergency.phone, label: "if a crime is happening now or someone is in danger" },
+    { value: ORG.police.nonEmergency, label: `to report a crime that has already happened to ${ORG.police.provider}` },
     { value: "Never", label: "let someone into the block you do not know, even if they ask nicely" },
   ],
   emergency: {
     label: "If someone is breaking in, or you are in danger",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
-      `Call ${THURROCK.emergency.phone}. Get to a safe place, or a room with a door you can lock, if you can.`,
+      `Call ${ORG.emergency.phone}. Get to a safe place, or a room with a door you can lock, if you can.`,
       "Do not confront anyone. Your safety matters more than your belongings.",
-      `If the crime has already happened and no one is in danger, call ${THURROCK.police.provider} on ${THURROCK.police.nonEmergency}, then tell us about any damage.`,
+      `If the crime has already happened and no one is in danger, call ${ORG.police.provider} on ${ORG.police.nonEmergency}, then tell us about any damage.`,
     ],
   },
   ourResponsibilities: [
@@ -63,24 +63,24 @@ export const securityAtHome: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Your home cannot be secured, or the main entrance door will not lock",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "Door entry system or intercom not working",
-      target: THURROCK.timescales.urgent,
+      target: ORG.timescales.urgent,
     },
     {
       label: "Outside lighting and other security repairs",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
   ],
-  furtherReading: [SOURCES.thurrockHousing, SOURCES.ecfrsHomeSafety],
+  furtherReading: [SOURCES.ecfrsHomeSafety],
   related: [
     "communal-areas",
     "fire-safety/fire-doors",

@@ -1,3 +1,4 @@
+import type { DiagramId } from "@/components/Diagrams";
 import type { Poster } from "@/config/posters";
 
 /**
@@ -12,7 +13,7 @@ export type SafetyPage = {
   /**
    * Up to three headline facts shown as stat tiles under the summary, for
    * example { value: "Once a month", label: "test your smoke alarm" }.
-   * Values that are numbers or timescales must come from THURROCK.
+   * Values that are numbers or timescales must come from ORG.
    */
   keyFacts?: { value: string; label: string }[];
   emergency?: {
@@ -20,6 +21,11 @@ export type SafetyPage = {
     phone: string;
     instructions: string[];
   };
+  /**
+   * An explanatory drawing shown before "What we do". The caption must carry
+   * the meaning on its own — the drawing is presentational.
+   */
+  diagram?: { id: DiagramId; caption: string };
   ourResponsibilities: string[];
   yourResponsibilities: string[];
   warningSigns?: { icon: string; text: string }[];

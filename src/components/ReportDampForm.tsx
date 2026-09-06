@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { submitDampReport } from "@/app/actions/damp-report";
 import { SITE_NAME } from "@/config/navigation";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 import {
   DURATION,
   EMPTY_DAMP_REPORT,
@@ -450,9 +450,9 @@ function Confirmation(props: {
     "",
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
-    `Sent from the ${SITE_NAME} website. Under Awaab's Law you must inspect within ${THURROCK.awaabsLaw.investigate}.`,
+    `Sent from the ${SITE_NAME} website. Under Awaab's Law you must inspect within ${ORG.awaabsLaw.investigate}.`,
   ].join("\n");
-  const mailto = `mailto:${THURROCK.repairs.email}?subject=${encodeURIComponent(
+  const mailto = `mailto:${ORG.repairs.email}?subject=${encodeURIComponent(
     `Damp and mould report – ${postcode}`,
   )}&body=${encodeURIComponent(body)}`;
 
@@ -505,10 +505,10 @@ function Confirmation(props: {
         <p className="mt-4 max-w-prose font-semibold">
           You said water is coming in. Please call us now on{" "}
           <a
-            href={telHref(THURROCK.repairs.phone)}
+            href={telHref(ORG.repairs.phone)}
             className="text-link underline underline-offset-2"
           >
-            {THURROCK.repairs.phone}
+            {ORG.repairs.phone}
           </a>
           . We treat leaks as an emergency.
         </p>
@@ -533,10 +533,10 @@ function Confirmation(props: {
           </a>
         )}
         <a
-          href={telHref(THURROCK.repairs.phone)}
+          href={telHref(ORG.repairs.phone)}
           className="rounded-card border-2 border-brand px-6 py-3 text-lg font-bold text-brand hover:bg-brand-wash"
         >
-          Call {THURROCK.repairs.phone}
+          Call {ORG.repairs.phone}
         </a>
         {!stored && (
           <button
@@ -550,8 +550,8 @@ function Confirmation(props: {
       </div>
       <p className="mt-3 text-sm text-ink-soft">
         {stored
-          ? `If anything changes, call us and quote your reference. ${THURROCK.repairs.hours}.`
-          : `The email button opens your own email app with your answers filled in. ${THURROCK.repairs.hours}.`}
+          ? `If anything changes, call us and quote your reference. ${ORG.repairs.hours}.`
+          : `The email button opens your own email app with your answers filled in. ${ORG.repairs.hours}.`}
       </p>
     </div>
   );

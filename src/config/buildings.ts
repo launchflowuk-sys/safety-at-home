@@ -1,8 +1,10 @@
 /**
- * The high-rise blocks Thurrock Council manages and registers with the
- * Building Safety Regulator. Supplied by the council on 2026-09-06.
+ * The high-rise blocks the landlord manages and registers with the Building
+ * Safety Regulator. Supplied on 2026-09-06. The addresses are genuine, so
+ * they still name real places (Grays, Little Thurrock, Tilbury, Chadwell
+ * St Mary) even though the landlord name on the site is a placeholder.
  *
- * `reference` is the council's own asset reference for the block (for
+ * `reference` is the landlord's own asset reference for the block (for
  * example `0038CF01`). It is not a dwelling UPRN, so it is not shown to
  * residents — it is kept here so the list can be matched against council
  * systems and the ARC asbestos feed later.

@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -8,9 +8,9 @@ export const yourSafetyChecks: SafetyPage = {
   summary:
     "The checks we carry out in your home and building, how often, and why you must let us in. Plus the simple checks you can do yourself.",
   keyFacts: [
-    { value: THURROCK.gasSafety.serviceInterval, label: "gas safety check, free" },
-    { value: THURROCK.electricalSafety.inspectionInterval, label: "electrical wiring inspection" },
-    { value: THURROCK.fireSafety.alarmTest, label: "you test your smoke and carbon monoxide alarms" },
+    { value: ORG.gasSafety.serviceInterval, label: "gas safety check, free" },
+    { value: ORG.electricalSafety.inspectionInterval, label: "electrical wiring inspection" },
+    { value: ORG.fireSafety.alarmTest, label: "you test your smoke and carbon monoxide alarms" },
   ],
   ourResponsibilities: [
     "We write to you before every check with a date and time, and we rebook if it does not suit you.",
@@ -24,50 +24,50 @@ export const yourSafetyChecks: SafetyPage = {
     "Keep the appointment, or call us as soon as you know you cannot make it.",
     "Make sure an adult is at home for the whole visit.",
     "Clear space around the boiler, meters, fuse box and alarms so we can reach them.",
-    `Test your smoke and carbon monoxide alarms ${THURROCK.fireSafety.alarmTest}.`,
+    `Test your smoke and carbon monoxide alarms ${ORG.fireSafety.alarmTest}.`,
     "Check your fire door closes on its own, and your window restrictors work.",
-    `Run any tap or shower you have not used for a week, ${THURROCK.waterSafety.flushUnusedOutlets}.`,
+    `Run any tap or shower you have not used for a week, ${ORG.waterSafety.flushUnusedOutlets}.`,
   ],
   howToReport: {
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Gas safety check of the appliances we own",
-      target: THURROCK.gasSafety.serviceInterval,
+      target: ORG.gasSafety.serviceInterval,
     },
     {
       label: "Electrical wiring inspection",
-      target: THURROCK.electricalSafety.inspectionInterval,
+      target: ORG.electricalSafety.inspectionInterval,
     },
     {
       label: "Fire risk assessment of your block",
-      target: THURROCK.fireSafety.fireRiskAssessment,
+      target: ORG.fireSafety.fireRiskAssessment,
     },
     {
-      label: `Shared-area fire door checks, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.communalFireDoorCheck,
+      label: `Shared-area fire door checks, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.communalFireDoorCheck,
     },
     {
-      label: `Flat entrance fire door checks, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.flatFireDoorCheck,
+      label: `Flat entrance fire door checks, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.flatFireDoorCheck,
     },
     {
       label: "Smoke and carbon monoxide alarm test, by you",
-      target: THURROCK.fireSafety.alarmTest,
+      target: ORG.fireSafety.alarmTest,
     },
     {
       label: "Smoke alarms replaced",
-      target: `About every ${THURROCK.fireSafety.alarmLifespan}`,
+      target: `About every ${ORG.fireSafety.alarmLifespan}`,
     },
     {
       label: "Carbon monoxide alarms replaced",
-      target: `About every ${THURROCK.carbonMonoxide.alarmLifespan}`,
+      target: `About every ${ORG.carbonMonoxide.alarmLifespan}`,
     },
     {
       label: "Damp or mould inspection after you report it",
-      target: `Within ${THURROCK.awaabsLaw.investigate}`,
+      target: `Within ${ORG.awaabsLaw.investigate}`,
     },
   ],
   furtherReading: [SOURCES.gasSafeRegister, SOURCES.esfHome, SOURCES.ecfrsSmokeAlarms],

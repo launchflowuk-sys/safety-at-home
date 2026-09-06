@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
@@ -9,13 +9,18 @@ export const fireDoors: SafetyPage = {
   summary:
     "Fire doors hold back fire and smoke so you have time to get out. Find out how to check yours, what you must not change, and how we look after them.",
   keyFacts: [
-    { value: THURROCK.fireSafety.fireDoorRating, label: "a fire door holds back fire and smoke for at least this long" },
-    { value: THURROCK.fireSafety.communalFireDoorCheck, label: "we check shared-area fire doors in taller buildings" },
-    { value: THURROCK.fireSafety.flatFireDoorCheck, label: "we check flat entrance doors in taller buildings" },
+    { value: ORG.fireSafety.fireDoorRating, label: "a fire door holds back fire and smoke for at least this long" },
+    { value: ORG.fireSafety.communalFireDoorCheck, label: "we check shared-area fire doors in taller buildings" },
+    { value: ORG.fireSafety.flatFireDoorCheck, label: "we check flat entrance doors in taller buildings" },
   ],
+  diagram: {
+    id: "fire-door-check",
+    caption:
+      "The five things worth checking on your flat entrance door: the self-closer pulls it shut on its own, the strips around the edge are not painted over, the gap around the door is smaller than a pound coin, all three hinges are tight, and there are no cracks or holes. Tell us if any of them are wrong.",
+  },
   ourResponsibilities: [
     "We fit fire doors at flat entrances and in the shared areas of our blocks.",
-    `In buildings ${THURROCK.fireSafety.tallBuilding}, we check shared-area fire doors ${THURROCK.fireSafety.communalFireDoorCheck} and flat entrance doors ${THURROCK.fireSafety.flatFireDoorCheck}.`,
+    `In buildings ${ORG.fireSafety.tallBuilding}, we check shared-area fire doors ${ORG.fireSafety.communalFireDoorCheck} and flat entrance doors ${ORG.fireSafety.flatFireDoorCheck}.`,
     "At each check we look at the self-closer, the seals, the glass, the hinges and the frame.",
     "We repair or replace damaged fire doors. A fire door that will not close is an emergency repair.",
   ],
@@ -52,30 +57,30 @@ export const fireDoors: SafetyPage = {
   posters: [POSTERS.importanceOfFireDoors],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Fire door that will not close, or has a hole in it",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "Damaged seals, loose hinges or a faulty self-closer",
-      target: THURROCK.timescales.urgent,
+      target: ORG.timescales.urgent,
     },
     {
       label:
         "Scratches, marks or other damage that does not affect how the door works",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
     {
-      label: `Shared-area fire door checks, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.communalFireDoorCheck,
+      label: `Shared-area fire door checks, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.communalFireDoorCheck,
     },
     {
-      label: `Flat entrance fire door checks, in buildings ${THURROCK.fireSafety.tallBuilding}`,
-      target: THURROCK.fireSafety.flatFireDoorCheck,
+      label: `Flat entrance fire door checks, in buildings ${ORG.fireSafety.tallBuilding}`,
+      target: ORG.fireSafety.flatFireDoorCheck,
     },
   ],
   furtherReading: [SOURCES.ecfrsHighRise, SOURCES.ecfrsHomeSafety],

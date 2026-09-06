@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
@@ -10,19 +10,24 @@ export const stayPutOrEvacuate: SafetyPage = {
     "What to do if there is a fire somewhere in your building. Every block has either a 'stay put' plan or an 'evacuate' plan. The fire action notice in your block tells you which one.",
   emergency: {
     label: "If the fire is in your own home",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Always leave, whatever plan your block has.",
       "Close the doors behind you as you go. This slows the fire down.",
       "Do not use the lift. Use the stairs.",
-      `Call ${THURROCK.emergency.phone} once you are safe outside. Tell them your address and which floor the fire is on.`,
+      `Call ${ORG.emergency.phone} once you are safe outside. Tell them your address and which floor the fire is on.`,
     ],
   },
   keyFacts: [
     { value: "Stay put", label: "means stay in your flat unless smoke or heat gets in" },
     { value: "Evacuate", label: "means leave by the stairs as soon as the alarm sounds" },
-    { value: THURROCK.emergency.phone, label: "once you are safe, or if you cannot get out" },
+    { value: ORG.emergency.phone, label: "once you are safe, or if you cannot get out" },
   ],
+  diagram: {
+    id: "stay-put",
+    caption:
+      "A cut-through of a block of flats. The fire is in one flat, so the people in that flat leave down the stairs and never use the lift. Everyone else stays put, because the walls, floors and doors between flats are built to hold fire back. You always leave if smoke or heat reaches your own home, or if the fire service tells you to.",
+  },
   ourResponsibilities: [
     "We decide the safest plan for each block, based on how it was built and its fire risk assessment.",
     "We put a fire action notice in every block. It tells you if your block is 'stay put' or 'evacuate', and where to meet outside.",
@@ -32,7 +37,7 @@ export const stayPutOrEvacuate: SafetyPage = {
   ],
   yourResponsibilities: [
     "Read the fire action notice in your block, so you know which plan it uses before anything happens.",
-    `If your block is 'stay put' and the fire is not in your home: stay in your flat, keep doors and windows shut, and call ${THURROCK.emergency.phone} to tell them where you are.`,
+    `If your block is 'stay put' and the fire is not in your home: stay in your flat, keep doors and windows shut, and call ${ORG.emergency.phone} to tell them where you are.`,
     "Leave a 'stay put' block if smoke or heat gets into your flat, or if the fire service tells you to.",
     "If your block is 'evacuate': leave by the nearest safe stairs as soon as you hear the alarm. Go to the meeting point on the notice.",
     "Never go back inside until the fire service says it is safe.",
@@ -45,7 +50,7 @@ export const stayPutOrEvacuate: SafetyPage = {
     },
     {
       icon: "flame",
-      text: `Your front door feels hot, or you can see flames outside. Stay inside, block gaps with wet towels and call ${THURROCK.emergency.phone}.`,
+      text: `Your front door feels hot, or you can see flames outside. Stay inside, block gaps with wet towels and call ${ORG.emergency.phone}.`,
     },
     {
       icon: "person",
@@ -55,8 +60,8 @@ export const stayPutOrEvacuate: SafetyPage = {
   posters: [POSTERS.highRiseFireSafety],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   furtherReading: [SOURCES.ecfrsHighRise, SOURCES.ecfrsHomeSafety],
   related: [

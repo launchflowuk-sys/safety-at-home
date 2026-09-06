@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 import { SITE_NAME } from "@/config/navigation";
 
 export default function NotFound() {
@@ -13,12 +13,12 @@ export default function NotFound() {
       <p className="mt-4 max-w-prose">
         If you need to report a problem now, call{" "}
         <a
-          href={telHref(THURROCK.repairs.phone)}
+          href={telHref(ORG.repairs.phone)}
           className="font-semibold text-link underline underline-offset-2"
         >
-          {THURROCK.repairs.phone}
+          {ORG.repairs.phone}
         </a>
-        . {THURROCK.repairs.hours}.
+        . {ORG.repairs.hours}.
       </p>
       <p className="mt-6">
         <Link

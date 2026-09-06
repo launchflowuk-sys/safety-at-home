@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,23 +9,23 @@ export const communalAreas: SafetyPage = {
     "Hallways, stairs, landings and bin rooms are everyone's way out in a fire. Keeping them clear and safe is a shared job.",
   keyFacts: [
     { value: "Keep clear", label: "nothing stored in hallways, stairs or landings, however small" },
-    { value: THURROCK.communalAreas.removalNotice, label: "notice before we remove items. Sooner if they block a way out" },
-    { value: THURROCK.fireSafety.communalFireDoorCheck, label: "we check shared-area fire doors in taller buildings" },
+    { value: ORG.communalAreas.removalNotice, label: "notice before we remove items. Sooner if they block a way out" },
+    { value: ORG.fireSafety.communalFireDoorCheck, label: "we check shared-area fire doors in taller buildings" },
   ],
   emergency: {
     label: "If there is a fire in a shared area",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
       "Follow the fire action notice for your block. If it says stay put and the fire is not in your home, stay inside with doors closed.",
       "If you are in the shared area, leave by the nearest safe stairs. Do not use the lift.",
-      `Call ${THURROCK.emergency.phone} once you are safe.`,
+      `Call ${ORG.emergency.phone} once you are safe.`,
     ],
   },
   ourResponsibilities: [
     "We inspect shared areas regularly for anything that could block your way out or catch fire.",
     "We keep shared fire doors, emergency lighting, signs and any fire alarms working.",
-    `We check shared-area fire doors ${THURROCK.fireSafety.communalFireDoorCheck} in buildings ${THURROCK.fireSafety.tallBuilding}.`,
-    `We remove items left in shared areas after giving ${THURROCK.communalAreas.removalNotice} notice. We remove anything that blocks a way out straight away.`,
+    `We check shared-area fire doors ${ORG.fireSafety.communalFireDoorCheck} in buildings ${ORG.fireSafety.tallBuilding}.`,
+    `We remove items left in shared areas after giving ${ORG.communalAreas.removalNotice} notice. We remove anything that blocks a way out straight away.`,
     "We clean shared areas and empty bin rooms, and deal with fly-tipping.",
     "We repair lighting, flooring, handrails and door entry systems in shared areas.",
   ],
@@ -62,21 +62,21 @@ export const communalAreas: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Way out blocked, fire door broken or emergency lighting off",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "Items left in a shared area",
-      target: `Removed after ${THURROCK.communalAreas.removalNotice} notice`,
+      target: `Removed after ${ORG.communalAreas.removalNotice} notice`,
     },
     {
       label: "Other shared-area repairs",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
   ],
   furtherReading: [SOURCES.ecfrsHighRise, SOURCES.ecfrsHomeSafety],

@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 import { getBreadcrumbs, resolveRelated } from "@/content/registry";
 import type { SafetyPage } from "@/types/safety-page";
 import { Accordion } from "./Accordion";
 import { FeedbackWidget } from "./FeedbackWidget";
+import { Diagram } from "./Diagram";
 import { PosterGallery } from "./PosterGallery";
 import { TopicArt } from "./TopicArt";
 import { WarningIcon } from "./WarningIcon";
@@ -112,6 +113,11 @@ export function SafetyPageTemplate({ page, tool }: Props) {
 
       {/* 3b. Page-specific tool (for example the Awaab's Law clock) */}
       {tool && <div className="mt-8">{tool}</div>}
+
+      {/* 3c. Explanatory diagram */}
+      {page.diagram && (
+        <Diagram id={page.diagram.id} caption={page.diagram.caption} />
+      )}
 
       {/* 4 + 5. Responsibilities */}
       <div className="mt-10 border-b border-line">
@@ -242,9 +248,9 @@ export function SafetyPageTemplate({ page, tool }: Props) {
                 <h3 className="text-sm font-bold uppercase tracking-wide text-ink-soft">
                   Phone
                 </h3>
-                {phone === THURROCK.repairs.phone && (
+                {phone === ORG.repairs.phone && (
                   <p className="mt-2 text-sm text-ink-soft">
-                    {THURROCK.repairs.hours}.
+                    {ORG.repairs.hours}.
                   </p>
                 )}
                 <p className="mt-auto pt-3">

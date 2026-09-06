@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 
 export function SiteFooter() {
   return (
@@ -10,20 +10,20 @@ export function SiteFooter() {
           <p className="mt-2 text-sm leading-relaxed">
             Call{" "}
             <a
-              href={telHref(THURROCK.repairs.phone)}
+              href={telHref(ORG.repairs.phone)}
               className="font-semibold underline underline-offset-2"
             >
-              {THURROCK.repairs.phone}
+              {ORG.repairs.phone}
             </a>
-            . {THURROCK.repairs.hours}.
+            . {ORG.repairs.hours}.
           </p>
           <p className="mt-2 text-sm">
             Email{" "}
             <a
-              href={`mailto:${THURROCK.repairs.email}`}
+              href={`mailto:${ORG.repairs.email}`}
               className="font-semibold underline underline-offset-2"
             >
-              {THURROCK.repairs.email}
+              {ORG.repairs.email}
             </a>
           </p>
         </div>
@@ -53,7 +53,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/20">
         <p className="mx-auto max-w-5xl px-4 py-4 text-sm text-white/90 sm:px-6">
-          © Thurrock Council
+          © {ORG.name}
         </p>
       </div>
     </footer>

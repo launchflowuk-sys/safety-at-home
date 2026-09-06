@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -9,23 +9,23 @@ export const dampAndMould: SafetyPage = {
     "Damp and mould can harm your health. Tell us as soon as you see it. Under Awaab's Law we must inspect and fix it within set time limits.",
   emergency: {
     label: "If someone in your home is struggling to breathe",
-    phone: THURROCK.emergency.phone,
+    phone: ORG.emergency.phone,
     instructions: [
-      `If someone cannot breathe properly, is turning blue or is not responding, call ${THURROCK.emergency.phone}.`,
-      `For urgent medical advice that is not life threatening, call ${THURROCK.nhs.provider} on ${THURROCK.nhs.phone} or contact your GP.`,
+      `If someone cannot breathe properly, is turning blue or is not responding, call ${ORG.emergency.phone}.`,
+      `For urgent medical advice that is not life threatening, call ${ORG.nhs.provider} on ${ORG.nhs.phone} or contact your GP.`,
       "Tell us about the damp or mould as soon as everyone is safe. Mention any health problems so we can visit sooner.",
     ],
   },
   keyFacts: [
-    { value: THURROCK.awaabsLaw.investigate, label: "to inspect your home after you tell us" },
-    { value: THURROCK.awaabsLaw.repairStart, label: "to start repairs on a serious hazard" },
-    { value: THURROCK.awaabsLaw.emergencyHazard, label: "to act on an emergency hazard" },
+    { value: ORG.awaabsLaw.investigate, label: "to inspect your home after you tell us" },
+    { value: ORG.awaabsLaw.repairStart, label: "to start repairs on a serious hazard" },
+    { value: ORG.awaabsLaw.emergencyHazard, label: "to act on an emergency hazard" },
   ],
   ourResponsibilities: [
-    `We inspect your home within ${THURROCK.awaabsLaw.investigate} of you telling us about damp or mould.`,
-    `We give you a written summary of what we found within ${THURROCK.awaabsLaw.writtenReport}.`,
-    `If the damp or mould is a risk to your health, we start repairs within ${THURROCK.awaabsLaw.repairStart}.`,
-    `If it is an emergency, such as a serious leak or heavy mould where someone is unwell, we act within ${THURROCK.awaabsLaw.emergencyHazard}.`,
+    `We inspect your home within ${ORG.awaabsLaw.investigate} of you telling us about damp or mould.`,
+    `We give you a written summary of what we found within ${ORG.awaabsLaw.writtenReport}.`,
+    `If the damp or mould is a risk to your health, we start repairs within ${ORG.awaabsLaw.repairStart}.`,
+    `If it is an emergency, such as a serious leak or heavy mould where someone is unwell, we act within ${ORG.awaabsLaw.emergencyHazard}.`,
     "We find and fix the cause, such as a leak, a broken extractor fan, missing insulation or a heating fault. We do not just clean the mould off.",
     "If we cannot make your home safe quickly, we offer you somewhere else to stay until it is.",
     "We never blame you for damp and mould. We look at the building first.",
@@ -72,25 +72,25 @@ export const dampAndMould: SafetyPage = {
       label: "Report damp or mould online",
       href: "/safety-at-home/damp-and-mould/report-damp-or-mould",
     },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "We inspect your home after you tell us",
-      target: `within ${THURROCK.awaabsLaw.investigate}`,
+      target: `within ${ORG.awaabsLaw.investigate}`,
     },
     {
       label: "We give you a written summary of what we found",
-      target: `within ${THURROCK.awaabsLaw.writtenReport}`,
+      target: `within ${ORG.awaabsLaw.writtenReport}`,
     },
     {
       label: "We start repairs if the hazard is a risk to your health",
-      target: `within ${THURROCK.awaabsLaw.repairStart}`,
+      target: `within ${ORG.awaabsLaw.repairStart}`,
     },
     {
       label: "We act on an emergency hazard",
-      target: `within ${THURROCK.awaabsLaw.emergencyHazard}`,
+      target: `within ${ORG.awaabsLaw.emergencyHazard}`,
     },
   ],
   furtherReading: [SOURCES.govDampHealth, SOURCES.housingOmbudsman],

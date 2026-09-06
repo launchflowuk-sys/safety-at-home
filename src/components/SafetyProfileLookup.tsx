@@ -7,7 +7,7 @@ import {
   type AddressOption,
   type SafetyProfile,
 } from "@/app/actions/safety-profile";
-import { THURROCK, telHref } from "@/config/thurrock";
+import { ORG, telHref } from "@/config/organisation";
 
 /**
  * Postcode → address → safety profile. Two server round trips, no storage.
@@ -132,10 +132,10 @@ export function SafetyProfileLookup() {
           <p className="max-w-prose">
             Address lookup is not available right now. Call us on{" "}
             <a
-              href={telHref(THURROCK.repairs.phone)}
+              href={telHref(ORG.repairs.phone)}
               className="font-bold text-link underline underline-offset-2"
             >
-              {THURROCK.repairs.phone}
+              {ORG.repairs.phone}
             </a>{" "}
             and we will tell you about your home.
           </p>
@@ -146,10 +146,10 @@ export function SafetyProfileLookup() {
             We do not have safety records online for that postcode yet. Check
             the postcode and try again, or call us on{" "}
             <a
-              href={telHref(THURROCK.repairs.phone)}
+              href={telHref(ORG.repairs.phone)}
               className="font-bold text-link underline underline-offset-2"
             >
-              {THURROCK.repairs.phone}
+              {ORG.repairs.phone}
             </a>
             .
           </p>
@@ -229,7 +229,7 @@ function ProfileView({
               <dt className="text-sm text-ink-soft">Higher-risk building</dt>
               <dd className="font-semibold">
                 {building.higherRisk
-                  ? `Yes, it is ${THURROCK.buildingSafety.higherRiskBuilding}`
+                  ? `Yes, it is ${ORG.buildingSafety.higherRiskBuilding}`
                   : "No"}
               </dd>
             </div>

@@ -1,4 +1,4 @@
-import { THURROCK } from "@/config/thurrock";
+import { ORG } from "@/config/organisation";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -10,7 +10,7 @@ export const asbestos: SafetyPage = {
   keyFacts: [
     { value: "Before 2000", label: "homes built before this may contain asbestos" },
     { value: "Ask first", label: "before you drill, sand or scrape anything" },
-    { value: THURROCK.timescales.emergency, label: "to make damaged asbestos safe" },
+    { value: ORG.timescales.emergency, label: "to make damaged asbestos safe" },
   ],
   ourResponsibilities: [
     "We keep a record of where asbestos is, or may be, in our homes and buildings. You can ask us what we know about your home.",
@@ -52,21 +52,21 @@ export const asbestos: SafetyPage = {
   ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
-    phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    phone: ORG.repairs.phone,
+    email: ORG.repairs.email,
   },
   timescales: [
     {
       label: "Damaged material that may contain asbestos",
-      target: THURROCK.timescales.emergency,
+      target: ORG.timescales.emergency,
     },
     {
       label: "Inspection of material in good condition that you are worried about",
-      target: THURROCK.timescales.routine,
+      target: ORG.timescales.routine,
     },
     {
       label: "Planned removal or sealing work",
-      target: THURROCK.timescales.batch,
+      target: ORG.timescales.batch,
     },
   ],
   furtherReading: [SOURCES.hseAsbestos],
