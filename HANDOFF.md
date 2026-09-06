@@ -1,6 +1,6 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-06 (end of Phase 6 session). Next up: Phase 7._
+_Last updated: 2026-09-06 (Phase 6 complete, plus resident safety posters). Next up: Phase 7._
 
 ## Start here (new session checklist)
 
@@ -238,9 +238,52 @@ npm run db:migrate && npm run db:seed && npm run dev
 
 Port 5433 on the dev machine is already taken by another Postgres.
 
+### Delivered after P6: resident safety posters
+
+The client supplied four printed posters (OneDrive zip) to display in the
+building safety area.
+
+- Source images optimised into `public/posters/` as WebP (shown, ~200KB) and
+  JPEG (fallback + "open full size", ~330KB). Originals were 1.7MB PNGs;
+  total dropped from 6.5MB to 2.2MB. Re-export both formats if a poster is
+  replaced and update `fileSize` in the config.
+- `src/config/posters.ts` (`POSTERS`) holds each poster's title, summary,
+  alt text, source, dimensions and a **full text transcript**. The transcript
+  exists because an image of text fails WCAG 2.2 AA (1.4.5); the page renders
+  it as real text in a disclosure. `999` and the team email inside transcripts
+  come from `THURROCK`.
+- `src/components/PosterGallery.tsx` renders the gallery: `<picture>` with
+  WebP + JPEG, lazy loading, explicit width/height (no layout shift), an
+  "open full size (opens in a new tab)" link, and the transcript disclosure.
+- `SafetyPage.posters` added; rendered as section **6b**, after Warning signs.
+- `Accordion` gained `headingLevel` (2/3/4) so transcripts nest as h4 under
+  the h3 poster title without breaking heading order.
+- Placement: all four on `building-safety`; the fire doors poster also on
+  `fire-safety/fire-doors`; the ECFRS poster also on
+  `fire-safety/stay-put-or-evacuate`.
+- `THURROCK.buildingSafety.email` added
+  (`buildingsafetyteam@thurrock.gov.uk`, taken from the posters). The
+  `building-safety` page's contact email now points there instead of repairs.
+
+**Conflict to resolve with Thurrock (do not guess):**
+
+- The two Building Safety Team posters disagree on **AOV checks**: the "What
+  it does" poster says *monthly*, the "Building safety checks" poster says
+  *weekly*. Both transcripts are faithful to their own poster, so the site
+  currently shows both. Ask which is correct, then align the posters.
+- The "Building safety checks" poster says flat entrance door (FED) checks are
+  **quarterly on a best endeavours basis**. Our config
+  (`fireSafety.flatFireDoorCheck`) says *every 12 months*, the statutory
+  minimum. Confirm which Thurrock actually operates.
+- Poster check frequencies (weekly fire alarm, monthly lift and dry riser,
+  quarterly building safety audits) are **not** in `THURROCK` yet and are not
+  in any timescales table, because of the AOV conflict above. Add them to
+  config once settled.
+
 ## Known state / caveats
 
-- No `downloads` on any page yet — no PDFs exist in the repo.
+- No `downloads` on any page yet — no PDFs exist in the repo. Posters are
+  separate (see the poster section above) and live in `public/posters/`.
 - No ESLint config; use `npx tsc --noEmit` and `npm run build`.
 - Awaab's Law clock and the report `investigateBy` date have no bank-holiday
   calendar (gov.uk JSON feed is an option for P7).
@@ -268,8 +311,10 @@ Self-check PDF generator, PEEP referral, full accessibility + Lighthouse pass.
 4. **Accessibility pass**: axe on every route, keyboard-only run of the
    triage tool, both forms and the lookup, screen reader check of the
    accordions and error summaries, contrast re-check of `TopicArt` fills
-   (decorative, but keep them off-text). Lighthouse ≥ 95 on a11y and best
-   practices.
+   (decorative, but keep them off-text). Check every poster transcript reads
+   correctly and matches its image. Lighthouse ≥ 95 on a11y and best
+   practices; posters are the main weight on the building safety page, so
+   confirm lazy loading is doing its job.
 5. **Ops**: Coolify pre-deploy `npx prisma migrate deploy`; scheduled
    `npm run arc:sync`; back up Postgres; replace `.env.example` placeholders
    in Coolify.

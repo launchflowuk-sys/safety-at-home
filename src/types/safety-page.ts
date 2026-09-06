@@ -1,3 +1,5 @@
+import type { Poster } from "@/config/posters";
+
 /**
  * Content model for every topic page. Pages are data, not bespoke markup —
  * one file per topic in src/content/pages/*.ts, all rendered by
@@ -27,6 +29,12 @@ export type SafetyPage = {
     email?: string;
   };
   timescales?: { label: string; target: string }[];
+  /**
+   * Printed safety posters shown as a gallery, from `POSTERS` in
+   * src/config/posters.ts. Each carries a text transcript, so never add a
+   * poster image by hand.
+   */
+  posters?: readonly Poster[];
   downloads?: { label: string; href: string; size: string }[];
   /**
    * Trusted external sources for residents who want more, shown as

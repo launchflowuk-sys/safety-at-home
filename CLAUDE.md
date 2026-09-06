@@ -76,6 +76,7 @@ type SafetyPage = {
     email?: string;
   };
   timescales?: { label: string; target: string }[];
+  posters?: readonly Poster[]; // from POSTERS in src/config/posters.ts
   downloads?: { label: string; href: string; size: string }[];
   furtherReading?: { label: string; href: string; source: string }[]; // official external sources only
   related: string[]; // slugs of related SafetyPages, auto-resolved
@@ -84,6 +85,20 @@ type SafetyPage = {
 
 Content lives in `src/content/pages/*.ts` — one file per topic. A single
 component renders all of them.
+
+## Poster contract
+
+Printed posters live in `src/config/posters.ts` (`POSTERS`) and are attached
+to a page through `posters`. A poster is an image of text, which alone fails
+WCAG 2.2 AA (1.4.5), so **every poster must carry a full `transcript`** that
+the page renders as real text. Keep transcripts faithful to the printed
+sheet — do not tidy the wording, and do not reconcile two posters that
+disagree; raise the conflict with Thurrock instead. Phone numbers and emails
+inside a transcript still come from `THURROCK`.
+
+Images go in `public/posters/` as `<slug>.webp` (shown) plus `<slug>.jpg`
+(fallback and "open full size"), both 1055px wide, with `fileSize` updated.
+Never add a poster image with bare markup.
 
 ## Page template contract
 
@@ -96,6 +111,7 @@ component renders all of them.
 4. "What we do" — accordion, open by default on desktop
 5. "What you must do" — accordion
 6. Warning signs — icon grid
+6b. Safety posters — `PosterGallery` (if present)
 7. "How to report it" — 3 CTA cards (online / phone / email)
 8. Timescales table
 9. Downloads

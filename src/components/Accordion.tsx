@@ -12,7 +12,18 @@ type Props = {
    * it open so the content is always present for no-JS users and crawlers.
    */
   defaultOpen?: DefaultOpen;
+  /**
+   * Heading level for the disclosure button. Must follow the heading before
+   * it — 2 for a top-level page section, 3 or 4 when nested inside a card.
+   */
+  headingLevel?: 2 | 3 | 4;
   children: React.ReactNode;
+};
+
+const HEADING_CLASS: Record<2 | 3 | 4, string> = {
+  2: "text-2xl",
+  3: "text-xl",
+  4: "text-base",
 };
 
 const DESKTOP_QUERY = "(min-width: 768px)";
@@ -36,7 +47,13 @@ function getServerIsDesktop() {
  * region. Fully keyboard reachable; the heading stays a heading so screen
  * reader users can navigate by headings.
  */
-export function Accordion({ title, defaultOpen = "never", children }: Props) {
+export function Accordion({
+  title,
+  defaultOpen = "never",
+  headingLevel = 2,
+  children,
+}: Props) {
+  const Heading = `h${headingLevel}` as "h2" | "h3" | "h4";
   // null = no user choice yet, follow the default.
   const [userChoice, setUserChoice] = useState<boolean | null>(null);
   const isDesktop = useSyncExternalStore(
@@ -53,14 +70,14 @@ export function Accordion({ title, defaultOpen = "never", children }: Props) {
 
   return (
     <section className="border-t border-line">
-      <h2 className="m-0">
+      <Heading className="m-0">
         <button
           type="button"
           id={buttonId}
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setUserChoice(!open)}
-          className="flex w-full items-center justify-between gap-4 py-4 text-left text-2xl font-bold hover:text-link"
+          className={`flex w-full items-center justify-between gap-4 py-4 text-left font-bold hover:text-link ${HEADING_CLASS[headingLevel]}`}
         >
           <span>{title}</span>
           <svg
@@ -76,7 +93,7 @@ export function Accordion({ title, defaultOpen = "never", children }: Props) {
             <path d="M6 9l6 6 6-6" />
           </svg>
         </button>
-      </h2>
+      </Heading>
       <div
         id={panelId}
         role="region"

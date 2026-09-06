@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -48,6 +49,7 @@ export const fireDoors: SafetyPage = {
       text: "The hinges are loose, or the door catches on the frame or floor.",
     },
   ],
+  posters: [POSTERS.importanceOfFireDoors],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
     phone: THURROCK.repairs.phone,

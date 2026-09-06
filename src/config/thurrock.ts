@@ -39,6 +39,7 @@ export const THURROCK = {
   },
   buildingSafety: {
     higherRiskBuilding: "at least 18 metres or 7 floors tall",
+    email: "buildingsafetyteam@thurrock.gov.uk",
   },
   gasSafety: {
     serviceInterval: "every 12 months",

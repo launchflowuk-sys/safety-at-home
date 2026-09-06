@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -51,6 +52,7 @@ export const stayPutOrEvacuate: SafetyPage = {
       text: "A firefighter or an announcement tells you to leave. Do what they say straight away.",
     },
   ],
+  posters: [POSTERS.highRiseFireSafety],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
     phone: THURROCK.repairs.phone,

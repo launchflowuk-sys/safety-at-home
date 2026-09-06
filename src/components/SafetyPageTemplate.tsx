@@ -4,6 +4,7 @@ import { getBreadcrumbs, resolveRelated } from "@/content/registry";
 import type { SafetyPage } from "@/types/safety-page";
 import { Accordion } from "./Accordion";
 import { FeedbackWidget } from "./FeedbackWidget";
+import { PosterGallery } from "./PosterGallery";
 import { TopicArt } from "./TopicArt";
 import { WarningIcon } from "./WarningIcon";
 
@@ -151,6 +152,11 @@ export function SafetyPageTemplate({ page, tool }: Props) {
             ))}
           </ul>
         </section>
+      )}
+
+      {/* 6b. Safety posters */}
+      {page.posters && page.posters.length > 0 && (
+        <PosterGallery posters={page.posters} />
       )}
 
       {/* 7. How to report it */}

@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
 
@@ -68,10 +69,17 @@ export const buildingSafety: SafetyPage = {
       text: "Rubbish, bikes, prams or furniture left in hallways or stairwells.",
     },
   ],
+  posters: [
+    POSTERS.buildingSafetyTeam,
+    POSTERS.buildingSafetyChecks,
+    POSTERS.importanceOfFireDoors,
+    POSTERS.highRiseFireSafety,
+  ],
   howToReport: {
     online: { label: "Use our get help tool", href: "/safety-at-home/emergency" },
     phone: THURROCK.repairs.phone,
-    email: THURROCK.repairs.email,
+    // Building concerns go to the Building Safety Team, as the posters say.
+    email: THURROCK.buildingSafety.email,
   },
   timescales: [
     {
