@@ -5,12 +5,17 @@
  *
  * ⚠️ PLACEHOLDER CONTACT DETAILS ⚠️
  * The landlord's own name, phone numbers and email addresses below are
- * deliberately fictional while the site is a demonstration. They use ranges
- * reserved for examples so they can never reach a real person or inbox:
- *   - 0808 157 0xxx and 01632 960xxx are Ofcom's reserved drama numbers
- *   - example.org is reserved by RFC 2606
- * Swap them for the real ones in this file before the site goes live, and
- * nothing else needs to change.
+ * deliberately not real while the site is a demonstration.
+ *
+ * The landlord's phone numbers read "[... to be added]" on purpose, so that
+ * nobody mistakes a plausible-looking number for the real repairs line.
+ * `telHref` returns undefined for them, so they render as plain text instead
+ * of a dial link that would go nowhere. Emails use example.org, which RFC
+ * 2606 reserves for exactly this.
+ *
+ * Replace the bracketed values in this file with the real ones before the
+ * site goes live. Nothing else needs to change, and the dial links start
+ * working again on their own.
  *
  * Numbers marked "real" below are genuine national services and must stay as
  * they are — replacing them would make the safety advice wrong.
@@ -19,14 +24,17 @@ export const ORG = {
   /** The landlord. Shown in the header, footer and page titles. */
   name: "Housing Organisation",
   repairs: {
-    phone: "0808 157 0100", // placeholder
+    phone: "[repairs number to be added]",
     email: "repairs@example.org", // placeholder
     hours: "Free to call, 24 hours a day, 7 days a week",
   },
-  housingPolicy: { phone: "01632 960 100" }, // placeholder
+  housingPolicy: { phone: "[housing team number to be added]" },
   /** real — National Gas Emergency Service, free, 24 hours, all of GB. */
   gasLeak: { provider: "National Gas Emergency Service", phone: "0800 111 999" },
-  blockedSewer: { provider: "your water company", phone: "01632 960 200" }, // placeholder
+  blockedSewer: {
+    provider: "your water company",
+    phone: "[water company number to be added]",
+  },
   /** real — 105 reaches every electricity network operator in England. */
   electricity: { provider: "your electricity network operator", phone: "105" },
   emergency: { phone: "999" }, // real
@@ -84,7 +92,17 @@ export const ORG = {
   rightToRepair: { initial: "£10", perDay: "£2", cap: "£50" },
 } as const;
 
-/** Strip spaces so a display number can be used in a tel: href. */
-export function telHref(phone: string): string {
+/** True while a config value is still a "[... to be added]" placeholder. */
+export function isPlaceholder(value: string): boolean {
+  return value.trim().startsWith("[");
+}
+
+/**
+ * Strip spaces so a display number can be used in a tel: href. Returns
+ * undefined for a placeholder, so `href={telHref(...)}` simply omits the
+ * attribute and the number renders as text rather than a dead dial link.
+ */
+export function telHref(phone: string): string | undefined {
+  if (isPlaceholder(phone)) return undefined;
   return `tel:${phone.replace(/\s+/g, "")}`;
 }

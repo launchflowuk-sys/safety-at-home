@@ -87,6 +87,42 @@
 }
 
 /* =========================================================
+   PRINT — the self-check sheet is the only thing worth paper.
+   Everything else is hidden so a resident gets a clean checklist
+   rather than 12 pages of navigation.
+========================================================= */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+  .print-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  /* Keep a group and its items on the same sheet where possible. */
+  .print-sheet li {
+    break-inside: avoid;
+  }
+  a[href]::after {
+    content: "";
+  }
+}
+
+/* =========================================================
    SHARED COMPONENT CLASSES
 ========================================================= */
 @layer components {

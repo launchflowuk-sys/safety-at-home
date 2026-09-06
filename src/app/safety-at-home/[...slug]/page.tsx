@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { AwaabsLawClock } from "@/components/AwaabsLawClock";
 import { HighRiseBlockList } from "@/components/HighRiseBlockList";
 import { SafetyProfileLookup } from "@/components/SafetyProfileLookup";
+import { SelfCheckList } from "@/components/SelfCheckList";
 import { SafetyPageTemplate } from "@/components/SafetyPageTemplate";
 import {
   REPORT_DAMP_SLUG,
@@ -38,7 +39,12 @@ const TOOLS: Record<string, React.ReactNode> = {
       <HighRiseBlockList />
     </div>
   ),
-  "your-safety-checks": <SafetyProfileLookup />,
+  "your-safety-checks": (
+    <div className="space-y-6">
+      <SelfCheckList />
+      <SafetyProfileLookup />
+    </div>
+  ),
 };
 
 export function generateStaticParams(): Params[] {

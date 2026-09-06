@@ -1,12 +1,31 @@
+import {
+  BANK_HOLIDAYS_COVER_UNTIL,
+  isBankHoliday,
+} from "@/config/bank-holidays";
+
 /**
  * Working-day arithmetic shared by the Awaab's Law clock (client) and the
- * damp report action (server). Working days are Monday to Friday. Bank
- * holidays are not yet excluded — see HANDOFF.md.
+ * damp report action (server).
+ *
+ * A working day is Monday to Friday, excluding England and Wales bank
+ * holidays. The holiday list is generated from GOV.UK by
+ * `npm run holidays:sync` and runs out eventually, so `holidaysCover()` tells
+ * callers when a date is past the end of the list and the answer is therefore
+ * only weekend-accurate.
  */
 
 export function isWorkingDay(date: Date): boolean {
   const day = date.getDay();
-  return day !== 0 && day !== 6;
+  if (day === 0 || day === 6) return false;
+  return !isBankHoliday(date);
+}
+
+/** False once a date runs past the end of the generated holiday list. */
+export function holidaysCover(date: Date): boolean {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}` <= BANK_HOLIDAYS_COVER_UNTIL;
 }
 
 export function addWorkingDays(start: Date, days: number): Date {

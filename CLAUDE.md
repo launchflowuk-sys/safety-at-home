@@ -173,7 +173,8 @@ Never add a poster image with bare markup.
 - [x] **P4** Gas, electrical, CO, water, asbestos
 - [x] **P5** Building safety, balconies, e-bikes, communal, security, extra support
 - [x] **P6** Postgres + Prisma, address lookup, safety profile, ARC asbestos feed
-- [ ] **P7** Self-check PDF generator, PEEP referral, full a11y + Lighthouse pass
+- [~] **P7** Self-check sheet ✔, bank holidays ✔, PEEP referral ✘,
+      full a11y + Lighthouse pass ✘
 
 ## Sitemap (24 routes)
 

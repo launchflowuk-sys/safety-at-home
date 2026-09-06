@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { ORG } from "@/config/organisation";
+import { holidaysCover } from "@/lib/working-days";
 import {
   addWorkingDays,
   leadingNumber,
@@ -92,6 +93,10 @@ export function AwaabsLawClock() {
   const inspectedBeforeReported =
     reportedDate && inspectedDate && inspectedDate < reportedDate;
 
+  const beyondHolidayList = deadlines.some(
+    (deadline) => !holidaysCover(deadline.date),
+  );
+
   return (
     <section
       aria-labelledby={headingId}
@@ -138,9 +143,16 @@ export function AwaabsLawClock() {
         </div>
       </div>
       <p id={hintId} className="mt-3 text-sm text-ink-soft">
-        Working days are Monday to Friday. Bank holidays do not count either,
-        so a date may be a day or two later than shown.
+        Working days are Monday to Friday. Bank holidays are not counted
+        either, and these dates already allow for them.
       </p>
+
+      {beyondHolidayList && (
+        <p className="mt-2 text-sm font-semibold text-alert-deep">
+          One of these dates is far enough ahead that we cannot allow for bank
+          holidays yet, so it may be a day or two early. Call us to check.
+        </p>
+      )}
 
       {inspectedBeforeReported && (
         <p role="alert" className="mt-4 font-semibold text-alert-deep">

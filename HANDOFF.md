@@ -1,6 +1,6 @@
 # Handoff — Safety at Home
 
-_Last updated: 2026-09-06 (Phase 6 complete, plus posters, the building safety rebuild and the real block list). Next up: Phase 7._
+_Last updated: 2026-09-06 (Phase 7 in progress). Next up: PEEP referral, then the accessibility pass._
 
 ## Start here (new session checklist)
 
@@ -375,13 +375,67 @@ their count from that array, so adding or removing a block updates the page.
   dropped from the rights explainer for the same reason. Do not reinstate
   either without legal sign-off.
 
+### Delivered after P6: diagrams, generic branding, placeholder contacts
+
+- **Six explanatory diagrams** (`src/components/Diagrams.tsx`), attached with
+  `SafetyPage.diagram` and rendered as section 3c: stay put vs evacuate, fire
+  door checks, alarm placement, condensation, CO alarm placement, e-bike
+  charging. See the diagram contract in CLAUDE.md. Verified in-browser that
+  nothing spills outside a `viewBox` and every token resolves.
+- **Branding genericised** at the client's request: `src/config/thurrock.ts`
+  became `src/config/organisation.ts`, `THURROCK` became `ORG`, and
+  `ORG.name` ("Housing Organisation") drives header, footer and titles.
+- **The landlord's phone numbers are explicit placeholders** that read
+  "[repairs number to be added]" and similar, because a plausible-looking
+  number was mistaken for the real repairs line. `telHref()` returns
+  `undefined` for anything starting with "[", so they render as text and
+  never produce a dead `tel:` link. `isPlaceholder()` is exported for any
+  future check. Emails use example.org.
+- Genuine national numbers are kept and marked "real" in config: 999, NHS
+  111, 105, the gas emergency line, the Building Safety Regulator, 101.
+  **Do not replace those with placeholders** — it would make the advice wrong.
+- Still branded Thurrock and needing new artwork: **the poster images**
+  (they show thurrock.gov.uk and the old team email in the picture itself)
+  and the **high-rise block addresses**, which are genuine.
+
+### Delivered in P7 so far
+
+- **Bank holidays.** `npm run holidays:sync` regenerates
+  `src/config/bank-holidays.ts` from `https://www.gov.uk/bank-holidays.json`
+  (England and Wales). 83 dates, covering to 2028-12-26. Baked into the
+  bundle, so no runtime network call. `isWorkingDay()` now excludes them, and
+  `holidaysCover()` reports when a date runs past the end of the list — the
+  Awaab's Law clock then warns the resident that the date may be a day or two
+  early. **Re-run the sync once a year.**
+  Verified: a report on 2026-12-18 now gives Wednesday 6 January 2027 rather
+  than Friday 1 January, because Christmas Day, 28 December and New Year's
+  Day are skipped.
+- **Self-check sheet.** `src/components/SelfCheckList.tsx`, added to the
+  `TOOLS` map on `your-safety-checks` above the address lookup. Grouped by
+  frequency, every interval read from `ORG`, real tick boxes and a date line.
+  Printing uses a print stylesheet in `globals.css` rather than a PDF
+  library: `.print-sheet` is the only visible thing on paper, `.no-print`
+  hides the button. That keeps the bundle small and respects the reader's
+  paper size.
+
+**Still to do in P7:**
+
+1. **PEEP referral** — form modelled on `ReportDampForm`, plus a
+   `PeepReferral` table and server action. This is personal *and health*
+   data, so it needs a privacy notice, a retention period, and a decision on
+   how referrals reach the housing team. Link from
+   `fire-safety/help-to-evacuate` and `extra-support`. The sitemap is locked,
+   so add it through `TOOLS`/`BESPOKE_ROUTES`, not a new route.
+2. **Accessibility and Lighthouse pass** — axe on every route, keyboard-only
+   run of the triage tool, both forms, the lookup and the new diagrams;
+   screen reader check of accordions, error summaries and diagram captions;
+   confirm the print sheet is readable in mono. Target ≥ 95.
+
 ## Known state / caveats
 
 - No `downloads` on any page yet — no PDFs exist in the repo. Posters are
   separate (see the poster section above) and live in `public/posters/`.
 - No ESLint config; use `npx tsc --noEmit` and `npm run build`.
-- Awaab's Law clock and the report `investigateBy` date have no bank-holiday
-  calendar (gov.uk JSON feed is an option for P7).
 - `motion` remains unused. Never add framer-motion.
 - Git identity is set repo-locally to the P1 author (Shoji).
 - Content facts to confirm with Thurrock: gas safety record copy "within 28

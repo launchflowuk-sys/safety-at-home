@@ -11,7 +11,8 @@
     "db:migrate": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:seed": "node --experimental-strip-types prisma/seed.ts",
-    "arc:sync": "node --experimental-strip-types scripts/sync-arc.ts"
+    "arc:sync": "node --experimental-strip-types scripts/sync-arc.ts",
+    "holidays:sync": "node --experimental-strip-types scripts/sync-bank-holidays.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
