@@ -317,15 +317,34 @@ New config: `buildingSafety.accessNotice` ("48 hours") and
 `buildingSafetyRegulator` (0300 790 6787 and its opening hours, both read
 from the live GOV.UK page rather than a summary).
 
+**The real block list is now published.** Thurrock supplied its registered
+high-rise blocks on 2026-09-06, then confirmed Perth House (Canberra Square,
+Tilbury) is not one of them, leaving 15. They live in
+`src/config/buildings.ts` and are rendered by `HighRiseBlockList`, collapsed
+under the address lookup and grouped by area (Grays 6, Little Thurrock 3,
+Tilbury 3, Chadwell St Mary 3).
+The key fact tile and the "is my block higher-risk?" explainer both derive
+their count from that array, so adding or removing a block updates the page.
+
+- `flatsFrom`/`flatsTo` are read from the council's "Block 1-58 Consec"
+  wording. The page says "Flats 1 to 58" rather than claiming a home count.
+- `reference` (for example `0038CF01`) is the council's asset reference, not
+  a dwelling UPRN. It is kept for matching against council systems and the
+  ARC feed, and is deliberately never rendered.
+- The address lookup still has no real data, so a resident entering
+  RM17 6PR gets "We do not have safety records online for that postcode yet"
+  (wording softened so it no longer contradicts the published list).
+  **Loading real dwelling UPRNs, evacuation plans and check dates is the
+  outstanding job** — until then the lookup is a demo.
+
 **Content to confirm with Thurrock before go-live:**
 
 - We state we run a building safety complaints system and have a resident
   engagement strategy, and invite residents to ask the team for a copy. Both
   come from Thurrock's own poster, but confirm the strategy is publishable
   and add it to `downloads` when it is.
-- Enfield publishes its list of registered high-rise blocks. We deliberately
-  did **not** invent one. Either load real address data so the lookup answers
-  it, or ask Thurrock for the block list.
+- Confirm the 15-block list is complete and current, and that publishing the
+  flat number ranges is acceptable.
 - Leaseholder protections are summarised in plain English. Have a housing
   lawyer check the wording before launch.
 

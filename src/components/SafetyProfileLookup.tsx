@@ -143,8 +143,8 @@ export function SafetyProfileLookup() {
 
         {stage.kind === "none" && (
           <p className="max-w-prose">
-            We do not have any council homes at that postcode. Check it and
-            try again, or call us on{" "}
+            We do not have safety records online for that postcode yet. Check
+            the postcode and try again, or call us on{" "}
             <a
               href={telHref(THURROCK.repairs.phone)}
               className="font-bold text-link underline underline-offset-2"

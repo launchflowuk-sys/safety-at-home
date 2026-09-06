@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AwaabsLawClock } from "@/components/AwaabsLawClock";
+import { HighRiseBlockList } from "@/components/HighRiseBlockList";
 import { SafetyProfileLookup } from "@/components/SafetyProfileLookup";
 import { SafetyPageTemplate } from "@/components/SafetyPageTemplate";
 import {
@@ -31,7 +32,12 @@ const BESPOKE_ROUTES: Record<string, () => React.ReactNode> = {
  */
 const TOOLS: Record<string, React.ReactNode> = {
   "damp-and-mould/awaabs-law": <AwaabsLawClock />,
-  "building-safety": <SafetyProfileLookup />,
+  "building-safety": (
+    <div className="space-y-6">
+      <SafetyProfileLookup />
+      <HighRiseBlockList />
+    </div>
+  ),
   "your-safety-checks": <SafetyProfileLookup />,
 };
 

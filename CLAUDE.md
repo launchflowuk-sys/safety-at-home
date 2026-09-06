@@ -88,6 +88,15 @@ type SafetyPage = {
 Content lives in `src/content/pages/*.ts` — one file per topic. A single
 component renders all of them.
 
+## High-rise block list
+
+The blocks Thurrock registers with the Building Safety Regulator live in
+`src/config/buildings.ts` (`HIGH_RISE_BLOCKS`), published by
+`HighRiseBlockList` on the building safety page. Never hardcode a block name
+in a page: the count, the key fact and the published list are all derived
+from that array. `reference` is the council's asset reference, not a dwelling
+UPRN, and is deliberately not rendered.
+
 ## Poster contract
 
 Printed posters live in `src/config/posters.ts` (`POSTERS`) and are attached

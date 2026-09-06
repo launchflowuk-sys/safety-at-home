@@ -1,4 +1,5 @@
 import { THURROCK } from "@/config/thurrock";
+import { HIGH_RISE_BLOCKS } from "@/config/buildings";
 import { POSTERS } from "@/config/posters";
 import { SOURCES } from "@/config/sources";
 import type { SafetyPage } from "@/types/safety-page";
@@ -18,8 +19,8 @@ export const buildingSafety: SafetyPage = {
       label: "written notice before we ask to come into your home",
     },
     {
-      value: "Your say",
-      label: "we must ask residents before big building safety decisions",
+      value: `${HIGH_RISE_BLOCKS.length} blocks`,
+      label: "are high-rise and registered with the Building Safety Regulator",
     },
   ],
   emergency: {
@@ -58,8 +59,9 @@ export const buildingSafety: SafetyPage = {
       heading: "Is my block a higher-risk building?",
       intro: `A block is a 'higher-risk building' if it is ${THURROCK.buildingSafety.higherRiskBuilding} and has at least two homes in it. These blocks must be registered with the Building Safety Regulator, and we must keep a safety case report for each one.`,
       items: [
-        "Use the address lookup near the top of this page. It tells you whether your block is higher-risk, and whether it uses a stay put or evacuate plan.",
-        "You can also search the national register by postcode on GOV.UK.",
+        `We manage ${HIGH_RISE_BLOCKS.length} high-rise blocks. The full list is near the top of this page, grouped by area, so you can check whether yours is one of them.`,
+        "The address lookup above it also tells you whether your block uses a stay put or evacuate plan.",
+        "You can search the national register by postcode on GOV.UK too.",
         "If your block is not higher-risk, it is still covered by a fire risk assessment, fire door checks and everything else on this page. The extra rules simply do not apply to it.",
       ],
     },
